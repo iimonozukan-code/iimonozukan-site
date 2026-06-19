@@ -1,0 +1,96 @@
+import { useTranslation } from 'react-i18next';
+import type { Product } from '@/mocks/products';
+
+interface ProductCardProps {
+  product: Product;
+}
+
+function formatDateShort(dateStr: string): string {
+  const d = new Date(dateStr);
+  const y = String(d.getFullYear()).slice(-2);
+  const m = d.getMonth() + 1;
+  const day = d.getDate();
+  return `${y}年${m}/${day}`;
+}
+
+export default function ProductCard({ product }: ProductCardProps) {
+  const { t } = useTranslation();
+
+  const activeMalls = Object.entries(product.links)
+    .filter(([, url]) => url !== null)
+    .map(([key]) => key);
+
+  const firstLink = Object.values(product.links).find((v) => v !== null) ?? '#';
+
+  return (
+    <article
+      className="group bg-white rounded-2xl overflow-hidden border border-background-200 transition-all duration-300 hover:border-foreground-300"
+      style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.04)' }}
+    >
+      <a
+        href={firstLink}
+        target="_blank"
+        rel="nofollow noopener noreferrer"
+        className="block"
+      >
+        <div className="relative aspect-square overflow-hidden bg-background-100 flex items-center justify-center p-3">
+          <img
+            src={product.image}
+            alt={product.name}
+            title={`${product.name} - いいもの図鑑`}
+            className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+          <span
+            className="absolute top-2 left-2"
+            style={{
+              writingMode: 'vertical-rl',
+              color: '#ffffff',
+              fontWeight: 900,
+              fontSize: '32px',
+              WebkitTextStroke: '6px #000000',
+              paintOrder: 'stroke fill',
+              textShadow: '0 0 3px #000000',
+              letterSpacing: '0.2em',
+              lineHeight: 1.0,
+              pointerEvents: 'none',
+            }}
+          >
+            {product.category}
+          </span>
+          <span
+            className="absolute top-2 right-2 text-[10px] font-semibold px-2 py-0.5 rounded-full whitespace-nowrap"
+            style={{
+              backgroundColor: 'rgba(255,255,255,0.92)',
+              color: '#1d1d1f',
+              border: '1px solid rgba(0,0,0,0.06)',
+              backdropFilter: 'blur(6px)',
+              WebkitBackdropFilter: 'blur(6px)',
+              pointerEvents: 'none',
+            }}
+          >
+            {formatDateShort(product.date)}
+          </span>
+        </div>
+      </a>
+      <div className="p-3 md:p-3.5">
+        <h3 className="text-sm md:text-[15px] font-modern font-semibold tracking-tight text-foreground-950 leading-snug line-clamp-2 mb-2.5">
+          {product.name}
+        </h3>
+        <div className="flex flex-wrap gap-1.5">
+          {activeMalls.map((mall) => (
+            <a
+              key={mall}
+              href={product.links[mall as keyof typeof product.links]!}
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              className="inline-flex items-center px-3 py-1.5 rounded-full text-[11px] font-modern font-medium tracking-tight cursor-pointer whitespace-nowrap bg-background-100 text-foreground-700 transition-all duration-200 hover:bg-background-200"
+            >
+              {t(`product.${mall}`)}
+            </a>
+          ))}
+        </div>
+      </div>
+    </article>
+  );
+}
