@@ -1,4 +1,4 @@
-name: Enrich products (Amazon PA-API)
+name: Enrich products (Amazon)
 on:
   workflow_dispatch:
 jobs:
@@ -17,14 +17,13 @@ jobs:
       - name: Run enrichment
         working-directory: "readdy-project 3"
         env:
-          PAAPI_ACCESS_KEY: ${{ secrets.PAAPI_ACCESS_KEY }}
-          PAAPI_SECRET_KEY: ${{ secrets.PAAPI_SECRET_KEY }}
           PAAPI_PARTNER_TAG: iimonozukan-media-22
         run: npm run enrich:amazon -- --all
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "Enrich Amazon links and images via PA-API" || echo "No changes"
+          git rm -r --cached "readdy-project 3/node_modules" > /dev/null 2>&1 || true
+          git add "readdy-project 3/src/mocks/products.ts"
+          git commit -m "Retag Amazon links and refresh images" || echo "No changes"
           git push
