@@ -37,7 +37,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hgsi62",
       "yahoo": "https://yahoo.jp/ZxeeHw",
       "aliexpress": null
-    }
+    },
+    "asin": "B0FLYFWBJC"
   },
   {
     "name": "珪藻土バスマット",
@@ -49,7 +50,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hgiGTZ",
       "yahoo": "https://yahoo.jp/TPB8E7",
       "aliexpress": null
-    }
+    },
+    "asin": "B0FNCR3VPQ"
   },
   {
     "name": "iphone保護フィルム",
@@ -61,7 +63,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/h5WpQE",
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0GZ3D779C"
   },
   {
     "name": "ランドリーラック",
@@ -73,7 +76,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hgQ23w",
       "yahoo": "https://yahoo.jp/kwPJCXE",
       "aliexpress": null
-    }
+    },
+    "asin": "B0BLMNRF3G"
   },
   {
     "name": "スマホリング",
@@ -85,7 +89,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/h55la9",
       "yahoo": "https://yahoo.jp/qqPNEu",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4mPKWtn"
-    }
+    },
+    "asin": "B0DTCWLGWX"
   },
   {
     "name": "配線収納",
@@ -97,7 +102,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hPHlg9",
       "yahoo": "https://yahoo.jp/xkVorG",
       "aliexpress": null
-    }
+    },
+    "asin": "B0CH81Y46J"
   },
   {
     "name": "ドッキングステーション",
@@ -109,7 +115,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/h52npI",
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0FVFBQGW9"
   },
   {
     "name": "モニターアーム",
@@ -121,7 +128,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hgHsm7",
       "yahoo": "https://yahoo.jp/K2S3rBf",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4FVb177"
-    }
+    },
+    "asin": "B0G34JT9GQ"
   },
   {
     "name": "スマホマイク",
@@ -133,7 +141,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hkBgMi",
       "yahoo": "https://yahoo.jp/-AgxMW",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4lPYfop"
-    }
+    },
+    "asin": "B0F3D55D5R"
   },
   {
     "name": "スマホ三脚",
@@ -145,7 +154,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hRzb09",
       "yahoo": "https://yahoo.jp/Y3S-kB",
       "aliexpress": null
-    }
+    },
+    "asin": "B0F8M9LLHZ"
   },
   {
     "name": "ネックマウント",
@@ -157,7 +167,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/h5A0Gv",
       "yahoo": "https://yahoo.jp/KPdGaL",
       "aliexpress": null
-    }
+    },
+    "asin": "B0CXPTHXNY"
   },
   {
     "name": "プロジェクター",
@@ -169,7 +180,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hop6oZ",
       "yahoo": "https://yahoo.jp/6Du8KK",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3z8fBMp"
-    }
+    },
+    "asin": "B0DZWGPN1L"
   },
   {
     "name": "最強日傘",
@@ -181,7 +193,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hPxJ9M",
       "yahoo": "https://yahoo.jp/KWGJ7J",
       "aliexpress": null
-    }
+    },
+    "asin": "B0FG2T9S7H"
   },
   {
     "name": "ホワイトボード",
@@ -193,7 +206,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hPbDdh",
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B077TGBB72"
   },
   {
     "name": "コンセント付きモバ充",
@@ -205,7 +219,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hHqCb1",
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0D7D8JP6Q"
   },
   {
     "name": "3台同時モバ充",
@@ -217,7 +232,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hPjfmt",
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0G646HYT7"
   },
   {
     "name": "玄関収納",
@@ -229,7 +245,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/h52dEF",
       "yahoo": "https://yahoo.jp/FeMtDy",
       "aliexpress": null
-    }
+    },
+    "asin": "B0D7GG4PGT"
   },
   {
     "name": "BOXパッド",
@@ -241,7 +258,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hYnCiH",
       "yahoo": "https://yahoo.jp/8CN7cZw",
       "aliexpress": null
-    }
+    },
+    "asin": "B0DW7MMW14"
   },
   {
     "name": "掛け布団",
@@ -253,7 +271,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/h5BdHp",
       "yahoo": "https://yahoo.jp/mVbowq",
       "aliexpress": null
-    }
+    },
+    "asin": "B0GLNRWCB7"
   },
   {
     "name": "除湿シート",
@@ -265,7 +284,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0BGMYFDDL"
   },
   {
     "name": "除湿ベッドパッド",
@@ -289,7 +309,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hPlQRz",
       "yahoo": "https://yahoo.jp/LVw-Ft",
       "aliexpress": null
-    }
+    },
+    "asin": "B0GYJNPM9Y"
   },
   {
     "name": "ソファベッド",
@@ -301,7 +322,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hPA643",
       "yahoo": "https://yahoo.jp/gtcqpt",
       "aliexpress": null
-    }
+    },
+    "asin": "B0GGTP453M"
   },
   {
     "name": "保護フィルム",
@@ -313,7 +335,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hPDs9T",
       "yahoo": "https://yahoo.jp/6a6iaU",
       "aliexpress": null
-    }
+    },
+    "asin": "B0FPMQ6YLY"
   },
   {
     "name": "アーム型マイク",
@@ -325,7 +348,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hkL03u",
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c3kvOf6J"
-    }
+    },
+    "asin": "B0F13FYCCJ"
   },
   {
     "name": "一体型マウスパッド",
@@ -337,7 +361,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B01MSICY8E"
   },
   {
     "name": "分離型マウスパッド",
@@ -349,7 +374,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/h5z5jM",
       "yahoo": "https://yahoo.jp/oNSYcT",
       "aliexpress": null
-    }
+    },
+    "asin": "B002WC9AGO"
   },
   {
     "name": "マウスパッド",
@@ -373,7 +399,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0FZP3CDP8"
   },
   {
     "name": "ほぼ純正のミラネーゼループ",
@@ -385,7 +412,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0DH96TB4B"
   },
   {
     "name": "レザーバンド",
@@ -397,7 +425,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hFwWqC",
       "yahoo": "https://yahoo.jp/HqDcTM",
       "aliexpress": null
-    }
+    },
+    "asin": "B09PTDHCHZ"
   },
   {
     "name": "チェーンバンド",
@@ -409,7 +438,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hgktVq",
       "yahoo": "https://yahoo.jp/AY3gdr",
       "aliexpress": null
-    }
+    },
+    "asin": "B0CFFMNNQZ"
   },
   {
     "name": "フルカバー保護ケース",
@@ -457,7 +487,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B00B547WVK"
   },
   {
     "name": "ドライヤー＆ヘアアイロンホルダー",
@@ -493,7 +524,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hPvuC9",
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0G1FPKNXN"
   },
   {
     "name": "燻製機",
@@ -505,7 +537,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0FNZVMQWJ"
   },
   {
     "name": "翻訳イヤホン",
@@ -517,7 +550,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/TLAcx7",
       "yahoo": "https://yahoo.jp/fUU_57",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3b0E5kB"
-    }
+    },
+    "asin": "B0FDGK5C23"
   },
   {
     "name": "極小電子ノート",
@@ -529,7 +563,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/h5jqXM",
       "yahoo": "https://yahoo.jp/vA7jJw",
       "aliexpress": "https://s.click.aliexpress.com/e/_c2IA8YRd"
-    }
+    },
+    "asin": "B0DWMVW8RS"
   },
   {
     "name": "スケルトンマウス",
@@ -541,7 +576,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/h8a9R2",
       "yahoo": "https://yahoo.jp/GUJoAt",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3PmAHZ9"
-    }
+    },
+    "asin": "B0FDQJ9JF9"
   },
   {
     "name": "コーニング製ガラスフィルム",
@@ -553,7 +589,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hPykXh",
       "yahoo": "https://yahoo.jp/ZVSzFU",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4qHRZ9h"
-    }
+    },
+    "asin": "B0F6TVNVK4"
   },
   {
     "name": "破格プロジェクター",
@@ -565,7 +602,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hoNq85",
       "yahoo": "https://yahoo.jp/YGyRu8",
       "aliexpress": null
-    }
+    },
+    "asin": "B0DZWGPN1L"
   },
   {
     "name": "UI完璧デジタル名刺",
@@ -577,7 +615,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0FJDD8RHK"
   },
   {
     "name": "SSDケース",
@@ -589,7 +628,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hRHEga",
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c2xMzDTp"
-    }
+    },
+    "asin": "B0GJ3VY322"
   },
   {
     "name": "浮かせる洗面台ゴミ箱",
@@ -601,7 +641,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/h8nj8w",
       "yahoo": "https://yahoo.jp/FXW2pE",
       "aliexpress": null
-    }
+    },
+    "asin": "B0F7XN85S6"
   },
   {
     "name": "性能最強キーボード",
@@ -613,7 +654,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hYlinZ",
       "yahoo": "https://yahoo.jp/5nNCkw",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4TPWard"
-    }
+    },
+    "asin": "B0DCK82MRD"
   },
   {
     "name": "雨音がするキーボード",
@@ -625,7 +667,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/h5BQb3",
       "yahoo": "https://yahoo.jp/FkYGna",
       "aliexpress": null
-    }
+    },
+    "asin": "B0FVVQH5JH"
   },
   {
     "name": "泡音コスパキーボード",
@@ -637,7 +680,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hPN3wN",
       "yahoo": "https://yahoo.jp/-vasTD",
       "aliexpress": null
-    }
+    },
+    "asin": "B0FCLQ767Z"
   },
   {
     "name": "音が出ないキーボード",
@@ -649,7 +693,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/h5Yn1n",
       "yahoo": "https://yahoo.jp/tAvGuQ",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4NjXE63"
-    }
+    },
+    "asin": "B0G4LWR78Q"
   },
   {
     "name": "防災モバ充",
@@ -661,7 +706,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hP9zPb",
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0F3L7HTMP"
   },
   {
     "name": "防災ライトモジュール",
@@ -673,7 +719,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0FT3MDG2S"
   },
   {
     "name": "iPadコスパキーボードケース",
@@ -685,7 +732,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hkqmg4",
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c3VMdh3L"
-    }
+    },
+    "asin": "B0FX9SSLMT"
   },
   {
     "name": "iPadに付く持ち運びマウス",
@@ -697,7 +745,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hgYYAy",
       "yahoo": "https://yahoo.jp/m7LNVD6?openExternalBrowser=1",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4dpZ6hb"
-    }
+    },
+    "asin": "B0F3D93KH9"
   },
   {
     "name": "探す機能付きコスパAppleペンシル",
@@ -709,7 +758,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c2wyAdU5"
-    }
+    },
+    "asin": "B0DM5ZLR2S"
   },
   {
     "name": "iPadプレミアム強化ガラスフィルム",
@@ -721,7 +771,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/h5gcFm",
       "yahoo": "https://yahoo.jp/oiESMh",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4Da1gdb"
-    }
+    },
+    "asin": "B0DSPMBR3R"
   },
   {
     "name": "探す機能付きコスパiPadペンシル",
@@ -757,7 +808,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hPwuxP",
       "yahoo": "https://yahoo.jp/7mGhdz",
       "aliexpress": null
-    }
+    },
+    "asin": "B0FY2J8GMP"
   },
   {
     "name": "20 in 1コスパドッキングステーション",
@@ -769,7 +821,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hgsHMV",
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c4oQSkTn"
-    }
+    },
+    "asin": "B0FVL59RT5"
   },
   {
     "name": "軽量多機能ビジネスリュック",
@@ -781,7 +834,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/h8Kt1M",
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0FMQSM5X5"
   },
   {
     "name": "2 in 1マルチ充電器",
@@ -793,7 +847,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/hPVIju",
       "yahoo": "https://yahoo.jp/rc3sWz",
       "aliexpress": null
-    }
+    },
+    "asin": "B0G568LSC2"
   },
   {
     "name": "MEMC内蔵コスパプロジェクター",
@@ -805,7 +860,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/h89mRl",
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c4LriFHf"
-    }
+    },
+    "asin": "B0GN61Q7QQ"
   },
   {
     "name": "ポッドキャスト・歌・配信対応マイク",
@@ -817,7 +873,8 @@ export const products: Product[] = [
       "rakuten": "https://a.r10.to/h5foCq",
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c4Brtu3n"
-    }
+    },
+    "asin": "B0FR957Y7K"
   },
   {
     "name": "イヤホン型AIレコーダー",
@@ -829,7 +886,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0FWZWY2BW"
   },
   {
     "name": "MagSafe型外付けSSD",
@@ -841,7 +899,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/SpWw4U?openExternalBrowser=1",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3Wqub8v"
-    }
+    },
+    "asin": "B0G5FB36BC"
   },
   {
     "name": "多機能iPadキーボード付ケース",
@@ -853,7 +912,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c2JyK1v1"
-    }
+    },
+    "asin": "B0FX9SSLMT"
   },
   {
     "name": "携帯性抜群ワイヤレスマウス",
@@ -865,7 +925,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c35DK4GJ"
-    }
+    },
+    "asin": "B0F3D93KH9"
   },
   {
     "name": "魔法のスニーカー",
@@ -877,7 +938,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/5uhUn-9",
       "aliexpress": null
-    }
+    },
+    "asin": "B0DLLGS1PK"
   },
   {
     "name": "明るさ特化型プロジェクター",
@@ -901,7 +963,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/eqUDLD",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3KPqxgf"
-    }
+    },
+    "asin": "B0G4LTQRRH"
   },
   {
     "name": "スマホサイズ台風ドライヤー",
@@ -913,7 +976,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0G25THGY7"
   },
   {
     "name": "コスパ最強スマートウォッチ",
@@ -925,7 +989,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/AP3QgQ",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4n2GOZH"
-    }
+    },
+    "asin": "B0GJSCGFTP"
   },
   {
     "name": "NOTOSNOW",
@@ -937,7 +1002,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0GQ7F9DR6"
   },
   {
     "name": "多機能特化型iPadケース",
@@ -949,7 +1015,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c45dndTV"
-    }
+    },
+    "asin": "B0FX9SSLMT"
   },
   {
     "name": "3種類8台同時電源タップ",
@@ -961,7 +1028,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0FW9YJG4F"
   },
   {
     "name": "昼でも見れる高性能プロジェクター",
@@ -973,7 +1041,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0FH21C9P6"
   },
   {
     "name": "3台同時急速スマホスタンドバッテリー",
@@ -985,7 +1054,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0G646HYT7"
   },
   {
     "name": "Airpodspro3ケースcyber",
@@ -997,7 +1067,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/QoWsoh",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3ZWzufp"
-    }
+    },
+    "asin": "B0G1YLB8K2"
   },
   {
     "name": "Airpods pro3ケースorbit",
@@ -1009,7 +1080,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c3ZWzufp"
-    }
+    },
+    "asin": "B0G1YLQQSR"
   },
   {
     "name": "Airpods pro3ケースpulse",
@@ -1021,7 +1093,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c3ZWzufp"
-    }
+    },
+    "asin": "B0G1YGXYV1"
   },
   {
     "name": "4KWebカメラ",
@@ -1033,7 +1106,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/6x-PWr",
       "aliexpress": "https://s.click.aliexpress.com/e/_c335BIdV"
-    }
+    },
+    "asin": "B0FR8P9KV6"
   },
   {
     "name": "100W急速特化型モバ充",
@@ -1045,7 +1119,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0GHXVJMT5"
   },
   {
     "name": "休日デートに最適なバッグ",
@@ -1057,7 +1132,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/NHEpgn",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3o4JVkX"
-    }
+    },
+    "asin": "B0DPW8GX7K"
   },
   {
     "name": "Huawei Freeclip2",
@@ -1069,7 +1145,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/QdcGcs",
       "aliexpress": null
-    }
+    },
+    "asin": "B0G2CQGWPF"
   },
   {
     "name": "冷却ファン付き車載充電スタンド",
@@ -1081,7 +1158,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/-fDQoV",
       "aliexpress": null
-    }
+    },
+    "asin": "B0FPFHTRBH"
   },
   {
     "name": "ESR 車載充電スタンド",
@@ -1105,7 +1183,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/eac37x",
       "aliexpress": null
-    }
+    },
+    "asin": "B0FCLD5J2Z"
   },
   {
     "name": "激安コスパプロジェクター",
@@ -1117,7 +1196,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/e9iwWG",
       "aliexpress": "https://s.click.aliexpress.com/e/_c2z7FS2f"
-    }
+    },
+    "asin": "B0FP8HMLZW"
   },
   {
     "name": "硬度10HAppleWatch表面保護ケース",
@@ -1142,7 +1222,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0DHX1S73S"
   },
   {
     "name": "持ち運び用3台同時冷却付き充電スタンド",
@@ -1180,7 +1261,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/sU8apig",
       "aliexpress": "https://s.click.aliexpress.com/e/_c42HJy0j"
-    }
+    },
+    "asin": "B0G25BX7XQ"
   },
   {
     "name": "スマホ用三脚",
@@ -1192,7 +1274,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c4cSVSOJ"
-    }
+    },
+    "asin": "B0F8M9LLHZ"
   },
   {
     "name": "8役MagSafe変換アダプタ",
@@ -1204,7 +1287,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c3LGxsvd"
-    }
+    },
+    "asin": "B0FPWQ9ZV5"
   },
   {
     "name": "大容量高出力モバ充",
@@ -1216,7 +1300,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/Bx9xRo",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3dh2uHd"
-    }
+    },
+    "asin": "B0DT4RGDSJ"
   },
   {
     "name": "耳を塞がないイヤホン",
@@ -1228,7 +1313,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c3ye3mhz"
-    }
+    },
+    "asin": "B0FVSCLHST"
   },
   {
     "name": "USBメモリ",
@@ -1266,7 +1352,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/dbWr8b",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3nfJ0ML"
-    }
+    },
+    "asin": "B0FNRK56K7"
   },
   {
     "name": "指に吸い付くキーボード",
@@ -1278,7 +1365,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/DCGpdM",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4nFwdhZ"
-    }
+    },
+    "asin": "B0DJ98GG7R"
   },
   {
     "name": "角度5個ipadケース",
@@ -1303,7 +1391,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/c_8ZAQV",
       "aliexpress": null
-    }
+    },
+    "asin": "B0FMJYV9P8"
   },
   {
     "name": "AIイヤホン",
@@ -1315,7 +1404,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/iFLuwM",
       "aliexpress": null
-    }
+    },
+    "asin": "B0FMJZ4Y23"
   },
   {
     "name": "電気ケトル",
@@ -1327,7 +1417,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/CmEYpv",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3sOdFpv"
-    }
+    },
+    "asin": "B0CD3RNDGN"
   },
   {
     "name": "コスパ最強タブレット",
@@ -1339,7 +1430,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0FW4XPRZ5"
   },
   {
     "name": "TCLプロジェクター",
@@ -1351,7 +1443,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0FH21SJV4"
   },
   {
     "name": "コスパ最強カナル型イヤホン",
@@ -1363,7 +1456,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/6mhzmu",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4nQylYJ"
-    }
+    },
+    "asin": "B0FLD1DXYP"
   },
   {
     "name": "AirPodsケース",
@@ -1388,7 +1482,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/YK8ubq",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4MNDtIx"
-    }
+    },
+    "asin": "B0F3226Z3Q"
   },
   {
     "name": "電動歯ブラシ",
@@ -1400,7 +1495,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0FK9JDWFX"
   },
   {
     "name": "オープン型コスパイヤホン",
@@ -1412,7 +1508,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0DY65YL3K"
   },
   {
     "name": "激安多機能ペンシル",
@@ -1437,7 +1534,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0DFG9ST2C"
   },
   {
     "name": "ミステリーランチ",
@@ -1449,7 +1547,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/mgvauU",
       "aliexpress": null
-    }
+    },
+    "asin": "B0D1DK4LBN"
   },
   {
     "name": "多機能iPadケース",
@@ -1461,7 +1560,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/GygMJa",
       "aliexpress": null
-    }
+    },
+    "asin": "B0FF48BYKT"
   },
   {
     "name": "iPadケース",
@@ -1485,7 +1585,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c3qtffcf"
-    }
+    },
+    "asin": "B0FR4PPY78"
   },
   {
     "name": "139言語翻訳イヤホン",
@@ -1497,7 +1598,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/AqtXYs",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4dhBLkf"
-    }
+    },
+    "asin": "B0FDGK5C23"
   },
   {
     "name": "LUSHマウスウォッシュ",
@@ -1509,7 +1611,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/d6Lr6x",
       "aliexpress": null
-    }
+    },
+    "asin": "B0CVXHZFN8"
   },
   {
     "name": "インテリア充電スタンド",
@@ -1533,7 +1636,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/eb5CS3",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4ERlUIn"
-    }
+    },
+    "asin": "B0DSJFTK8G"
   },
   {
     "name": "業界初モバイルスタンド",
@@ -1545,7 +1649,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0DFCMFYYH"
   },
   {
     "name": "空飛ぶカメラマン",
@@ -1557,7 +1662,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/hXbuab",
       "aliexpress": null
-    }
+    },
+    "asin": "B0FM2BDQP7"
   },
   {
     "name": "ヨロイのairpodspro3ケース",
@@ -1582,7 +1688,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0DK1KQSP6"
   },
   {
     "name": "北欧建築的リュック",
@@ -1607,7 +1714,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/hakc7Q",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3nyfEDN"
-    }
+    },
+    "asin": "B0FNBRHBQ4"
   },
   {
     "name": "最強プロジェクター",
@@ -1619,7 +1727,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/nS_oX6",
       "aliexpress": "https://s.click.aliexpress.com/e/_c2QbPswJ"
-    }
+    },
+    "asin": "B0D7PKHGWY"
   },
   {
     "name": "特水",
@@ -1631,7 +1740,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/Ub5vpv",
       "aliexpress": null
-    }
+    },
+    "asin": "B0FMXXNZZ3"
   },
   {
     "name": "激安高性能モニター",
@@ -1643,7 +1753,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/_7Mudz",
       "aliexpress": null
-    }
+    },
+    "asin": "B0CG5VDGKY"
   },
   {
     "name": "5台同時ケーブル内蔵急速モバ充",
@@ -1655,7 +1766,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0FFMSDTLD"
   },
   {
     "name": "タイパ2倍イヤホン",
@@ -1667,7 +1779,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/_-DBMu",
       "aliexpress": "https://s.click.aliexpress.com/e/_c33FF12b"
-    }
+    },
+    "asin": "B0F1Y3CJJ2"
   },
   {
     "name": "紹介/人狼超えるカドゲ",
@@ -1679,7 +1792,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B017K5WRN0"
   },
   {
     "name": "人狼超えるカドゲ",
@@ -1716,7 +1830,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/5r5awq",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3hFik19"
-    }
+    },
+    "asin": "B0CP95BCYZ"
   },
   {
     "name": "浄水ポットのカートリッジ",
@@ -1728,7 +1843,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c39ASvPd"
-    }
+    },
+    "asin": "B0CPL68SZN"
   },
   {
     "name": "britaカートリッジ",
@@ -1752,7 +1868,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/UAg2P9",
       "aliexpress": null
-    }
+    },
+    "asin": "B0DWMPNCLC"
   },
   {
     "name": "スポンジハンカチ",
@@ -1764,7 +1881,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/Xb6LUb",
       "aliexpress": null
-    }
+    },
+    "asin": "B0BPK7LL8X"
   },
   {
     "name": "ネックスタンド",
@@ -1776,7 +1894,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/f2c6ARw",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3yfmuu7"
-    }
+    },
+    "asin": "B0CXPTHXNY"
   },
   {
     "name": "MagSafeリング",
@@ -1788,7 +1907,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/ZnnNzC",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4rDhmJZ"
-    }
+    },
+    "asin": "B0DK348HZV"
   },
   {
     "name": "多機能レザーAirpods pro3ケース",
@@ -1800,7 +1920,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0FQ5SL4RW"
   },
   {
     "name": "せつない香水",
@@ -1812,7 +1933,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/7-3hqf",
       "aliexpress": null
-    }
+    },
+    "asin": "B01N217C2S"
   },
   {
     "name": "外出用充電器",
@@ -1824,7 +1946,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/dxmEPe",
       "aliexpress": "https://s.click.aliexpress.com/e/_c40mr9wj"
-    }
+    },
+    "asin": "B0BMPC7GDY"
   },
   {
     "name": "CtoAケーブル",
@@ -1836,7 +1959,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/pfY8N3J",
       "aliexpress": null
-    }
+    },
+    "asin": "B0BDM9WQ86"
   },
   {
     "name": "CtoCケーブル",
@@ -1848,7 +1972,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0BDM8SFFC"
   },
   {
     "name": "最新ピンマイク",
@@ -1872,7 +1997,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/yBy6vhu",
       "aliexpress": "https://s.click.aliexpress.com/e/_c2zN9c0j"
-    }
+    },
+    "asin": "B0D7D8JP6Q"
   },
   {
     "name": "iphone17proシリーズ",
@@ -1884,7 +2010,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
-    }
+    },
+    "asin": "B0FQFLM679"
   },
   {
     "name": "iphone17pro",
@@ -1908,7 +2035,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/_TxXoi",
       "aliexpress": null
-    }
+    },
+    "asin": "B0FQFQDN6K"
   },
   {
     "name": "テックウーブンケース",
@@ -1920,7 +2048,8 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/T_8R9e",
       "aliexpress": null
-    }
+    },
+    "asin": "B0FQGQJ64Y"
   },
   {
     "name": "リカバリークロス",
@@ -1932,6 +2061,7 @@ export const products: Product[] = [
       "rakuten": null,
       "yahoo": "https://yahoo.jp/o7DsmZ",
       "aliexpress": null
-    }
+    },
+    "asin": "B07WRQPFS6"
   }
 ];
