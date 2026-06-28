@@ -33,7 +33,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/57625ef1-4ee9-4007-990f-6ceebe589973_31WnhJH31dL.-SL500-.jpeg",
     "links": {
-      "amazon": "https://amzn.to/4ecrFcl",
+      "amazon": "https://www.amazon.co.jp/dp/B0FLYFWBJC?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hgsi62",
       "yahoo": "https://yahoo.jp/ZxeeHw",
       "aliexpress": null
@@ -46,7 +46,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/1efcc0f2-e68a-4c44-a202-e0190fddb67b_image.png",
     "links": {
-      "amazon": "https://amzn.to/4egrVbk",
+      "amazon": "https://www.amazon.co.jp/dp/B0FNCR3VPQ?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hgiGTZ",
       "yahoo": "https://yahoo.jp/TPB8E7",
       "aliexpress": null
@@ -59,7 +59,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/cbdda778-8324-4e18-b62d-92e40cc34af9_image.png",
     "links": {
-      "amazon": "https://amzn.to/3PyBtVP",
+      "amazon": "https://www.amazon.co.jp/dp/B0GZ3D779C?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/h5WpQE",
       "yahoo": null,
       "aliexpress": null
@@ -72,7 +72,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/168fdd2c-4bdd-4a9d-a320-79a06d8ea7c6_image.png",
     "links": {
-      "amazon": "https://amzn.to/4fhBbNu",
+      "amazon": "https://www.amazon.co.jp/dp/B0BLMNRF3G?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hgQ23w",
       "yahoo": "https://yahoo.jp/kwPJCXE",
       "aliexpress": null
@@ -85,7 +85,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/f934eaa7-5d79-47ed-aec0-9d640171e5cc_41R3GLjkYJL.-SL500-.jpeg",
     "links": {
-      "amazon": "https://amzn.to/4vbNMGw",
+      "amazon": "https://www.amazon.co.jp/dp/B0DTCWLGWX?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/h55la9",
       "yahoo": "https://yahoo.jp/qqPNEu",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4mPKWtn"
@@ -98,7 +98,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/b78b5eac-747c-4540-8b6b-8e5a6ba98489_image.png",
     "links": {
-      "amazon": "https://amzn.to/3RxvqkP",
+      "amazon": "https://www.amazon.co.jp/dp/B0CH81Y46J?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hPHlg9",
       "yahoo": "https://yahoo.jp/xkVorG",
       "aliexpress": null
@@ -111,7 +111,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/9093d19d-3543-42aa-a051-33b7eabd0ece_image.png",
     "links": {
-      "amazon": "https://amzn.to/3RqPl4V",
+      "amazon": "https://www.amazon.co.jp/dp/B0FVFBQGW9?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/h52npI",
       "yahoo": null,
       "aliexpress": null
@@ -124,7 +124,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/a6b148ab-3949-4930-a4f6-19f9d495de9e_image.png",
     "links": {
-      "amazon": "https://amzn.to/42V3VEh",
+      "amazon": "https://www.amazon.co.jp/dp/B0G34JT9GQ?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hgHsm7",
       "yahoo": "https://yahoo.jp/K2S3rBf",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4FVb177"
@@ -137,7 +137,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/154237a2-0f7c-4ff3-a02d-f4c3fc4ec0cc_41qYcKlLo-L.-SL500-.jpeg",
     "links": {
-      "amazon": "https://amzn.to/4dqI65x",
+      "amazon": "https://www.amazon.co.jp/dp/B0F3D55D5R?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hkBgMi",
       "yahoo": "https://yahoo.jp/-AgxMW",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4lPYfop"
@@ -150,7 +150,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/610b9a31-2107-4d11-ba13-e6be289e273f_image.png",
     "links": {
-      "amazon": "https://amzn.to/4tUE2j4",
+      "amazon": "https://www.amazon.co.jp/dp/B0F8M9LLHZ?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hRzb09",
       "yahoo": "https://yahoo.jp/Y3S-kB",
       "aliexpress": null
@@ -163,7 +163,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/9ef0057a-799c-4c2d-9ddc-2f211e41801f_image.png",
     "links": {
-      "amazon": "https://amzn.to/4uuWnEp",
+      "amazon": "https://www.amazon.co.jp/dp/B0CXPTHXNY?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/h5A0Gv",
       "yahoo": "https://yahoo.jp/KPdGaL",
       "aliexpress": null
@@ -176,7 +176,7 @@ export const products: Product[] = [
     "category": "家電もの",
     "image": "https://ugc.production.linktr.ee/c5138c7d-6ba3-4fa6-84ad-61fdec689bea_image.png",
     "links": {
-      "amazon": "https://amzn.to/4vorPEv",
+      "amazon": "https://www.amazon.co.jp/dp/B0DZWGPN1L?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hop6oZ",
       "yahoo": "https://yahoo.jp/6Du8KK",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3z8fBMp"
@@ -189,7 +189,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/15260e19-3698-4b70-a7a2-772ab1a0cf29_image.png",
     "links": {
-      "amazon": "https://amzn.to/4dkLuPk",
+      "amazon": "https://www.amazon.co.jp/dp/B0FG2T9S7H?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hPxJ9M",
       "yahoo": "https://yahoo.jp/KWGJ7J",
       "aliexpress": null
@@ -202,7 +202,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/365726a0-1e82-4b61-979f-ada034113cd6_image.png",
     "links": {
-      "amazon": "https://amzn.to/4dS5ZTF",
+      "amazon": "https://www.amazon.co.jp/dp/B077TGBB72?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hPbDdh",
       "yahoo": null,
       "aliexpress": null
@@ -215,7 +215,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/0f30486c-ca59-44de-b193-ec69fc2c8474_image.png",
     "links": {
-      "amazon": "https://amzn.to/4wR5Ebw",
+      "amazon": "https://www.amazon.co.jp/dp/B0D7D8JP6Q?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hHqCb1",
       "yahoo": null,
       "aliexpress": null
@@ -228,7 +228,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/c603c355-ef84-41b9-b1e6-091ff53e3600_3185dbO7VEL.-SL500-.jpeg",
     "links": {
-      "amazon": "https://amzn.to/43h0RSU",
+      "amazon": "https://www.amazon.co.jp/dp/B0G646HYT7?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hPjfmt",
       "yahoo": null,
       "aliexpress": null
@@ -241,7 +241,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/778c2267-9234-46f7-841e-f497901eaea8_image.png",
     "links": {
-      "amazon": "https://amzn.to/4eO5Qlf",
+      "amazon": "https://www.amazon.co.jp/dp/B0D7GG4PGT?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/h52dEF",
       "yahoo": "https://yahoo.jp/FeMtDy",
       "aliexpress": null
@@ -254,7 +254,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/b52326be-a65b-42e3-b480-9de56df0bf99_image.png",
     "links": {
-      "amazon": "https://amzn.to/4nvjpIq",
+      "amazon": "https://www.amazon.co.jp/dp/B0DW7MMW14?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hYnCiH",
       "yahoo": "https://yahoo.jp/8CN7cZw",
       "aliexpress": null
@@ -267,7 +267,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/6c62f066-f422-4d53-b20d-9f246fb27330_image.png",
     "links": {
-      "amazon": "https://amzn.to/498H1ge",
+      "amazon": "https://www.amazon.co.jp/dp/B0GLNRWCB7?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/h5BdHp",
       "yahoo": "https://yahoo.jp/mVbowq",
       "aliexpress": null
@@ -280,7 +280,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/8a224a67-26c7-4956-88ab-f58bebf95bef_image.png",
     "links": {
-      "amazon": "https://amzn.to/43hcyJe",
+      "amazon": "https://www.amazon.co.jp/dp/B0BGMYFDDL?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -305,7 +305,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/eb0953a6-db81-404a-8a79-7c1a42fad03c_image.png",
     "links": {
-      "amazon": "https://amzn.to/4ugj27g",
+      "amazon": "https://www.amazon.co.jp/dp/B0GYJNPM9Y?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hPlQRz",
       "yahoo": "https://yahoo.jp/LVw-Ft",
       "aliexpress": null
@@ -318,7 +318,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/4773f1a2-4592-4a6b-9415-b4ad004e14c1_image.png",
     "links": {
-      "amazon": "https://amzn.to/42A0KSc",
+      "amazon": "https://www.amazon.co.jp/dp/B0GGTP453M?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hPA643",
       "yahoo": "https://yahoo.jp/gtcqpt",
       "aliexpress": null
@@ -331,7 +331,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/63f49272-ba50-49da-b5af-39ebc5e9ea74_image.png",
     "links": {
-      "amazon": "https://amzn.to/490cMI9",
+      "amazon": "https://www.amazon.co.jp/dp/B0FPMQ6YLY?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hPDs9T",
       "yahoo": "https://yahoo.jp/6a6iaU",
       "aliexpress": null
@@ -344,7 +344,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/f4cc3fa6-9f99-46d7-bb68-7a0d1a6a90a9_419kiijCjjL.-SL500-.jpeg",
     "links": {
-      "amazon": "https://amzn.to/4fkdUKu",
+      "amazon": "https://www.amazon.co.jp/dp/B0F13FYCCJ?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hkL03u",
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c3kvOf6J"
@@ -357,7 +357,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/200474bc-3dc7-46f5-b453-884ec32aa058_31wj-LCNv7L.-SL500-.jpeg",
     "links": {
-      "amazon": "https://amzn.to/4uJqsQq",
+      "amazon": "https://www.amazon.co.jp/dp/B01MSICY8E?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -370,7 +370,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/2d4989b5-209f-4894-8513-bec277ad9a3e_31km-YsdRCL.-SL500-.jpeg",
     "links": {
-      "amazon": "https://amzn.to/4fiMWD0",
+      "amazon": "https://www.amazon.co.jp/dp/B002WC9AGO?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/h5z5jM",
       "yahoo": "https://yahoo.jp/oNSYcT",
       "aliexpress": null
@@ -395,7 +395,7 @@ export const products: Product[] = [
     "category": "身装もの",
     "image": "https://ugc.production.linktr.ee/9743a5af-9089-4255-a7dc-a5ecf5324a26_31fdJ-20ALL.-SL500-.jpeg",
     "links": {
-      "amazon": "https://amzn.to/4dyE3nB",
+      "amazon": "https://www.amazon.co.jp/dp/B0FZP3CDP8?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -408,7 +408,7 @@ export const products: Product[] = [
     "category": "身装もの",
     "image": "https://ugc.production.linktr.ee/6bfc8fa6-bbee-485b-97c4-0b1b41cf7cdb_image.png",
     "links": {
-      "amazon": "https://amzn.to/4rLjlVF",
+      "amazon": "https://www.amazon.co.jp/dp/B0DH96TB4B?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -421,7 +421,7 @@ export const products: Product[] = [
     "category": "身装もの",
     "image": "https://ugc.production.linktr.ee/f51a0e15-9569-480c-8a33-12b8f36d5f0c_image.png",
     "links": {
-      "amazon": "https://amzn.to/48Mzqnl",
+      "amazon": "https://www.amazon.co.jp/dp/B09PTDHCHZ?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hFwWqC",
       "yahoo": "https://yahoo.jp/HqDcTM",
       "aliexpress": null
@@ -434,7 +434,7 @@ export const products: Product[] = [
     "category": "身装もの",
     "image": "https://ugc.production.linktr.ee/5830b40f-04b5-445b-852d-6732c9d8791c_image.png",
     "links": {
-      "amazon": "https://amzn.to/45Df2nd",
+      "amazon": "https://www.amazon.co.jp/dp/B0CFFMNNQZ?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hgktVq",
       "yahoo": "https://yahoo.jp/AY3gdr",
       "aliexpress": null
@@ -483,7 +483,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/3e78dae0-5ff2-478a-a898-826f4798b216_image.png",
     "links": {
-      "amazon": "https://amzn.to/4dvPHzy",
+      "amazon": "https://www.amazon.co.jp/dp/B00B547WVK?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -520,7 +520,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/e526f3dd-18a3-4d26-a68d-0f80681e1f87_image.png",
     "links": {
-      "amazon": "https://amzn.to/48HwyYR",
+      "amazon": "https://www.amazon.co.jp/dp/B0G1FPKNXN?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hPvuC9",
       "yahoo": null,
       "aliexpress": null
@@ -533,7 +533,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/8e9c97f1-da00-48bd-acf9-242f1531b0ad_image.png",
     "links": {
-      "amazon": "https://amzn.to/4d6SL44",
+      "amazon": "https://www.amazon.co.jp/dp/B0FNZVMQWJ?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -546,7 +546,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/f0eb432e-0361-4225-a381-896596ae752b_image.png",
     "links": {
-      "amazon": "https://amzn.to/3P2PdYu",
+      "amazon": "https://www.amazon.co.jp/dp/B0FDGK5C23?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/TLAcx7",
       "yahoo": "https://yahoo.jp/fUU_57",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3b0E5kB"
@@ -559,7 +559,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/a1b3f3e5-0424-4a46-baaf-96d5c9da8f17_image.png",
     "links": {
-      "amazon": "https://amzn.to/3QLLTl5",
+      "amazon": "https://www.amazon.co.jp/dp/B0DWMVW8RS?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/h5jqXM",
       "yahoo": "https://yahoo.jp/vA7jJw",
       "aliexpress": "https://s.click.aliexpress.com/e/_c2IA8YRd"
@@ -572,7 +572,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/d96a51e8-4516-4e55-940b-0fd715574857_image.png",
     "links": {
-      "amazon": "https://amzn.to/4cQlnOA",
+      "amazon": "https://www.amazon.co.jp/dp/B0FDQJ9JF9?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/h8a9R2",
       "yahoo": "https://yahoo.jp/GUJoAt",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3PmAHZ9"
@@ -585,7 +585,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/247b1a62-9f1a-42c2-9692-4c9d82c3bee6_51CRF1e07OL.-SL500-.jpeg",
     "links": {
-      "amazon": "https://amzn.to/3ONQ8vP",
+      "amazon": "https://www.amazon.co.jp/dp/B0F6TVNVK4?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hPykXh",
       "yahoo": "https://yahoo.jp/ZVSzFU",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4qHRZ9h"
@@ -598,7 +598,7 @@ export const products: Product[] = [
     "category": "家電もの",
     "image": "https://ugc.production.linktr.ee/c32b1ccf-032d-4122-91f4-b3daa7077447_image.png",
     "links": {
-      "amazon": "https://amzn.to/4ugUdYl",
+      "amazon": "https://www.amazon.co.jp/dp/B0DZWGPN1L?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hoNq85",
       "yahoo": "https://yahoo.jp/YGyRu8",
       "aliexpress": null
@@ -611,7 +611,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/7edcfb58-e089-4b4d-98b5-7a193a905ba2_image.png",
     "links": {
-      "amazon": "https://amzn.to/4uhhbyH",
+      "amazon": "https://www.amazon.co.jp/dp/B0FJDD8RHK?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -624,7 +624,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/c96f0bd4-1a45-4507-bbab-2dac083dee6c_image.png",
     "links": {
-      "amazon": "https://amzn.to/4tD0Rsd",
+      "amazon": "https://www.amazon.co.jp/dp/B0GJ3VY322?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hRHEga",
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c2xMzDTp"
@@ -637,7 +637,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/2738f262-50e1-461b-996d-5817921a1bf0_2196uwR3DyL.-SL500-.jpeg",
     "links": {
-      "amazon": "https://amzn.to/4tDZMQS",
+      "amazon": "https://www.amazon.co.jp/dp/B0F7XN85S6?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/h8nj8w",
       "yahoo": "https://yahoo.jp/FXW2pE",
       "aliexpress": null
@@ -650,7 +650,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/8bcd7759-fc7e-4863-979e-ebe7c52e4f98_image.png",
     "links": {
-      "amazon": "https://amzn.to/4tzhbdv",
+      "amazon": "https://www.amazon.co.jp/dp/B0DCK82MRD?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hYlinZ",
       "yahoo": "https://yahoo.jp/5nNCkw",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4TPWard"
@@ -663,7 +663,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/26b0924d-09d7-4878-93f3-8f73cade4576_image.png",
     "links": {
-      "amazon": "https://amzn.to/4cRVD4D",
+      "amazon": "https://www.amazon.co.jp/dp/B0FVVQH5JH?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/h5BQb3",
       "yahoo": "https://yahoo.jp/FkYGna",
       "aliexpress": null
@@ -676,7 +676,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/3b3ea28b-361c-4c2c-b189-b291ff1396bd_image.png",
     "links": {
-      "amazon": "https://amzn.to/4cRW5zR",
+      "amazon": "https://www.amazon.co.jp/dp/B0FCLQ767Z?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hPN3wN",
       "yahoo": "https://yahoo.jp/-vasTD",
       "aliexpress": null
@@ -689,7 +689,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/959aaedb-4cf0-493e-b477-e8d72832127e_image.png",
     "links": {
-      "amazon": "https://amzn.to/41VSo7a",
+      "amazon": "https://www.amazon.co.jp/dp/B0G4LWR78Q?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/h5Yn1n",
       "yahoo": "https://yahoo.jp/tAvGuQ",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4NjXE63"
@@ -702,7 +702,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/7919e34b-a714-45e3-a442-7f145daa7c8e_image.png",
     "links": {
-      "amazon": "https://amzn.to/4u3K3dy",
+      "amazon": "https://www.amazon.co.jp/dp/B0F3L7HTMP?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hP9zPb",
       "yahoo": null,
       "aliexpress": null
@@ -715,7 +715,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/76c9c699-eb7a-4859-a5b6-188b2dc147fc_image.png",
     "links": {
-      "amazon": "https://amzn.to/48mRkgg",
+      "amazon": "https://www.amazon.co.jp/dp/B0FT3MDG2S?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -728,7 +728,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/51eab0a0-450b-4395-bc17-5338d7242e38_image.png",
     "links": {
-      "amazon": "https://amzn.to/4tXASev",
+      "amazon": "https://www.amazon.co.jp/dp/B0FX9SSLMT?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hkqmg4",
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c3VMdh3L"
@@ -741,7 +741,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/d6be9252-e5b7-4ec2-9b43-7477c39107ab_41dtOhCxUyL.-SL500-.jpeg",
     "links": {
-      "amazon": "https://amzn.to/4vFLXTe",
+      "amazon": "https://www.amazon.co.jp/dp/B0F3D93KH9?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hgYYAy",
       "yahoo": "https://yahoo.jp/m7LNVD6?openExternalBrowser=1",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4dpZ6hb"
@@ -754,7 +754,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/f1bbc6dd-7b2a-47c0-bf62-3097c0503e87_31AnFfBotsL.-SL500-.jpeg",
     "links": {
-      "amazon": "https://amzn.to/3OdzPrZ",
+      "amazon": "https://www.amazon.co.jp/dp/B0DM5ZLR2S?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c2wyAdU5"
@@ -767,7 +767,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/f9c81caa-eb19-45a4-984a-d564515c712b_418GYHG08sL.-SL500-.jpeg",
     "links": {
-      "amazon": "https://amzn.to/41ITSl6",
+      "amazon": "https://www.amazon.co.jp/dp/B0DSPMBR3R?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/h5gcFm",
       "yahoo": "https://yahoo.jp/oiESMh",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4Da1gdb"
@@ -804,7 +804,7 @@ export const products: Product[] = [
     "category": "家電もの",
     "image": "https://ugc.production.linktr.ee/7606ff2e-c7b2-44d9-88fe-a5bb602a2d8a_image.png",
     "links": {
-      "amazon": "https://amzn.to/4tSl6BL",
+      "amazon": "https://www.amazon.co.jp/dp/B0FY2J8GMP?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hPwuxP",
       "yahoo": "https://yahoo.jp/7mGhdz",
       "aliexpress": null
@@ -817,7 +817,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/0d02b8ce-696e-456b-8307-6eeaf0a38e54_image.png",
     "links": {
-      "amazon": "https://amzn.to/4t80fKN",
+      "amazon": "https://www.amazon.co.jp/dp/B0FVL59RT5?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hgsHMV",
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c4oQSkTn"
@@ -830,7 +830,7 @@ export const products: Product[] = [
     "category": "身装もの",
     "image": "https://ugc.production.linktr.ee/1500025d-0419-4ac4-9b50-5f02a1ad6ab2_41HbTex19uL.-SL500-.jpeg",
     "links": {
-      "amazon": "https://amzn.to/4t3SbLa",
+      "amazon": "https://www.amazon.co.jp/dp/B0FMQSM5X5?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/h8Kt1M",
       "yahoo": null,
       "aliexpress": null
@@ -843,7 +843,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/286a203a-f58e-4fac-815e-b555c89cc7bc_image.png",
     "links": {
-      "amazon": "https://amzn.to/4siFD1g",
+      "amazon": "https://www.amazon.co.jp/dp/B0G568LSC2?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/hPVIju",
       "yahoo": "https://yahoo.jp/rc3sWz",
       "aliexpress": null
@@ -856,7 +856,7 @@ export const products: Product[] = [
     "category": "家電もの",
     "image": "https://ugc.production.linktr.ee/c06d507b-efc8-4777-adb1-1a644738039f_image.png",
     "links": {
-      "amazon": "https://amzn.to/4v5bKnB",
+      "amazon": "https://www.amazon.co.jp/dp/B0GN61Q7QQ?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/h89mRl",
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c4LriFHf"
@@ -869,7 +869,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/83670073-8e28-471b-9836-80a6898d66d6_31SjopzJdgL.-SL500-.jpeg",
     "links": {
-      "amazon": "https://amzn.to/3O9hP1L",
+      "amazon": "https://www.amazon.co.jp/dp/B0FR957Y7K?tag=iimonozukan-media-22",
       "rakuten": "https://a.r10.to/h5foCq",
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c4Brtu3n"
@@ -882,7 +882,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/be9fa1a6-f187-4261-840e-825b7062d990_image.png",
     "links": {
-      "amazon": "https://amzn.to/4lWuj9i",
+      "amazon": "https://www.amazon.co.jp/dp/B0FWZWY2BW?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -895,7 +895,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/b1211faa-cb7e-4746-9222-614311a44cb9_image.png",
     "links": {
-      "amazon": "https://amzn.to/48igbBE",
+      "amazon": "https://www.amazon.co.jp/dp/B0G5FB36BC?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/SpWw4U?openExternalBrowser=1",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3Wqub8v"
@@ -908,7 +908,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/bc20d677-5189-401a-a44b-3f6371370b52_image.png",
     "links": {
-      "amazon": "https://amzn.to/4t15n2S",
+      "amazon": "https://www.amazon.co.jp/dp/B0FX9SSLMT?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c2JyK1v1"
@@ -921,7 +921,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/932c4ebc-d917-4e25-9196-5ee0e9c4c646_41dtOhCxUyL.-SL500-.jpeg",
     "links": {
-      "amazon": "https://amzn.to/40KdW6g",
+      "amazon": "https://www.amazon.co.jp/dp/B0F3D93KH9?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c35DK4GJ"
@@ -934,7 +934,7 @@ export const products: Product[] = [
     "category": "身装もの",
     "image": "https://ugc.production.linktr.ee/0b77182a-657d-48b7-9389-861dcd946e4c_image.png",
     "links": {
-      "amazon": "https://amzn.to/4rCrATH",
+      "amazon": "https://www.amazon.co.jp/dp/B0DLLGS1PK?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/5uhUn-9",
       "aliexpress": null
@@ -959,7 +959,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/3b829702-d855-436e-bd83-c73c45fe080e_image.png",
     "links": {
-      "amazon": "https://amzn.to/474R9Wh",
+      "amazon": "https://www.amazon.co.jp/dp/B0G4LTQRRH?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/eqUDLD",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3KPqxgf"
@@ -972,7 +972,7 @@ export const products: Product[] = [
     "category": "家電もの",
     "image": "https://ugc.production.linktr.ee/a284adc6-85b9-432a-ad96-7afe6f4dfe86_image.png",
     "links": {
-      "amazon": "https://amzn.to/413YFNv",
+      "amazon": "https://www.amazon.co.jp/dp/B0G25THGY7?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -985,7 +985,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/66b321a2-aaa4-41d6-9c8e-5daa27ba049a_image.png",
     "links": {
-      "amazon": "https://amzn.to/4rsG60c",
+      "amazon": "https://www.amazon.co.jp/dp/B0GJSCGFTP?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/AP3QgQ",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4n2GOZH"
@@ -998,7 +998,7 @@ export const products: Product[] = [
     "category": "身装もの",
     "image": "https://ugc.production.linktr.ee/e2590fb0-fc96-45e6-9c26-23eb0b911e77_image.png",
     "links": {
-      "amazon": "https://amzn.to/4llsxOH",
+      "amazon": "https://www.amazon.co.jp/dp/B0GQ7F9DR6?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -1011,7 +1011,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/281ffacb-97b4-4ef5-91d9-06367d74a187_image.png",
     "links": {
-      "amazon": "https://amzn.to/4l7j5OW",
+      "amazon": "https://www.amazon.co.jp/dp/B0FX9SSLMT?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c45dndTV"
@@ -1024,7 +1024,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/b58016b4-6190-435b-8219-e0d653ea2346_image.png",
     "links": {
-      "amazon": "https://amzn.to/47bIgKp",
+      "amazon": "https://www.amazon.co.jp/dp/B0FW9YJG4F?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -1037,7 +1037,7 @@ export const products: Product[] = [
     "category": "家電もの",
     "image": "https://ugc.production.linktr.ee/8e69cf9e-46c4-4ded-9a67-9cfef204b636_image.png",
     "links": {
-      "amazon": "https://amzn.to/4b6lRj3",
+      "amazon": "https://www.amazon.co.jp/dp/B0FH21C9P6?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -1050,7 +1050,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/8d01ba30-80e1-4868-85ab-a9fbea114b33_3185dbO7VEL.-SL500-.jpeg",
     "links": {
-      "amazon": "https://amzn.to/4rGLrlz",
+      "amazon": "https://www.amazon.co.jp/dp/B0G646HYT7?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -1063,7 +1063,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/d21cfa67-4e49-4033-888d-c4fa56c5d12e_41mNg-U99rL.-SL500-.jpeg",
     "links": {
-      "amazon": "https://amzn.to/4rYRQsJ",
+      "amazon": "https://www.amazon.co.jp/dp/B0G1YLB8K2?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/QoWsoh",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3ZWzufp"
@@ -1076,7 +1076,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/ce5c718b-b9a2-4f5e-a19a-ec9546353844_41K12EbzghL.-SL500-.jpeg",
     "links": {
-      "amazon": "https://amzn.to/4u3YPSA",
+      "amazon": "https://www.amazon.co.jp/dp/B0G1YLQQSR?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c3ZWzufp"
@@ -1089,7 +1089,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/69555f09-336b-4cef-aba6-6ae82e3535b5_41zhFTnj2EL.-SL500-.jpeg",
     "links": {
-      "amazon": "https://amzn.to/4bdBrub",
+      "amazon": "https://www.amazon.co.jp/dp/B0G1YGXYV1?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c3ZWzufp"
@@ -1102,7 +1102,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/3ce40826-de3e-4bd3-a2d5-42c11eb1066d_31uglzeqYgL.-SL500-.jpeg",
     "links": {
-      "amazon": "https://amzn.to/3Mp9DK4",
+      "amazon": "https://www.amazon.co.jp/dp/B0FR8P9KV6?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/6x-PWr",
       "aliexpress": "https://s.click.aliexpress.com/e/_c335BIdV"
@@ -1115,7 +1115,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/eeff3a1e-e9e6-4c5d-b616-a07ab7535265_image.png",
     "links": {
-      "amazon": "https://amzn.to/3Oti7Aw",
+      "amazon": "https://www.amazon.co.jp/dp/B0GHXVJMT5?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -1128,7 +1128,7 @@ export const products: Product[] = [
     "category": "身装もの",
     "image": "https://ugc.production.linktr.ee/c0ebba43-a116-4f39-9466-d26f4ece6a11_image.png",
     "links": {
-      "amazon": "https://amzn.to/3OD5SRI",
+      "amazon": "https://www.amazon.co.jp/dp/B0DPW8GX7K?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/NHEpgn",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3o4JVkX"
@@ -1141,7 +1141,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/0b9367fc-8533-4b71-bf68-8ae13201445e_image.png",
     "links": {
-      "amazon": "https://amzn.to/4rDs0tK",
+      "amazon": "https://www.amazon.co.jp/dp/B0G2CQGWPF?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/QdcGcs",
       "aliexpress": null
@@ -1154,7 +1154,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/a73790d1-eb38-4b83-8831-a201177f90a0_image.png",
     "links": {
-      "amazon": "https://amzn.to/4rtVjz9",
+      "amazon": "https://www.amazon.co.jp/dp/B0FPFHTRBH?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/-fDQoV",
       "aliexpress": null
@@ -1179,7 +1179,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/9bf38064-e946-4635-ba33-4d721d28c14c_image.png",
     "links": {
-      "amazon": "https://amzn.to/46agi1o",
+      "amazon": "https://www.amazon.co.jp/dp/B0FCLD5J2Z?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/eac37x",
       "aliexpress": null
@@ -1192,7 +1192,7 @@ export const products: Product[] = [
     "category": "家電もの",
     "image": "https://ugc.production.linktr.ee/a0489165-e1c9-47a0-bb20-1223bceb7bc3_image.png",
     "links": {
-      "amazon": "https://amzn.to/3MAt7Lx",
+      "amazon": "https://www.amazon.co.jp/dp/B0FP8HMLZW?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/e9iwWG",
       "aliexpress": "https://s.click.aliexpress.com/e/_c2z7FS2f"
@@ -1218,7 +1218,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/6d9724f7-2605-4a6d-ae4f-1f80caad68d2_image.png",
     "links": {
-      "amazon": "https://amzn.to/4chHi2C",
+      "amazon": "https://www.amazon.co.jp/dp/B0DHX1S73S?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -1257,7 +1257,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/9573bc5c-37e3-4884-a980-3456550c5a05_image.png",
     "links": {
-      "amazon": "https://amzn.to/4bCq7Zq",
+      "amazon": "https://www.amazon.co.jp/dp/B0G25BX7XQ?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/sU8apig",
       "aliexpress": "https://s.click.aliexpress.com/e/_c42HJy0j"
@@ -1270,7 +1270,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/8466e70f-961f-4560-a7e3-0fc9d2a6f3aa_image.png",
     "links": {
-      "amazon": "https://amzn.to/3NYoeMH",
+      "amazon": "https://www.amazon.co.jp/dp/B0F8M9LLHZ?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c4cSVSOJ"
@@ -1283,7 +1283,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/d6615fa8-319b-479f-97dd-b441d0da6833_image.png",
     "links": {
-      "amazon": "https://amzn.to/4qHFVyv",
+      "amazon": "https://www.amazon.co.jp/dp/B0FPWQ9ZV5?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c3LGxsvd"
@@ -1296,7 +1296,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/bc69fda6-3d19-4d28-850e-67788a7cf243_image.png",
     "links": {
-      "amazon": "https://amzn.to/4rbHDbt",
+      "amazon": "https://www.amazon.co.jp/dp/B0DT4RGDSJ?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/Bx9xRo",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3dh2uHd"
@@ -1309,7 +1309,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/dcdbccc0-f87b-4693-a1a3-58b3082630e9_image.png",
     "links": {
-      "amazon": "https://amzn.to/49R7WMO",
+      "amazon": "https://www.amazon.co.jp/dp/B0FVSCLHST?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c3ye3mhz"
@@ -1348,7 +1348,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/ffe85436-b7be-4188-b0dd-219d60f16b3a_image.png",
     "links": {
-      "amazon": "https://amzn.to/49z0Rkb",
+      "amazon": "https://www.amazon.co.jp/dp/B0FNRK56K7?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/dbWr8b",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3nfJ0ML"
@@ -1361,7 +1361,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/e1ce4f1a-be98-4af0-95bc-f0b7b3a416ef_image.png",
     "links": {
-      "amazon": "https://amzn.to/4bpcNr1",
+      "amazon": "https://www.amazon.co.jp/dp/B0DJ98GG7R?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/DCGpdM",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4nFwdhZ"
@@ -1387,7 +1387,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/81e134cb-3e53-4f6c-ae79-940185b3a9a6_image.png",
     "links": {
-      "amazon": "https://amzn.to/4qireSE",
+      "amazon": "https://www.amazon.co.jp/dp/B0FMJYV9P8?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/c_8ZAQV",
       "aliexpress": null
@@ -1400,7 +1400,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/e0aee2ad-0ef3-48c3-910d-1275fcb474d3_image.png",
     "links": {
-      "amazon": "https://amzn.to/3YMYGVf",
+      "amazon": "https://www.amazon.co.jp/dp/B0FMJZ4Y23?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/iFLuwM",
       "aliexpress": null
@@ -1413,7 +1413,7 @@ export const products: Product[] = [
     "category": "家電もの",
     "image": "https://ugc.production.linktr.ee/b0f26d03-26e0-400d-b219-6b14be6956e4_image.png",
     "links": {
-      "amazon": "https://amzn.to/3NtbiOx",
+      "amazon": "https://www.amazon.co.jp/dp/B0CD3RNDGN?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/CmEYpv",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3sOdFpv"
@@ -1426,7 +1426,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/22f7ac57-426f-408b-9711-337d466ec9f0_image.png",
     "links": {
-      "amazon": "https://amzn.to/3L0SGF3",
+      "amazon": "https://www.amazon.co.jp/dp/B0FW4XPRZ5?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -1439,7 +1439,7 @@ export const products: Product[] = [
     "category": "家電もの",
     "image": "https://ugc.production.linktr.ee/d2a592e4-7e73-496c-80f8-6518a6912426_image.png",
     "links": {
-      "amazon": "https://amzn.to/4rkeV8m",
+      "amazon": "https://www.amazon.co.jp/dp/B0FH21SJV4?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -1452,7 +1452,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/d77231d4-5f37-48d7-97f7-8f6a002c0f5a_image.png",
     "links": {
-      "amazon": "https://amzn.to/4qto26a",
+      "amazon": "https://www.amazon.co.jp/dp/B0FLD1DXYP?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/6mhzmu",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4nQylYJ"
@@ -1478,7 +1478,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/86a05e3e-0b4d-420f-a99d-9895dc48ca63_image.png",
     "links": {
-      "amazon": "https://amzn.to/4pdI4Rb",
+      "amazon": "https://www.amazon.co.jp/dp/B0F3226Z3Q?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/YK8ubq",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4MNDtIx"
@@ -1491,7 +1491,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/0fb1b0cc-f230-40ad-91c8-790c36c7c07c_image.png",
     "links": {
-      "amazon": "https://amzn.to/3YIdWCu",
+      "amazon": "https://www.amazon.co.jp/dp/B0FK9JDWFX?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -1504,7 +1504,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/a065bb27-bb55-44b2-83b5-c9ab33e865c7_image.png",
     "links": {
-      "amazon": "https://amzn.to/4jfjw98",
+      "amazon": "https://www.amazon.co.jp/dp/B0DY65YL3K?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -1530,7 +1530,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/1a125e38-79d8-4182-83af-3fe8b566e845_image.png",
     "links": {
-      "amazon": "https://amzn.to/3KRTf3S",
+      "amazon": "https://www.amazon.co.jp/dp/B0DFG9ST2C?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -1543,7 +1543,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/fcefafa8-f78a-4ede-9cb1-449f17b9cc78_image.png",
     "links": {
-      "amazon": "https://amzn.to/44ZSn3T",
+      "amazon": "https://www.amazon.co.jp/dp/B0D1DK4LBN?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/mgvauU",
       "aliexpress": null
@@ -1556,7 +1556,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/580f1a4d-a081-42c3-beda-d415820fc6b8_image.png",
     "links": {
-      "amazon": "https://amzn.to/4iPwrhw",
+      "amazon": "https://www.amazon.co.jp/dp/B0FF48BYKT?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/GygMJa",
       "aliexpress": null
@@ -1581,7 +1581,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/9eedf4c3-621c-4cf5-b608-8d6ed8e2d911_image.png",
     "links": {
-      "amazon": "https://amzn.to/3KWRxhz",
+      "amazon": "https://www.amazon.co.jp/dp/B0FR4PPY78?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c3qtffcf"
@@ -1594,7 +1594,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/2a4b1f55-3e5b-4fce-99c5-30e80015687a_image.png",
     "links": {
-      "amazon": "https://amzn.to/4pZLHLr",
+      "amazon": "https://www.amazon.co.jp/dp/B0FDGK5C23?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/AqtXYs",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4dhBLkf"
@@ -1607,7 +1607,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/fd33adcd-fd4b-4c15-8d2d-6181c798c1ae_image.png",
     "links": {
-      "amazon": "https://amzn.to/4oEJLXv",
+      "amazon": "https://www.amazon.co.jp/dp/B0CVXHZFN8?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/d6Lr6x",
       "aliexpress": null
@@ -1632,7 +1632,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/e32f0323-8f75-4051-8d7a-4adb208237dd_image.png",
     "links": {
-      "amazon": "https://amzn.to/4omrjTa",
+      "amazon": "https://www.amazon.co.jp/dp/B0DSJFTK8G?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/eb5CS3",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4ERlUIn"
@@ -1645,7 +1645,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/cc66bd32-efaa-47fc-b868-bb23cfc80b48_image.png",
     "links": {
-      "amazon": "https://amzn.to/3XlPWVd",
+      "amazon": "https://www.amazon.co.jp/dp/B0DFCMFYYH?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -1658,7 +1658,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/49a9caa1-3899-43a7-9176-d8cf53c86da8_image.png",
     "links": {
-      "amazon": "https://amzn.to/43NAQeV",
+      "amazon": "https://www.amazon.co.jp/dp/B0FM2BDQP7?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/hXbuab",
       "aliexpress": null
@@ -1684,7 +1684,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/cc933c6b-9151-4b6a-b2de-d7bc30681a2b_image.png",
     "links": {
-      "amazon": "https://amzn.to/4oe36OV",
+      "amazon": "https://www.amazon.co.jp/dp/B0DK1KQSP6?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -1710,7 +1710,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/f7ed76ea-e554-4ef9-a118-437f1314f367_image.png",
     "links": {
-      "amazon": "https://amzn.to/3LUi1Ai",
+      "amazon": "https://www.amazon.co.jp/dp/B0FNBRHBQ4?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/hakc7Q",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3nyfEDN"
@@ -1723,7 +1723,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/d0a1b2bf-f4bc-4ad7-acfa-ae1b874692b6_image.png",
     "links": {
-      "amazon": "https://amzn.to/4990zBG",
+      "amazon": "https://www.amazon.co.jp/dp/B0D7PKHGWY?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/nS_oX6",
       "aliexpress": "https://s.click.aliexpress.com/e/_c2QbPswJ"
@@ -1736,7 +1736,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/45549dab-0274-4e4f-9bcf-f508ce2fe998_image.png",
     "links": {
-      "amazon": "https://amzn.to/4ow70nm",
+      "amazon": "https://www.amazon.co.jp/dp/B0FMXXNZZ3?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/Ub5vpv",
       "aliexpress": null
@@ -1749,7 +1749,7 @@ export const products: Product[] = [
     "category": "家電もの",
     "image": "https://ugc.production.linktr.ee/3bca37c3-828c-4846-b1fa-65b000b141ad_image.png",
     "links": {
-      "amazon": "https://amzn.to/4hIJfpy",
+      "amazon": "https://www.amazon.co.jp/dp/B0CG5VDGKY?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/_7Mudz",
       "aliexpress": null
@@ -1762,7 +1762,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/29d64b81-3d47-4bf3-80b4-e1723f4c05d5_image.png",
     "links": {
-      "amazon": "https://amzn.to/4oJR54t",
+      "amazon": "https://www.amazon.co.jp/dp/B0FFMSDTLD?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -1775,7 +1775,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/4ec752e6-0846-440d-a4f3-ad43df1767ad_image.png",
     "links": {
-      "amazon": "https://amzn.to/4oEdNv0",
+      "amazon": "https://www.amazon.co.jp/dp/B0F1Y3CJJ2?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/_-DBMu",
       "aliexpress": "https://s.click.aliexpress.com/e/_c33FF12b"
@@ -1788,7 +1788,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/ed0240da-7be9-4a86-b23f-92593816be2d_image.png",
     "links": {
-      "amazon": "https://amzn.to/3L7lTxv",
+      "amazon": "https://www.amazon.co.jp/dp/B017K5WRN0?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -1826,7 +1826,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/99a8029b-aa84-4a54-beca-4ef9f16b1a65_image.png",
     "links": {
-      "amazon": "https://amzn.to/3KQruby",
+      "amazon": "https://www.amazon.co.jp/dp/B0CP95BCYZ?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/5r5awq",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3hFik19"
@@ -1839,7 +1839,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/e0557a77-28e2-435a-807c-d38b2b84b208_image.png",
     "links": {
-      "amazon": "https://amzn.to/496kilC",
+      "amazon": "https://www.amazon.co.jp/dp/B0CPL68SZN?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": "https://s.click.aliexpress.com/e/_c39ASvPd"
@@ -1864,7 +1864,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/59c3dd44-d786-44b0-bacb-ad62dbac2104_image.png",
     "links": {
-      "amazon": "https://amzn.to/4n4fNeK",
+      "amazon": "https://www.amazon.co.jp/dp/B0DWMPNCLC?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/UAg2P9",
       "aliexpress": null
@@ -1877,7 +1877,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/6ee7eb71-76df-4a21-8208-7d44102edcf2_image.png",
     "links": {
-      "amazon": "https://amzn.to/4q4jsf8",
+      "amazon": "https://www.amazon.co.jp/dp/B0BPK7LL8X?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/Xb6LUb",
       "aliexpress": null
@@ -1890,7 +1890,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/69a8b0ba-f3ad-4e8e-8526-8ba3b0cc8c01_image.png",
     "links": {
-      "amazon": "https://amzn.to/4okQmXw",
+      "amazon": "https://www.amazon.co.jp/dp/B0CXPTHXNY?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/f2c6ARw",
       "aliexpress": "https://s.click.aliexpress.com/e/_c3yfmuu7"
@@ -1903,7 +1903,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/fbdaad17-efe7-4c22-add3-4c446d97df65_image.png",
     "links": {
-      "amazon": "https://amzn.to/42yhTMz",
+      "amazon": "https://www.amazon.co.jp/dp/B0DK348HZV?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/ZnnNzC",
       "aliexpress": "https://s.click.aliexpress.com/e/_c4rDhmJZ"
@@ -1916,7 +1916,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/42890755-3d03-447f-b9da-e9b9b6eabf63_image.png",
     "links": {
-      "amazon": "https://amzn.to/3IJx7aV",
+      "amazon": "https://www.amazon.co.jp/dp/B0FQ5SL4RW?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -1929,7 +1929,7 @@ export const products: Product[] = [
     "category": "生活もの",
     "image": "https://ugc.production.linktr.ee/694931ac-dcfe-4f40-8e37-6b7419f2d322_image.png",
     "links": {
-      "amazon": "https://amzn.to/48JBwFt",
+      "amazon": "https://www.amazon.co.jp/dp/B01N217C2S?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/7-3hqf",
       "aliexpress": null
@@ -1942,7 +1942,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/eccb6c09-ab25-4112-8ace-ae04203fadc5_image.png",
     "links": {
-      "amazon": "https://amzn.to/3J6qFuu",
+      "amazon": "https://www.amazon.co.jp/dp/B0BMPC7GDY?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/dxmEPe",
       "aliexpress": "https://s.click.aliexpress.com/e/_c40mr9wj"
@@ -1955,7 +1955,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/fd1cd054-472a-4584-8548-cf7a745968b7_image.png",
     "links": {
-      "amazon": "https://amzn.to/4900Wyu",
+      "amazon": "https://www.amazon.co.jp/dp/B0BDM9WQ86?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/pfY8N3J",
       "aliexpress": null
@@ -1968,7 +1968,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/460c8599-b317-48bb-a2fa-d00574864e07_image.png",
     "links": {
-      "amazon": "https://amzn.to/3W4P46K",
+      "amazon": "https://www.amazon.co.jp/dp/B0BDM8SFFC?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -1993,7 +1993,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/b8ad5729-b1e3-46bf-ace6-2faa76227545_image.png",
     "links": {
-      "amazon": "https://amzn.to/3WxdqWT",
+      "amazon": "https://www.amazon.co.jp/dp/B0D7D8JP6Q?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/yBy6vhu",
       "aliexpress": "https://s.click.aliexpress.com/e/_c2zN9c0j"
@@ -2006,7 +2006,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/b01538e3-9d91-4e46-a0bb-ae5bfbd0642a_image.png",
     "links": {
-      "amazon": "https://amzn.to/475ZVSX",
+      "amazon": "https://www.amazon.co.jp/dp/B0FQFLM679?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": null,
       "aliexpress": null
@@ -2031,7 +2031,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/64a572e0-f272-4ed3-bd6b-da24687a9424_image.png",
     "links": {
-      "amazon": "https://amzn.to/3WDTH7X",
+      "amazon": "https://www.amazon.co.jp/dp/B0FQFQDN6K?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/_TxXoi",
       "aliexpress": null
@@ -2044,7 +2044,7 @@ export const products: Product[] = [
     "category": "機械もの",
     "image": "https://ugc.production.linktr.ee/1dc6782a-96b3-4a78-ac39-1696779a0eb1_image.png",
     "links": {
-      "amazon": "https://amzn.to/43jodbg",
+      "amazon": "https://www.amazon.co.jp/dp/B0FQGQJ64Y?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/T_8R9e",
       "aliexpress": null
@@ -2057,7 +2057,7 @@ export const products: Product[] = [
     "category": "身装もの",
     "image": "https://ugc.production.linktr.ee/b7bbc1f9-f08f-45f7-bc02-547e259bac98_image.png",
     "links": {
-      "amazon": "https://amzn.to/4u97OB3",
+      "amazon": "https://www.amazon.co.jp/dp/B07WRQPFS6?tag=iimonozukan-media-22",
       "rakuten": null,
       "yahoo": "https://yahoo.jp/o7DsmZ",
       "aliexpress": null
