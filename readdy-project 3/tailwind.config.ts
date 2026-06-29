@@ -79,6 +79,7 @@ export default {
         body: ['var(--font-body)'],
         label: ['var(--font-label)'],
         modern: [
+          '"Noto Sans JP"',
           '-apple-system',
           'BlinkMacSystemFont',
           '"Helvetica Neue"',
