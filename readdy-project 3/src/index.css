@@ -4,9 +4,9 @@
 
 @layer base {
   :root {
-    --font-heading: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', 'Helvetica Neue', sans-serif;
-    --font-body: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', 'Helvetica Neue', sans-serif;
-    --font-label: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', 'Helvetica Neue', sans-serif;
+    --font-heading: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Helvetica Neue', sans-serif;
+    --font-body: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Helvetica Neue', sans-serif;
+    --font-label: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Helvetica Neue', sans-serif;
 
     --background-50: 1.00 0 0;
     --background-100: 0.97 0.003 95;
