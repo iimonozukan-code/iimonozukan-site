@@ -119,6 +119,14 @@ export async function deleteItem(id: number): Promise<void> {
   if (error) throw error;
 }
 
+/** 並び順をまとめて更新（管理画面のドラッグ並べ替え用） */
+export async function updateSortOrders(updates: { id: number; sortOrder: number }[]): Promise<void> {
+  if (!supabase) throw new Error('Supabase未設定');
+  await Promise.all(
+    updates.map((u) => supabase!.from('items').update({ sort_order: u.sortOrder }).eq('id', u.id)),
+  );
+}
+
 /** 商品画像をStorageにアップロードして公開URLを返す */
 export async function uploadImage(file: File): Promise<string> {
   if (!supabase) throw new Error('Supabase未設定');
