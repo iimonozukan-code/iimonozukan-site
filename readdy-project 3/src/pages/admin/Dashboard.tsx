@@ -55,11 +55,11 @@ export default function Dashboard() {
 
   return (
     <div>
-      <header className="bg-white border-b border-background-200 px-7 py-4">
+      <header className="bg-white border-b border-background-200 px-4 md:px-7 py-4">
         <h2 className="text-base font-semibold text-foreground-950">ダッシュボード</h2>
         <p className="text-xs text-foreground-500">クリック計測の概要</p>
       </header>
-      <div className="p-7 max-w-4xl">
+      <div className="p-4 md:p-7 max-w-4xl">
         {loading ? (
           <p className="text-sm text-foreground-500">読み込み中…</p>
         ) : (

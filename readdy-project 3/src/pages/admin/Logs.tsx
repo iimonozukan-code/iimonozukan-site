@@ -30,13 +30,13 @@ export default function Logs() {
 
   return (
     <div>
-      <header className="bg-white border-b border-background-200 px-7 py-4">
+      <header className="bg-white border-b border-background-200 px-4 md:px-7 py-4">
         <h2 className="text-base font-semibold text-foreground-950">クリックログ</h2>
         <p className="text-xs text-foreground-500">運営者だけが見られる生ログ（直近200件）</p>
       </header>
-      <div className="p-7 max-w-4xl">
-        <div className="bg-white rounded-xl border border-background-200 overflow-hidden">
-          <table className="w-full text-sm">
+      <div className="p-4 md:p-7 max-w-4xl">
+        <div className="bg-white rounded-xl border border-background-200 overflow-x-auto">
+          <table className="w-full min-w-[560px] text-sm">
             <thead>
               <tr className="text-foreground-500 text-[11px] uppercase">
                 <th className="text-left font-bold px-4 py-2.5 border-b border-background-200">日時</th>
