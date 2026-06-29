@@ -83,7 +83,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col bg-background-50">
       <Header />
 
-      <main className="flex-1 w-full max-w-5xl mx-auto px-4 md:px-6">
+      <main className="flex-1 w-full max-w-5xl mx-auto px-2 md:px-6">
         <section className="mb-7 pt-2">
           <h2 className="text-[15px] font-semibold text-foreground-900 mb-3 text-center tracking-tight">{t('home.searchByDate')}</h2>
           <div className="flex gap-2 overflow-x-auto pb-1.5 px-1 -mx-1" style={{ scrollbarWidth: 'thin' }}>
@@ -153,7 +153,7 @@ export default function Home() {
           </div>
 
           {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-3 gap-1.5 sm:gap-3 md:grid-cols-4 md:gap-4" data-product-shop>
+            <div className="grid grid-cols-3 gap-1 sm:gap-3 md:grid-cols-4 md:gap-4 lg:grid-cols-5" data-product-shop>
               {filteredProducts.map((product, idx) => (
                 <ProductCard key={product.id ?? `${product.date}-${product.name}-${idx}`} product={product} />
               ))}
