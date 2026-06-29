@@ -34,7 +34,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         className="block"
         onClick={() => logClick(product.id, firstMall)}
       >
-        <div className="relative aspect-square overflow-hidden bg-background-100 flex items-center justify-center p-3">
+        <div className="relative aspect-[3/4] overflow-hidden bg-background-100 flex items-center justify-center p-2">
           <img
             src={product.image}
             alt={product.name}
@@ -43,13 +43,13 @@ export default function ProductCard({ product }: ProductCardProps) {
             loading="lazy"
           />
           <span
-            className="absolute top-2 left-2"
+            className="absolute top-1.5 left-1.5"
             style={{
               writingMode: 'vertical-rl',
               color: '#ffffff',
               fontWeight: 900,
-              fontSize: '32px',
-              WebkitTextStroke: '6px #000000',
+              fontSize: 'clamp(11px, 3vw, 22px)',
+              WebkitTextStroke: 'clamp(2px, 0.6vw, 5px) #000000',
               paintOrder: 'stroke fill',
               textShadow: '0 0 3px #000000',
               letterSpacing: '0.2em',
@@ -60,7 +60,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             {product.category}
           </span>
           <span
-            className="absolute top-2 right-2 text-[10px] font-semibold px-2 py-0.5 rounded-full whitespace-nowrap"
+            className="absolute top-1.5 right-1.5 text-[9px] font-semibold px-1.5 py-0.5 rounded-full whitespace-nowrap"
             style={{
               backgroundColor: 'rgba(255,255,255,0.92)',
               color: '#1d1d1f',
@@ -74,11 +74,11 @@ export default function ProductCard({ product }: ProductCardProps) {
           </span>
         </div>
       </a>
-      <div className="p-3 md:p-3.5">
-        <h3 className="text-sm md:text-[15px] font-modern font-semibold tracking-tight text-foreground-950 leading-snug line-clamp-2 mb-2.5">
+      <div className="p-1.5 md:p-3">
+        <h3 className="text-[11px] md:text-sm font-modern font-semibold tracking-tight text-foreground-950 leading-tight line-clamp-2 mb-1.5">
           {product.name}
         </h3>
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap gap-1">
           {activeMalls.map((mall) => (
             <a
               key={mall}
@@ -86,7 +86,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               target="_blank"
               rel="nofollow noopener noreferrer"
               onClick={() => logClick(product.id, mall)}
-              className="inline-flex items-center px-3 py-1.5 rounded-full text-[11px] font-modern font-medium tracking-tight cursor-pointer whitespace-nowrap bg-background-100 text-foreground-700 transition-all duration-200 hover:bg-background-200"
+              className="inline-flex flex-1 basis-[46%] items-center justify-center px-1.5 py-2 rounded-full text-[10px] md:text-[11px] font-modern font-medium tracking-tight cursor-pointer whitespace-nowrap bg-background-100 text-foreground-700 transition-all duration-200 hover:bg-background-200"
             >
               {t(`product.${mall}`)}
             </a>
