@@ -1,8 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import type { Product } from '@/mocks/products';
+import { logClick, type Store } from '@/lib/track';
 
 interface ProductCardProps {
-  product: Product;
+  product: Product & { id?: number };
 }
 
 function formatDateShort(dateStr: string): string {
@@ -16,11 +17,10 @@ function formatDateShort(dateStr: string): string {
 export default function ProductCard({ product }: ProductCardProps) {
   const { t } = useTranslation();
 
-  const activeMalls = Object.entries(product.links)
-    .filter(([, url]) => url !== null)
-    .map(([key]) => key);
-
-  const firstLink = Object.values(product.links).find((v) => v !== null) ?? '#';
+  const activeEntries = (Object.entries(product.links) as [Store, string | null][])
+    .filter(([, url]) => url !== null) as [Store, string][];
+  const activeMalls = activeEntries.map(([key]) => key);
+  const [firstMall, firstLink] = activeEntries[0] ?? (['amazon', '#'] as [Store, string]);
 
   return (
     <article
@@ -32,6 +32,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         target="_blank"
         rel="nofollow noopener noreferrer"
         className="block"
+        onClick={() => logClick(product.id, firstMall)}
       >
         <div className="relative aspect-square overflow-hidden bg-background-100 flex items-center justify-center p-3">
           <img
@@ -84,6 +85,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               href={product.links[mall as keyof typeof product.links]!}
               target="_blank"
               rel="nofollow noopener noreferrer"
+              onClick={() => logClick(product.id, mall)}
               className="inline-flex items-center px-3 py-1.5 rounded-full text-[11px] font-modern font-medium tracking-tight cursor-pointer whitespace-nowrap bg-background-100 text-foreground-700 transition-all duration-200 hover:bg-background-200"
             >
               {t(`product.${mall}`)}

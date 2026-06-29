@@ -1,10 +1,9 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Header from '@/components/feature/Header';
 import Footer from '@/components/feature/Footer';
 import ProductCard from '@/components/feature/ProductCard';
-import { products } from '@/mocks/products';
-import type { Product } from '@/mocks/products';
+import { fetchPublishedItems, type Item } from '@/lib/db';
 
 const CATEGORY_KEYS = ['すべて', '機械もの', '生活もの', '家電もの', '身装もの', '情報もの'] as const;
 type CategoryKey = (typeof CATEGORY_KEYS)[number];
@@ -30,23 +29,28 @@ const MALL_LABELS: Record<string, string> = {
 export default function Home() {
   const { t } = useTranslation();
 
+  const [products, setProducts] = useState<Item[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<CategoryKey>('すべて');
   const [selectedMall, setSelectedMall] = useState<string>('すべて');
   const [selectedYM, setSelectedYM] = useState('');
 
+  useEffect(() => {
+    fetchPublishedItems().then(setProducts);
+  }, []);
+
   const presentCategories = useMemo(
     () => CATEGORY_KEYS.filter((c) => c === 'すべて' || products.some((p) => p.category === c)),
-    [],
+    [products],
   );
 
   // 商品が存在する「年-月」を新しい順に（日付タイムライン用）
   const monthChips = useMemo(
-    () => [...new Set(products.map((p) => p.date.slice(0, 7)))].sort().reverse(),
-    [],
+    () => [...new Set(products.map((p) => (p.date || '').slice(0, 7)).filter(Boolean))].sort().reverse(),
+    [products],
   );
 
   const filteredProducts = useMemo(() => {
-    let result: Product[] = [...products];
+    let result: Item[] = [...products];
 
     if (selectedCategory !== 'すべて') {
       result = result.filter((p) => p.category === selectedCategory);
@@ -55,12 +59,12 @@ export default function Home() {
       result = result.filter((p) => p.links[selectedMall as keyof typeof p.links] !== null);
     }
     if (selectedYM) {
-      result = result.filter((p) => p.date.startsWith(selectedYM));
+      result = result.filter((p) => (p.date || '').startsWith(selectedYM));
     }
 
     result.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     return result;
-  }, [selectedCategory, selectedMall, selectedYM]);
+  }, [products, selectedCategory, selectedMall, selectedYM]);
 
   const hasFilter = selectedCategory !== 'すべて' || selectedMall !== 'すべて' || selectedYM !== '';
 
@@ -151,7 +155,7 @@ export default function Home() {
           {filteredProducts.length > 0 ? (
             <div className="grid grid-cols-2 gap-3 md:gap-4" data-product-shop>
               {filteredProducts.map((product, idx) => (
-                <ProductCard key={`${product.date}-${product.name}-${idx}`} product={product} />
+                <ProductCard key={product.id ?? `${product.date}-${product.name}-${idx}`} product={product} />
               ))}
             </div>
           ) : (
