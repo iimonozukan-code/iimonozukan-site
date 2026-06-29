@@ -62,7 +62,7 @@ export default function Home() {
       result = result.filter((p) => (p.date || '').startsWith(selectedYM));
     }
 
-    result.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    // 並び順は管理画面のドラッグ並べ替え（sort_order）に従う
     return result;
   }, [products, selectedCategory, selectedMall, selectedYM]);
 
