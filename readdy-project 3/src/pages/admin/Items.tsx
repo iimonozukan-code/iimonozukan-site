@@ -13,6 +13,9 @@ import { fetchAllItems, setPublished, deleteItem, updateSortOrders, type Item } 
 
 const CAT_EMOJI: Record<string, string> = { '機械もの': '🔌', '生活もの': '🪑', '家電もの': '📺', '身装もの': '💼', '情報もの': '📱' };
 const linkCount = (it: Item) => Object.values(it.links).filter(Boolean).length;
+const fmtDate = (d?: string) => (d ? d.replace(/-/g, '/') : '');
+
+type SortMode = 'manual' | 'newest' | 'oldest';
 
 function SortableRow({ it, disabled, onToggle, onDelete }: {
   it: Item; disabled: boolean;
@@ -35,7 +38,7 @@ function SortableRow({ it, disabled, onToggle, onDelete }: {
         {...attributes}
         {...listeners}
         aria-label="ドラッグして並べ替え"
-        title={disabled ? '検索中は並べ替えできません' : 'ドラッグで並べ替え'}
+        title={disabled ? '検索中・日付順では並べ替えできません' : 'ドラッグで並べ替え'}
         className={`shrink-0 px-1.5 py-2 -ml-1 text-foreground-300 touch-none ${disabled ? 'opacity-30 cursor-not-allowed' : 'cursor-grab active:cursor-grabbing hover:text-foreground-600'}`}
       >
         <i className="ri-menu-line text-lg" />
@@ -50,6 +53,7 @@ function SortableRow({ it, disabled, onToggle, onDelete }: {
         <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 mt-0.5 text-[11px] text-foreground-500">
           <span className="whitespace-nowrap">{CAT_EMOJI[it.category]} {it.category}</span>
           <span className="whitespace-nowrap">🔗 {linkCount(it)}</span>
+          <span className="whitespace-nowrap font-medium text-foreground-600">📅 {it.date ? fmtDate(it.date) : '日付なし'}</span>
           <span className={`font-bold px-1.5 py-0.5 rounded ${it.isPublished ? 'bg-primary-50 text-primary-700' : 'bg-background-200 text-foreground-500'}`}>
             {it.isPublished ? '公開中' : '下書き'}
           </span>
@@ -68,6 +72,7 @@ function SortableRow({ it, disabled, onToggle, onDelete }: {
 export default function Items() {
   const [items, setItems] = useState<Item[]>([]);
   const [q, setQ] = useState('');
+  const [sortMode, setSortMode] = useState<SortMode>('manual');
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
@@ -84,7 +89,21 @@ export default function Items() {
   );
 
   const isFiltered = q.trim() !== '';
+  // ドラッグ並べ替えは「手動モード かつ 検索していない」ときだけ有効
+  const dragDisabled = isFiltered || sortMode !== 'manual';
+
   const filtered = items.filter((i) => i.name.includes(q));
+  // 日付順のときは紹介日でソート（日付なしは末尾）。手動のときは保存済みの並び順のまま。
+  const displayed = sortMode === 'manual'
+    ? filtered
+    : [...filtered].sort((a, b) => {
+        const da = a.date || '';
+        const db = b.date || '';
+        if (!da && !db) return 0;
+        if (!da) return 1;
+        if (!db) return -1;
+        return sortMode === 'newest' ? db.localeCompare(da) : da.localeCompare(db);
+      });
 
   const onToggle = async (it: Item) => {
     if (it.id == null) return;
@@ -99,6 +118,7 @@ export default function Items() {
   };
 
   const onDragEnd = async (e: DragEndEvent) => {
+    if (dragDisabled) return;
     const { active, over } = e;
     if (!over || active.id === over.id) return;
     const oldIndex = items.findIndex((i) => i.id === active.id);
@@ -118,6 +138,12 @@ export default function Items() {
     finally { setSaving(false); }
   };
 
+  const SORT_TABS: { key: SortMode; label: string }[] = [
+    { key: 'manual', label: '手動（ドラッグ）' },
+    { key: 'newest', label: '新しい順' },
+    { key: 'oldest', label: '古い順' },
+  ];
+
   return (
     <div>
       <header className="bg-white border-b border-background-200 px-4 md:px-7 py-4 flex items-center justify-between gap-3">
@@ -135,9 +161,27 @@ export default function Items() {
           placeholder="🔍 商品名で検索…"
           className="w-full mb-3 px-3 py-2.5 rounded-lg border border-background-300 text-sm focus:outline-none focus:border-primary-500"
         />
+
+        <div className="flex items-center gap-1.5 mb-3 text-xs flex-wrap">
+          <span className="text-foreground-400 mr-0.5">並び替え:</span>
+          {SORT_TABS.map((t) => (
+            <button
+              key={t.key}
+              onClick={() => setSortMode(t.key)}
+              className={`px-2.5 py-1 rounded-md border font-semibold whitespace-nowrap ${sortMode === t.key ? 'bg-primary-500 text-white border-primary-500' : 'border-background-300 text-foreground-600 hover:bg-background-100'}`}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
+
         <div className="flex items-center justify-between mb-2 px-1">
           <p className="text-[11px] text-foreground-400">
-            {isFiltered ? '🔍 検索中は並べ替えできません' : '☰ を上下にドラッグで並べ替え（公開サイトに反映）'}
+            {isFiltered
+              ? '🔍 検索中は並べ替えできません'
+              : sortMode !== 'manual'
+                ? '📅 紹介日順で表示中（「手動」に戻すとドラッグで並べ替え）'
+                : '☰ を上下にドラッグで並べ替え（公開サイトに反映）'}
           </p>
           {saving && <span className="text-[11px] text-primary-600">保存中…</span>}
         </div>
@@ -145,13 +189,13 @@ export default function Items() {
         <div className="bg-white rounded-xl border border-background-200 overflow-hidden">
           {loading ? (
             <p className="px-4 py-6 text-sm text-foreground-400">読み込み中…</p>
-          ) : filtered.length === 0 ? (
+          ) : displayed.length === 0 ? (
             <p className="px-4 py-6 text-sm text-foreground-400">商品がありません。「＋ 新規入稿」から追加できます。</p>
           ) : (
             <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={onDragEnd}>
-              <SortableContext items={filtered.map((i) => i.id!)} strategy={verticalListSortingStrategy}>
-                {filtered.map((it) => (
-                  <SortableRow key={it.id} it={it} disabled={isFiltered} onToggle={onToggle} onDelete={onDelete} />
+              <SortableContext items={displayed.map((i) => i.id!)} strategy={verticalListSortingStrategy}>
+                {displayed.map((it) => (
+                  <SortableRow key={it.id} it={it} disabled={dragDisabled} onToggle={onToggle} onDelete={onDelete} />
                 ))}
               </SortableContext>
             </DndContext>
