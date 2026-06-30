@@ -153,7 +153,7 @@ export default function Home() {
           </div>
 
           {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-3 gap-1 sm:gap-3 md:grid-cols-4 md:gap-4 lg:grid-cols-5" data-product-shop>
+            <div className="grid grid-cols-3 gap-x-1 gap-y-3 sm:gap-x-3 sm:gap-y-3 md:grid-cols-4 md:gap-x-4 md:gap-y-4 lg:grid-cols-5" data-product-shop>
               {filteredProducts.map((product, idx) => (
                 <ProductCard key={product.id ?? `${product.date}-${product.name}-${idx}`} product={product} />
               ))}
