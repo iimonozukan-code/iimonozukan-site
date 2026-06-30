@@ -24,6 +24,16 @@ export default function Footer() {
       icon: 'ri-article-line',
       url: 'https://note.com/iimono_zukan',
     },
+    {
+      name: 'Threads',
+      icon: 'ri-threads-line',
+      url: 'https://www.threads.net/@iimono_zukan',
+    },
+    {
+      name: 'メール',
+      icon: 'ri-mail-line',
+      url: 'mailto:iimonozukan@gmail.com',
+    },
   ];
 
   return (
