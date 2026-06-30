@@ -1,5 +1,5 @@
 export default {
-  "header.tagline": "暮らしにいいもの、見つけよう。",
+  "header.tagline": "図鑑みたいに探せる商品ページ\n直結型ショッピングSNS",
   "header.guideText": "全商品は下記いいもの図鑑まとめから👇",
   "header.workInquiry": "・お仕事依頼：",
   "header.mediaNotice": "・当メディアは自社製品または自社サービス・PR・アフィリエイトを含む",
@@ -10,8 +10,8 @@ export default {
   "home.month": "月",
   "home.day": "日",
   "home.clearDate": "日付をクリア",
-  "home.category": "カテゴリ",
-  "home.mall": "モール",
+  "home.category": "カテゴリでフィルターをかける",
+  "home.mall": "モールでフィルターをかける",
   "home.filterAll": "すべて",
   "home.itemCount": "{{count}} 件の商品",
   "home.noProductsDate": "この日の商品はまだありません",
