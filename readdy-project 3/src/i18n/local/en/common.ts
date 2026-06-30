@@ -1,5 +1,5 @@
 export default {
-  "header.tagline": "Find Something Good for Your Life.",
+  "header.tagline": "Browse products like a picture book.\nA shop-direct shopping SNS.",
   "header.guideText": "Browse all products from the Iimono Zukan collection below 👇",
   "header.workInquiry": "・Business inquiries: ",
   "header.mediaNotice": "・This media contains in-house products/services, PR, and affiliate links",
@@ -10,8 +10,8 @@ export default {
   "home.month": "Month",
   "home.day": "Day",
   "home.clearDate": "Clear Date",
-  "home.category": "Category",
-  "home.mall": "Store",
+  "home.category": "Filter by Category",
+  "home.mall": "Filter by Store",
   "home.filterAll": "All",
   "home.itemCount": "{{count}} products",
   "home.noProductsDate": "No products found for this date",
