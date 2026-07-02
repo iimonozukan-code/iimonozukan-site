@@ -3,7 +3,7 @@ import type { Product } from '@/mocks/products';
 import { logClick, observeImpression, type Store } from '@/lib/track';
 
 interface ProductCardProps {
-  product: Product & { id?: number };
+  product: Product & { id?: number; pinnedAt?: string | null };
 }
 
 // ボタンの並び順（アマゾン → 楽天 → アリエク → ヤフー）
@@ -35,6 +35,14 @@ export default function ProductCard({ product }: ProductCardProps) {
             className="w-full h-full object-contain"
             loading="lazy"
           />
+          {product.pinnedAt && (
+            <span
+              className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-foreground-950/70 backdrop-blur-sm flex items-center justify-center"
+              title="ピン留め"
+            >
+              <i className="ri-pushpin-fill text-white text-[13px]" />
+            </span>
+          )}
         </div>
       </a>
 
