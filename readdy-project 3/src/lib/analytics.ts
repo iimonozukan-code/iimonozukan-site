@@ -16,6 +16,7 @@ export type JourneyRow = {
   session_id: string;
   seq: number;
   item_name: string;
+  item_date: string | null;
   store: string;
   source: string | null;
   device: string | null;
