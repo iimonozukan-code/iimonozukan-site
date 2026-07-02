@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { createItem, updateItem, fetchAllItems, uploadImage, type ItemInput, type Item } from '@/lib/db';
+import { createItem, updateItem, fetchAllItems, uploadImage, placeItemByDate, type ItemInput, type Item } from '@/lib/db';
 import type { Product } from '@/mocks/products';
 
 const CATEGORIES: Product['category'][] = ['機械もの', '生活もの', '家電もの', '身装もの', '情報もの'];
@@ -20,6 +20,7 @@ export default function ItemForm() {
   const [category, setCategory] = useState<Product['category']>('機械もの');
   const [image, setImage] = useState('');
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
+  const [originalDate, setOriginalDate] = useState<string | null>(null);
   const [asin, setAsin] = useState('');
   const [isPublished, setIsPublished] = useState(true);
   const [links, setLinks] = useState<Product['links']>({ amazon: null, rakuten: null, yahoo: null, aliexpress: null });
@@ -34,7 +35,8 @@ export default function ItemForm() {
       const it = all.find((x) => String(x.id) === id);
       if (it) {
         setName(it.name); setCategory(it.category); setImage(it.image);
-        setDate(it.date || ''); setAsin(it.asin ?? ''); setIsPublished(it.isPublished ?? true);
+        setDate(it.date || ''); setOriginalDate(it.date || '');
+        setAsin(it.asin ?? ''); setIsPublished(it.isPublished ?? true);
         setLinks(it.links);
       }
     })();
@@ -55,13 +57,31 @@ export default function ItemForm() {
     setBusy(true); setErr(null);
     const input: ItemInput = { name: name.trim(), category, image, date, asin: asin || null, isPublished, links };
     try {
-      if (isEdit && id) await updateItem(Number(id), input);
-      else await createItem(input);
-      navigate('/admin/items');
+      let focusId: number | null = null;
+      if (isEdit && id) {
+        focusId = Number(id);
+        await updateItem(focusId, input);
+        // 日付が変わったときだけ、紹介日順の正しい位置へ自動移動
+        if (date && date !== originalDate) {
+          await placeItemByDate(focusId, date).catch(() => {});
+        }
+      } else {
+        focusId = await createItem(input);
+        // 新規は必ず紹介日順の位置へ自動配置（古い日付でも正しい場所に入る）
+        if (focusId != null && date) {
+          await placeItemByDate(focusId, date).catch(() => {});
+        }
+      }
+      // 一覧に戻ったとき、この商品の位置までスクロールして戻る
+      navigate('/admin/items', focusId != null ? { state: { focusId } } : undefined);
     } catch (e2) {
       setErr('保存に失敗しました: ' + (e2 as Error).message);
       setBusy(false);
     }
+  };
+
+  const onCancel = () => {
+    navigate('/admin/items', isEdit && id ? { state: { focusId: Number(id) } } : undefined);
   };
 
   const setLink = (k: keyof Product['links'], v: string) =>
@@ -107,6 +127,7 @@ export default function ItemForm() {
           <div>
             <label className="block text-xs font-bold mb-1.5">紹介日</label>
             <input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="w-full px-3 py-2.5 rounded-lg border border-background-300 text-sm focus:outline-none focus:border-primary-500" />
+            <p className="text-[10px] text-foreground-400 mt-1">保存すると、この日付の順番の位置に自動で並びます</p>
           </div>
         </div>
 
@@ -135,7 +156,7 @@ export default function ItemForm() {
         {err && <p className="text-xs text-primary-600">{err}</p>}
 
         <div className="flex justify-end gap-3 pt-2">
-          <button type="button" onClick={() => navigate('/admin/items')} className="px-5 py-2.5 rounded-lg border border-background-300 text-sm font-semibold hover:bg-background-100">キャンセル</button>
+          <button type="button" onClick={onCancel} className="px-5 py-2.5 rounded-lg border border-background-300 text-sm font-semibold hover:bg-background-100">キャンセル</button>
           <button type="submit" disabled={busy} className="px-6 py-2.5 rounded-lg bg-primary-500 text-white text-sm font-semibold hover:bg-primary-600 disabled:opacity-50">{busy ? '保存中…' : '保存'}</button>
         </div>
       </form>
