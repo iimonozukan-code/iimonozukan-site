@@ -87,7 +87,7 @@
 
 @layer components {
   .filter-chip {
-    @apply px-4 py-2 rounded-full text-[13px] font-medium tracking-tight cursor-pointer whitespace-nowrap transition-all duration-200 border;
+    @apply px-3 py-1.5 rounded-full text-xs font-medium tracking-tight cursor-pointer whitespace-nowrap transition-all duration-200 border;
   }
 
   .filter-chip-inactive {
