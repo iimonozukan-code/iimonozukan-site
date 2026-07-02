@@ -9,6 +9,7 @@ import {
   type AnalyticsData,
   type ItemStatRow,
   type EngagementRow,
+  type JourneyRow,
 } from '@/lib/analytics';
 
 // ============================================================
@@ -254,10 +255,18 @@ export default function Dashboard() {
 
             {/* 商品回遊 */}
             <Section
-              title="商品回遊（1訪問あたり何種類の商品に反応したか）"
-              sub="訪問1回の中で、何種類の商品をクリック／閲覧したかの正確な分布。2種類以上＝サイト内を回遊している訪問"
+              title="商品回遊（1訪問あたり何種類のリンクを押したか）"
+              sub="商品×モール単位の正確な分布。同じ商品でもAmazonと楽天は別リンクとして数えます（モール比較の動きも回遊にカウント）"
             >
               <EngagementCard rows={data.engagement} />
+            </Section>
+
+            {/* 回遊ログ */}
+            <Section
+              title="回遊ログ（実際のクリック推移）"
+              sub="2クリック以上した訪問の実録。左が入口→右端が出口。同じ商品を別モールで押し直した訪問には「モール比較」バッジ"
+            >
+              <JourneyLog rows={data.journeys} />
             </Section>
 
             {/* 商品ランキング */}
@@ -698,10 +707,154 @@ function EngagementCard({ rows }: { rows: EngagementRow[] }) {
             ))}
           </div>
           <p className="text-[10px] text-foreground-400 mt-3">
-            訪問（セッション）＝タブを開いてから閉じるまで。同じ商品の別モールクリックは1種類と数えます。グレー＝1種類のみ／青＝回遊あり。
+            訪問（セッション）＝タブを開いてから閉じるまで。クリックは商品×モール単位（同じ商品でもモール違いは別カウント）。グレー＝1種類のみ／青＝回遊あり。
           </p>
         </>
       )}
+    </div>
+  );
+}
+
+// ============================================================
+// 回遊ログ（訪問ごとの実際のクリック推移）
+// ============================================================
+
+type JourneyStep = { name: string; store: string; times: number };
+type Journey = {
+  sid: string;
+  steps: JourneyStep[];
+  source: string;
+  device: string;
+  start: string;
+  end: string;
+  mallCompare: boolean;
+  exitStore: string;
+};
+
+function buildJourneys(rows: JourneyRow[]): Journey[] {
+  const bySession = new Map<string, JourneyRow[]>();
+  rows.forEach((r) => {
+    const list = bySession.get(r.session_id) ?? [];
+    list.push(r);
+    bySession.set(r.session_id, list);
+  });
+  const out: Journey[] = [];
+  bySession.forEach((rs, sid) => {
+    rs.sort((a, b) => a.seq - b.seq);
+    const steps: JourneyStep[] = [];
+    rs.forEach((r) => {
+      const prev = steps[steps.length - 1];
+      if (prev && prev.name === r.item_name && prev.store === r.store) prev.times += 1;
+      else steps.push({ name: r.item_name, store: r.store, times: 1 });
+    });
+    if (steps.length < 2) return; // 同一リンク連打のみは除外
+    const names = [...new Set(steps.map((s) => s.name))];
+    const mallCompare = names.some(
+      (nm) => new Set(steps.filter((s) => s.name === nm).map((s) => s.store)).size >= 2,
+    );
+    out.push({
+      sid,
+      steps,
+      source: rs[0].source ?? 'direct',
+      device: rs[0].device ?? '',
+      start: rs[0].clicked_at,
+      end: rs[rs.length - 1].clicked_at,
+      mallCompare,
+      exitStore: steps[steps.length - 1].store,
+    });
+  });
+  return out.sort((a, b) => b.end.localeCompare(a.end));
+}
+
+function fmtClock(iso: string): string {
+  return new Date(iso).toLocaleString('ja-JP', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+}
+
+function fmtSpan(startIso: string, endIso: string): string {
+  const s = Math.max(0, Math.round((new Date(endIso).getTime() - new Date(startIso).getTime()) / 1000));
+  if (s < 60) return `${s}秒間`;
+  return `${Math.floor(s / 60)}分${s % 60}秒間`;
+}
+
+function JourneyLog({ rows }: { rows: JourneyRow[] }) {
+  const [showAll, setShowAll] = useState(false);
+  const [onlyCompare, setOnlyCompare] = useState(false);
+  const journeys = useMemo(() => buildJourneys(rows), [rows]);
+  const filtered = onlyCompare ? journeys.filter((j) => j.mallCompare) : journeys;
+  const list = showAll ? filtered : filtered.slice(0, 15);
+  const compareCount = journeys.filter((j) => j.mallCompare).length;
+
+  if (journeys.length === 0) {
+    return <Empty text="まだ回遊ログがありません。2クリック以上の訪問が発生すると、ここに実際の推移が並びます。" />;
+  }
+
+  return (
+    <div>
+      <div className="flex flex-wrap items-center gap-2 mb-3">
+        <label className="flex items-center gap-1.5 text-[11px] text-foreground-500 cursor-pointer">
+          <input type="checkbox" checked={onlyCompare} onChange={(e) => setOnlyCompare(e.target.checked)} className="cursor-pointer" />
+          モール比較した訪問のみ（{compareCount}件）
+        </label>
+        <span className="ml-auto text-[11px] text-foreground-400">直近{journeys.length}件の回遊訪問</span>
+      </div>
+
+      <div className="space-y-2.5">
+        {list.map((j) => (
+          <div key={j.sid} className="border border-background-200 rounded-lg px-3 py-2.5">
+            <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[10px] text-foreground-400 mb-2">
+              <span className="font-bold text-foreground-600 tabular-nums">{fmtClock(j.start)}</span>
+              <span className="flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full" style={{ background: sourceMeta(j.source, 0).color }} />
+                {sourceMeta(j.source, 0).label}
+              </span>
+              {j.device && <span>{j.device}</span>}
+              <span className="tabular-nums">{j.steps.reduce((a, b) => a + b.times, 0)}クリック・{fmtSpan(j.start, j.end)}</span>
+              {j.mallCompare && (
+                <span className="bg-amber-50 text-amber-600 font-bold px-1.5 py-0.5 rounded">
+                  モール比較 → 出口 {STORE_META[j.exitStore]?.label ?? j.exitStore}
+                </span>
+              )}
+            </div>
+            <div className="flex flex-wrap items-center gap-1.5">
+              {j.steps.map((s, i) => {
+                const meta = STORE_META[s.store] ?? { label: s.store, color: '#888' };
+                const isExit = i === j.steps.length - 1;
+                return (
+                  <span key={i} className="flex items-center gap-1.5">
+                    {i > 0 && <i className="ri-arrow-right-line text-foreground-300 text-sm" />}
+                    <span
+                      className="inline-flex items-center gap-1 rounded-md border bg-white pl-1.5 pr-1 py-1 text-[11px]"
+                      style={{
+                        borderColor: meta.color,
+                        boxShadow: isExit ? `0 0 0 2px ${meta.color}40` : undefined,
+                      }}
+                      title={isExit ? '出口（最後のクリック）' : undefined}
+                    >
+                      <span className="font-medium truncate max-w-[130px] md:max-w-[180px]">{s.name}</span>
+                      <span className="text-white font-bold text-[9px] px-1 py-0.5 rounded" style={{ background: meta.color }}>
+                        {meta.label}
+                        {s.times > 1 ? ` ×${s.times}` : ''}
+                      </span>
+                    </span>
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {filtered.length > 15 && (
+        <button
+          onClick={() => setShowAll((v) => !v)}
+          className="mt-3 w-full py-2 rounded-lg bg-background-100 hover:bg-background-200 text-xs font-bold text-foreground-500 cursor-pointer"
+        >
+          {showAll ? '閉じる' : `すべて表示（${filtered.length}件）`}
+        </button>
+      )}
+      <p className="text-[10px] text-foreground-400 mt-2">
+        枠の色＝モール／同じリンクの連打は「×n」でまとめ表示／色付きリングの付いたチップ＝出口（その訪問で最後に押したリンク）
+      </p>
     </div>
   );
 }
