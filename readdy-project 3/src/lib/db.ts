@@ -92,10 +92,16 @@ export async function fetchAllItems(): Promise<Item[]> {
   return (data as ItemRow[]).map(rowToItem);
 }
 
-export async function createItem(input: ItemInput): Promise<void> {
+/** 新規作成。作成された商品のidを返す */
+export async function createItem(input: ItemInput): Promise<number | null> {
   if (!supabase) throw new Error('Supabase未設定');
-  const { error } = await supabase.from('items').insert(inputToRow(input));
+  const { data, error } = await supabase
+    .from('items')
+    .insert(inputToRow(input))
+    .select('id')
+    .single();
   if (error) throw error;
+  return (data as { id: number } | null)?.id ?? null;
 }
 
 export async function updateItem(id: number, input: ItemInput): Promise<void> {
@@ -119,12 +125,61 @@ export async function deleteItem(id: number): Promise<void> {
   if (error) throw error;
 }
 
-/** 並び順をまとめて更新（管理画面のドラッグ並べ替え用） */
+/** 並び順をまとめて更新（25件ずつに分割して負荷を抑える） */
 export async function updateSortOrders(updates: { id: number; sortOrder: number }[]): Promise<void> {
   if (!supabase) throw new Error('Supabase未設定');
-  await Promise.all(
-    updates.map((u) => supabase!.from('items').update({ sort_order: u.sortOrder }).eq('id', u.id)),
-  );
+  const CHUNK = 25;
+  for (let i = 0; i < updates.length; i += CHUNK) {
+    await Promise.all(
+      updates
+        .slice(i, i + CHUNK)
+        .map((u) => supabase!.from('items').update({ sort_order: u.sortOrder }).eq('id', u.id)),
+    );
+  }
+}
+
+/**
+ * 商品を「紹介日の新しい順」の正しい位置に自動配置する。
+ * 同じ日付の商品がある場合はそのグループの直後に入る（既存の手動並びは維持）。
+ */
+export async function placeItemByDate(id: number, date: string): Promise<void> {
+  if (!supabase || !date) return;
+  const items = await fetchAllItems();
+  const target = items.find((i) => i.id === id);
+  if (!target) return;
+
+  const rest = items.filter((i) => i.id !== id);
+  // 全体が「日付の新しい順」である前提で、targetより古い日付が最初に現れる位置に挿入
+  let idx = rest.findIndex((i) => (i.date || '0000-00-00') < date);
+  if (idx < 0) idx = rest.length;
+  rest.splice(idx, 0, { ...target, date });
+
+  const updates: { id: number; sortOrder: number }[] = [];
+  rest.forEach((it, k) => {
+    if (it.id != null && it.sortOrder !== k) updates.push({ id: it.id, sortOrder: k });
+  });
+  if (updates.length > 0) await updateSortOrders(updates);
+}
+
+/** 商品ごとの本日クリック数（モール別）。管理画面のリスト表示用 */
+export async function fetchTodayClicksByItem(): Promise<Map<number, Record<string, number>>> {
+  const map = new Map<number, Record<string, number>>();
+  if (!supabase) return map;
+  const start = new Date();
+  start.setHours(0, 0, 0, 0);
+  const { data, error } = await supabase
+    .from('clicks')
+    .select('item_id,store')
+    .gte('created_at', start.toISOString())
+    .limit(20000);
+  if (error || !data) return map;
+  (data as { item_id: number | null; store: string }[]).forEach((r) => {
+    if (r.item_id == null) return;
+    const rec = map.get(r.item_id) ?? {};
+    rec[r.store] = (rec[r.store] ?? 0) + 1;
+    map.set(r.item_id, rec);
+  });
+  return map;
 }
 
 /** 商品画像をStorageにアップロードして公開URLを返す */
