@@ -16,8 +16,9 @@ export default function ItemForm() {
   const isEdit = id != null;
   const navigate = useNavigate();
   const location = useLocation();
-  // 「複製」から来た場合：コピー元の商品（新規のみ有効）
-  const copyFrom = !isEdit ? ((location.state as { copyFrom?: Item } | null)?.copyFrom ?? null) : null;
+  // 「複製」ボタンから来た場合（コピーは既に下書きとして作成済み・この画面はそのコピーの編集）
+  const nav = (location.state as { duplicated?: boolean; fromName?: string } | null) ?? null;
+  const isDuplicated = isEdit && nav?.duplicated === true;
 
   const [name, setName] = useState('');
   const [category, setCategory] = useState<Product['category']>('機械もの');
@@ -30,16 +31,6 @@ export default function ItemForm() {
   const [busy, setBusy] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [err, setErr] = useState<string | null>(null);
-
-  // 複製：コピー元の内容をプリセット（紹介日は今日のまま＝再紹介用）
-  useEffect(() => {
-    if (!copyFrom) return;
-    setName(copyFrom.name);
-    setCategory(copyFrom.category);
-    setImage(copyFrom.image);
-    setAsin(copyFrom.asin ?? '');
-    setLinks(copyFrom.links);
-  }, [copyFrom]);
 
   useEffect(() => {
     if (!isEdit) return;
@@ -103,10 +94,11 @@ export default function ItemForm() {
   return (
     <div>
       <header className="bg-white border-b border-background-200 px-4 md:px-7 py-4">
-        <h2 className="text-base font-semibold text-foreground-950">{isEdit ? '商品を編集' : copyFrom ? '複製して新規入稿' : '新規入稿'}</h2>
-        {copyFrom && (
+        <h2 className="text-base font-semibold text-foreground-950">{isDuplicated ? '複製した商品を編集' : isEdit ? '商品を編集' : '新規入稿'}</h2>
+        {isDuplicated && (
           <p className="text-xs text-foreground-500 mt-0.5">
-            「{copyFrom.name}」の内容をコピーしました。紹介日は今日にセット済み（保存すると日付順の位置に入ります）
+            ✅ コピーを<b>下書き</b>として作成しました（元の商品はそのまま）。紹介日などを調整して保存してください。
+            公開するには「保存後すぐ公開する」にチェックを。
           </p>
         )}
       </header>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   DndContext, closestCenter, PointerSensor, KeyboardSensor,
   useSensor, useSensors, type DragEndEvent,
@@ -9,7 +9,7 @@ import {
   arrayMove, sortableKeyboardCoordinates,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { fetchAllItems, fetchTodayClicksByItem, setPublished, deleteItem, updateSortOrders, type Item } from '@/lib/db';
+import { fetchAllItems, fetchTodayClicksByItem, setPublished, deleteItem, duplicateItem, updateSortOrders, type Item } from '@/lib/db';
 
 const CAT_EMOJI: Record<string, string> = { '機械もの': '🔌', '生活もの': '🪑', '家電もの': '📺', '身装もの': '💼', '情報もの': '📱' };
 const fmtDate = (d?: string) => (d ? d.replace(/-/g, '/') : '');
@@ -23,10 +23,10 @@ const MALL_META: { key: 'amazon' | 'rakuten' | 'yahoo' | 'aliexpress'; label: st
 
 type SortMode = 'manual' | 'newest' | 'oldest';
 
-function SortableRow({ it, disabled, flash, todayClicks, onToggle, onDelete }: {
-  it: Item; disabled: boolean; flash: boolean;
+function SortableRow({ it, disabled, flash, duplicating, todayClicks, onToggle, onDelete, onDuplicate }: {
+  it: Item; disabled: boolean; flash: boolean; duplicating: boolean;
   todayClicks?: Record<string, number>;
-  onToggle: (it: Item) => void; onDelete: (it: Item) => void;
+  onToggle: (it: Item) => void; onDelete: (it: Item) => void; onDuplicate: (it: Item) => void;
 }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: it.id!, disabled });
   const style: React.CSSProperties = {
@@ -93,14 +93,14 @@ function SortableRow({ it, disabled, flash, todayClicks, onToggle, onDelete }: {
       <div className="flex items-center gap-1 shrink-0">
         <button onClick={() => onToggle(it)} className="text-[11px] font-semibold border border-background-300 rounded-md px-2 py-1 hover:bg-background-100 whitespace-nowrap">{it.isPublished ? '非公開' : '公開'}</button>
         <Link to={`/admin/items/${it.id}`} className="text-[11px] font-semibold border border-background-300 rounded-md px-2 py-1 hover:bg-background-100">編集</Link>
-        <Link
-          to="/admin/items/new"
-          state={{ copyFrom: it }}
-          title="この商品をコピーして新規入稿（再紹介に便利）"
-          className="text-[11px] font-semibold border border-background-300 rounded-md px-2 py-1 hover:bg-background-100"
+        <button
+          onClick={() => onDuplicate(it)}
+          disabled={duplicating}
+          title="コピーを下書きとして作成し、その編集画面を開きます（元の商品はそのまま）"
+          className="text-[11px] font-semibold border border-background-300 rounded-md px-2 py-1 hover:bg-background-100 disabled:opacity-50 whitespace-nowrap"
         >
-          複製
-        </Link>
+          {duplicating ? '複製中…' : '複製'}
+        </button>
         <button onClick={() => onDelete(it)} className="text-[11px] font-semibold text-primary-600 border border-background-300 rounded-md px-2 py-1 hover:bg-primary-50">削除</button>
       </div>
     </div>
@@ -117,7 +117,9 @@ export default function Items() {
   const [flashId, setFlashId] = useState<number | null>(null);
 
   const location = useLocation();
+  const navigate = useNavigate();
   const focusId = (location.state as { focusId?: number } | null)?.focusId ?? null;
+  const [duplicatingId, setDuplicatingId] = useState<number | null>(null);
 
   const load = async () => {
     setLoading(true);
@@ -177,6 +179,24 @@ export default function Items() {
     if (!confirm(`「${it.name}」を削除しますか？`)) return;
     await deleteItem(it.id);
     load();
+  };
+
+  // 複製：その場でコピー（下書き）を作成し、コピーの編集画面を開く。元の商品には触れない。
+  const onDuplicate = async (it: Item) => {
+    if (it.id == null || duplicatingId != null) return;
+    setDuplicatingId(it.id);
+    try {
+      const newId = await duplicateItem(it);
+      if (newId != null) {
+        navigate(`/admin/items/${newId}`, { state: { duplicated: true, fromName: it.name } });
+        return;
+      }
+      alert('複製に失敗しました（idが取得できませんでした）');
+    } catch (e) {
+      alert('複製に失敗しました: ' + (e as Error).message);
+    } finally {
+      setDuplicatingId(null);
+    }
   };
 
   const onDragEnd = async (e: DragEndEvent) => {
@@ -262,9 +282,11 @@ export default function Items() {
                     it={it}
                     disabled={dragDisabled}
                     flash={flashId != null && it.id === flashId}
+                    duplicating={duplicatingId === it.id}
                     todayClicks={it.id != null ? todayClicks.get(it.id) : undefined}
                     onToggle={onToggle}
                     onDelete={onDelete}
+                    onDuplicate={onDuplicate}
                   />
                 ))}
               </SortableContext>
