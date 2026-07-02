@@ -140,7 +140,8 @@ export async function updateSortOrders(updates: { id: number; sortOrder: number 
 
 /**
  * 商品を「紹介日の新しい順」の正しい位置に自動配置する。
- * 同じ日付の商品がある場合はそのグループの直後に入る（既存の手動並びは維持）。
+ * 「対象の日付以上の商品のうち最後のものの直後」に挿入するため、
+ * 並びに多少の乱れがあっても正しいグループ位置に入る（同日グループの末尾）。
  */
 export async function placeItemByDate(id: number, date: string): Promise<void> {
   if (!supabase || !date) return;
@@ -149,16 +150,48 @@ export async function placeItemByDate(id: number, date: string): Promise<void> {
   if (!target) return;
 
   const rest = items.filter((i) => i.id !== id);
-  // 全体が「日付の新しい順」である前提で、targetより古い日付が最初に現れる位置に挿入
-  let idx = rest.findIndex((i) => (i.date || '0000-00-00') < date);
-  if (idx < 0) idx = rest.length;
-  rest.splice(idx, 0, { ...target, date });
+  let lastGE = -1;
+  rest.forEach((it, k) => {
+    if ((it.date || '0000-00-00') >= date) lastGE = k;
+  });
+  rest.splice(lastGE + 1, 0, { ...target, date });
 
   const updates: { id: number; sortOrder: number }[] = [];
   rest.forEach((it, k) => {
     if (it.id != null && it.sortOrder !== k) updates.push({ id: it.id, sortOrder: k });
   });
   if (updates.length > 0) await updateSortOrders(updates);
+}
+
+/**
+ * 商品を複製して「下書き」として即作成し、新しいidを返す。
+ * （複製ボタン → この関数 → コピーの編集画面、という流れで使う。元の商品には一切触れない）
+ */
+export async function duplicateItem(source: Item): Promise<number | null> {
+  if (!supabase) throw new Error('Supabase未設定');
+  const { data, error } = await supabase
+    .from('items')
+    .insert({
+      name: source.name,
+      category: source.category,
+      image_url: source.image || null,
+      date: source.date || null,
+      asin: source.asin || null,
+      is_published: false, // 下書きで作成（公開は編集画面で）
+      amazon_url: source.links.amazon,
+      rakuten_url: source.links.rakuten,
+      yahoo_url: source.links.yahoo,
+      aliexpress_url: source.links.aliexpress,
+    })
+    .select('id')
+    .single();
+  if (error) throw error;
+  const newId = (data as { id: number } | null)?.id ?? null;
+  // 元商品のすぐ近く（同じ日付グループの末尾）に配置
+  if (newId != null && source.date) {
+    await placeItemByDate(newId, source.date).catch(() => {});
+  }
+  return newId;
 }
 
 /** 商品ごとの本日クリック数（モール別）。管理画面のリスト表示用 */
