@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import Header from '@/components/feature/Header';
 import Footer from '@/components/feature/Footer';
 import ProductCard from '@/components/feature/ProductCard';
-import { fetchPublishedItems, type Item } from '@/lib/db';
-import { logPageView } from '@/lib/track';
+import { fetchPublishedItems, fetchBanners, type Item, type Banner } from '@/lib/db';
+import { logPageView, logBannerClick } from '@/lib/track';
 
 const CATEGORY_KEYS = ['すべて', '機械もの', '生活もの', '家電もの', '身装もの', '情報もの'] as const;
 type CategoryKey = (typeof CATEGORY_KEYS)[number];
@@ -31,6 +31,7 @@ export default function Home() {
   const { t } = useTranslation();
 
   const [products, setProducts] = useState<Item[]>([]);
+  const [banners, setBanners] = useState<Banner[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<CategoryKey>('すべて');
   const [selectedMall, setSelectedMall] = useState<string>('すべて');
   const [selectedYM, setSelectedYM] = useState('');
@@ -38,6 +39,7 @@ export default function Home() {
   useEffect(() => {
     logPageView();
     fetchPublishedItems().then(setProducts);
+    fetchBanners().then((bs) => setBanners(bs.filter((b) => b.is_active && b.image_url)));
   }, []);
 
   const presentCategories = useMemo(
@@ -64,8 +66,14 @@ export default function Home() {
       result = result.filter((p) => (p.date || '').startsWith(selectedYM));
     }
 
-    // 並び順は管理画面のドラッグ並べ替え（sort_order）に従う
-    return result;
+    // ピン留め（最大3件）を先頭に。それ以外は管理画面の並び順（sort_order）に従う
+    return [...result].sort((a, b) => {
+      const pa = a.pinnedAt ? 1 : 0;
+      const pb = b.pinnedAt ? 1 : 0;
+      if (pa !== pb) return pb - pa;
+      if (a.pinnedAt && b.pinnedAt) return (b.pinnedAt ?? '').localeCompare(a.pinnedAt ?? '');
+      return 0;
+    });
   }, [products, selectedCategory, selectedMall, selectedYM]);
 
   const hasFilter = selectedCategory !== 'すべて' || selectedMall !== 'すべて' || selectedYM !== '';
@@ -86,64 +94,116 @@ export default function Home() {
       <Header />
 
       <main className="flex-1 w-full max-w-5xl mx-auto px-2 md:px-6">
-        <section className="mb-7 pt-2">
-          <h2 className="text-[15px] font-semibold text-foreground-900 mb-3 text-center tracking-tight">{t('home.searchByDate')}</h2>
-          <div className="flex gap-2 overflow-x-auto pb-1.5 px-1 -mx-1" style={{ scrollbarWidth: 'thin' }}>
-            <button
-              onClick={() => setSelectedYM('')}
-              className={`filter-chip shrink-0 ${selectedYM === '' ? 'filter-chip-active-neutral' : 'filter-chip-inactive'}`}
-            >
-              {t('home.filterAll')}
-            </button>
-            {monthChips.map((ym) => {
-              const isActive = selectedYM === ym;
-              return (
-                <button
-                  key={ym}
-                  onClick={() => setSelectedYM(ym)}
-                  className={`filter-chip shrink-0 ${isActive ? 'filter-chip-active-neutral' : 'filter-chip-inactive'}`}
-                >
-                  {formatYM(ym)}
-                </button>
-              );
-            })}
-          </div>
-        </section>
+        {/* バナー（管理画面から設定・設定中のみ表示） */}
+        {banners.length > 0 && (
+          <section className={`pt-2 mb-4 grid gap-2 ${banners.length === 2 ? 'grid-cols-2' : 'grid-cols-1'}`}>
+            {banners.map((b) => (
+              <a
+                key={b.id}
+                href={b.link_url || '#'}
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                onClick={() => logBannerClick(b.id)}
+                className="block overflow-hidden rounded-xl border border-background-200 bg-background-100"
+              >
+                <img src={b.image_url!} alt="キャンペーン" className="w-full aspect-[16/5] object-cover" loading="eager" />
+              </a>
+            ))}
+          </section>
+        )}
 
-        <section className="mb-6">
-          <h2 className="text-[15px] font-semibold text-foreground-900 mb-3 text-center tracking-tight">{t('home.category')}</h2>
-          <div className="flex flex-wrap justify-center gap-2">
-            {presentCategories.map((cat) => {
-              const isActive = selectedCategory === cat;
-              const displayCat = cat === 'すべて' ? t('home.filterAll') : CATEGORY_DISPLAY[cat];
-              return (
+        {/* 絞り込みパネル */}
+        <section className="mb-7 pt-1">
+          <div className="bg-white border border-background-200 rounded-2xl px-3.5 py-4 md:px-5 md:py-5 space-y-4">
+            <div className="flex items-center justify-between">
+              <span className="flex items-center gap-1.5 text-[13px] font-bold text-foreground-900">
+                <i className="ri-equalizer-2-line text-foreground-400" />
+                絞り込み
+              </span>
+              {hasFilter && (
                 <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`filter-chip ${isActive ? 'filter-chip-active-primary' : 'filter-chip-inactive'}`}
+                  onClick={handleClearAll}
+                  className="text-[11px] font-bold text-foreground-400 hover:text-foreground-600 cursor-pointer flex items-center gap-1"
                 >
-                  {displayCat}
+                  <i className="ri-close-circle-line" />
+                  {t('home.clearAllFilters')}
                 </button>
-              );
-            })}
-          </div>
-        </section>
+              )}
+            </div>
 
-        <section className="mb-8">
-          <h2 className="text-[15px] font-semibold text-foreground-900 mb-3 text-center tracking-tight">{t('home.mall')}</h2>
-          <div className="flex flex-wrap justify-center gap-2">
-            {MALLS.map((mall) => {
-              const isActive = selectedMall === mall;
-              return (
+            <div>
+              <p className="flex items-center gap-1.5 text-[11px] font-bold text-foreground-400 tracking-wide mb-2">
+                <i className="ri-calendar-line" />
+                {t('home.searchByDate')}
+              </p>
+              <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1" style={{ scrollbarWidth: 'thin' }}>
                 <button
-                  key={mall}
-                  onClick={() => setSelectedMall(mall)}
-                  className={`filter-chip ${isActive ? 'filter-chip-active-accent' : 'filter-chip-inactive'}`}
+                  onClick={() => setSelectedYM('')}
+                  className={`filter-chip shrink-0 ${selectedYM === '' ? 'filter-chip-active-neutral' : 'filter-chip-inactive'}`}
                 >
-                  {mall === 'すべて' ? t('home.filterAll') : MALL_LABELS[mall]}
+                  {t('home.filterAll')}
                 </button>
-              );
-            })}
+                {monthChips.map((ym) => {
+                  const isActive = selectedYM === ym;
+                  return (
+                    <button
+                      key={ym}
+                      onClick={() => setSelectedYM(ym)}
+                      className={`filter-chip shrink-0 ${isActive ? 'filter-chip-active-neutral' : 'filter-chip-inactive'}`}
+                    >
+                      {formatYM(ym)}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="h-px bg-background-100" />
+
+            <div>
+              <p className="flex items-center gap-1.5 text-[11px] font-bold text-foreground-400 tracking-wide mb-2">
+                <i className="ri-apps-2-line" />
+                {t('home.category')}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {presentCategories.map((cat) => {
+                  const isActive = selectedCategory === cat;
+                  const displayCat = cat === 'すべて' ? t('home.filterAll') : CATEGORY_DISPLAY[cat];
+                  return (
+                    <button
+                      key={cat}
+                      onClick={() => setSelectedCategory(cat)}
+                      className={`filter-chip ${isActive ? 'filter-chip-active-primary' : 'filter-chip-inactive'}`}
+                    >
+                      {displayCat}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="h-px bg-background-100" />
+
+            <div>
+              <p className="flex items-center gap-1.5 text-[11px] font-bold text-foreground-400 tracking-wide mb-2">
+                <i className="ri-store-2-line" />
+                {t('home.mall')}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {MALLS.map((mall) => {
+                  const isActive = selectedMall === mall;
+                  return (
+                    <button
+                      key={mall}
+                      onClick={() => setSelectedMall(mall)}
+                      className={`filter-chip ${isActive ? 'filter-chip-active-accent' : 'filter-chip-inactive'}`}
+                    >
+                      {mall === 'すべて' ? t('home.filterAll') : MALL_LABELS[mall]}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </section>
 
