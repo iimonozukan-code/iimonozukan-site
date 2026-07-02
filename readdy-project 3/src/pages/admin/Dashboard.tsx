@@ -8,6 +8,7 @@ import {
   movingAvg,
   type AnalyticsData,
   type ItemStatRow,
+  type EngagementRow,
 } from '@/lib/analytics';
 
 // ============================================================
@@ -250,6 +251,14 @@ export default function Dashboard() {
                 <SourcesTable rows={data.sourcesSummary} />
               </Section>
             </div>
+
+            {/* 商品回遊 */}
+            <Section
+              title="商品回遊（1訪問あたり何種類の商品に反応したか）"
+              sub="訪問1回の中で、何種類の商品をクリック／閲覧したかの正確な分布。2種類以上＝サイト内を回遊している訪問"
+            >
+              <EngagementCard rows={data.engagement} />
+            </Section>
 
             {/* 商品ランキング */}
             <Section
@@ -624,6 +633,87 @@ function DwellBars({ rows }: { rows: { bucket: string; sessions: number }[] }) {
           </span>
         </div>
       ))}
+    </div>
+  );
+}
+
+// ============================================================
+// 商品回遊（セッションごとのクリック/閲覧 種類数の正確な分布）
+// ============================================================
+
+function EngagementCard({ rows }: { rows: EngagementRow[] }) {
+  const [kind, setKind] = useState<'click' | 'view'>('click');
+  const data = useMemo(
+    () => rows.filter((r) => r.kind === kind).sort((a, b) => a.n - b.n),
+    [rows, kind],
+  );
+  const total = data.reduce((a, b) => a + b.sessions, 0);
+  const multi = data.filter((r) => r.n >= 2).reduce((a, b) => a + b.sessions, 0);
+  const weighted = data.reduce((a, b) => a + b.n * b.sessions, 0);
+  const maxSessions = Math.max(1, ...data.map((r) => r.sessions));
+  const maxN = data.length > 0 ? data[data.length - 1].n : 0;
+
+  return (
+    <div>
+      <div className="flex flex-wrap items-center gap-1.5 mb-4">
+        {(['click', 'view'] as const).map((k) => (
+          <button
+            key={k}
+            onClick={() => setKind(k)}
+            className={`px-2.5 py-1 rounded-full text-[11px] font-bold cursor-pointer ${
+              kind === k ? 'bg-foreground-950 text-white' : 'bg-background-100 text-foreground-500'
+            }`}
+          >
+            {k === 'click' ? 'クリック（購入リンク）' : '閲覧（カード表示）'}
+          </button>
+        ))}
+      </div>
+
+      {total === 0 ? (
+        <Empty text="まだ回遊データがありません（セッション付き計測の開始後から集計されます）。" />
+      ) : (
+        <>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+            <MiniStat label={kind === 'click' ? 'クリックした訪問' : '閲覧した訪問'} value={`${total.toLocaleString()}件`} />
+            <MiniStat label="2種類以上（回遊あり）" value={`${multi.toLocaleString()}件`} hint={`${((multi / total) * 100).toFixed(1)}%`} accent />
+            <MiniStat label="平均種類数" value={(weighted / total).toFixed(2)} />
+            <MiniStat label="最多記録" value={`${maxN}種類`} />
+          </div>
+
+          <div className="space-y-1.5">
+            {data.map((r) => (
+              <div key={r.n} className="grid grid-cols-[76px_1fr_120px] items-center gap-2 text-xs">
+                <span className="font-bold text-foreground-600 text-right pr-1 tabular-nums">{r.n}種類</span>
+                <div className="h-[18px] bg-background-100 rounded overflow-hidden">
+                  <div
+                    className={`h-full rounded ${r.n === 1 ? 'bg-background-300' : 'bg-sky-500'}`}
+                    style={{ width: `${(r.sessions / maxSessions) * 100}%`, minWidth: 4 }}
+                  />
+                </div>
+                <span className="tabular-nums">
+                  <b>{r.sessions.toLocaleString()}</b>件
+                  <span className="text-foreground-400">（{((r.sessions / total) * 100).toFixed(1)}%）</span>
+                </span>
+              </div>
+            ))}
+          </div>
+          <p className="text-[10px] text-foreground-400 mt-3">
+            訪問（セッション）＝タブを開いてから閉じるまで。同じ商品の別モールクリックは1種類と数えます。グレー＝1種類のみ／青＝回遊あり。
+          </p>
+        </>
+      )}
+    </div>
+  );
+}
+
+function MiniStat({ label, value, hint, accent }: { label: string; value: string; hint?: string; accent?: boolean }) {
+  return (
+    <div className={`rounded-lg border px-3 py-2.5 ${accent ? 'border-sky-200 bg-sky-50' : 'border-background-200 bg-background-50'}`}>
+      <div className="text-[10px] font-semibold text-foreground-500 mb-0.5">{label}</div>
+      <div className="text-lg font-bold tabular-nums leading-none">
+        {value}
+        {hint && <span className={`ml-1.5 text-xs ${accent ? 'text-sky-600' : 'text-foreground-400'}`}>{hint}</span>}
+      </div>
     </div>
   );
 }

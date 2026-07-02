@@ -93,6 +93,14 @@ function SortableRow({ it, disabled, flash, todayClicks, onToggle, onDelete }: {
       <div className="flex items-center gap-1 shrink-0">
         <button onClick={() => onToggle(it)} className="text-[11px] font-semibold border border-background-300 rounded-md px-2 py-1 hover:bg-background-100 whitespace-nowrap">{it.isPublished ? '非公開' : '公開'}</button>
         <Link to={`/admin/items/${it.id}`} className="text-[11px] font-semibold border border-background-300 rounded-md px-2 py-1 hover:bg-background-100">編集</Link>
+        <Link
+          to="/admin/items/new"
+          state={{ copyFrom: it }}
+          title="この商品をコピーして新規入稿（再紹介に便利）"
+          className="text-[11px] font-semibold border border-background-300 rounded-md px-2 py-1 hover:bg-background-100"
+        >
+          複製
+        </Link>
         <button onClick={() => onDelete(it)} className="text-[11px] font-semibold text-primary-600 border border-background-300 rounded-md px-2 py-1 hover:bg-primary-50">削除</button>
       </div>
     </div>
