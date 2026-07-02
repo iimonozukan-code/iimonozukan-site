@@ -219,14 +219,42 @@ export async function fetchTodayClicksByItem(): Promise<Map<number, Record<strin
   return map;
 }
 
-/** 商品画像をStorageにアップロードして公開URLを返す */
+/**
+ * 画像を配信用に自動最適化（幅720px・WebP・品質82%）。
+ * 一覧グリッドでの表示サイズ（125〜200px）に対して十分な解像度を保ちつつ、
+ * 転送量を1/5〜1/10に抑える。変換に失敗した場合や逆に大きくなる場合は元ファイルのまま。
+ */
+async function optimizeImage(file: File): Promise<{ blob: Blob; ext: string }> {
+  try {
+    const bmp = await createImageBitmap(file);
+    const targetW = Math.min(720, bmp.width);
+    const scale = targetW / bmp.width;
+    const canvas = document.createElement('canvas');
+    canvas.width = targetW;
+    canvas.height = Math.round(bmp.height * scale);
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return { blob: file, ext: file.name.split('.').pop() || 'jpg' };
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(bmp, 0, 0, canvas.width, canvas.height);
+    bmp.close();
+    const webp = await new Promise<Blob | null>((r) => canvas.toBlob(r, 'image/webp', 0.82));
+    if (webp && webp.size < file.size) return { blob: webp, ext: 'webp' };
+    return { blob: file, ext: file.name.split('.').pop() || 'jpg' };
+  } catch {
+    return { blob: file, ext: file.name.split('.').pop() || 'jpg' };
+  }
+}
+
+/** 商品画像を自動最適化してStorageにアップロードし、公開URLを返す */
 export async function uploadImage(file: File): Promise<string> {
   if (!supabase) throw new Error('Supabase未設定');
-  const ext = file.name.split('.').pop() || 'jpg';
+  const { blob, ext } = await optimizeImage(file);
   const path = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
-  const { error } = await supabase.storage.from('item-images').upload(path, file, {
-    cacheControl: '3600',
+  const { error } = await supabase.storage.from('item-images').upload(path, blob, {
+    cacheControl: '31536000', // ファイル名がユニークなので1年キャッシュでOK（転送量削減）
     upsert: false,
+    contentType: ext === 'webp' ? 'image/webp' : file.type || 'image/jpeg',
   });
   if (error) throw error;
   const { data } = supabase.storage.from('item-images').getPublicUrl(path);
