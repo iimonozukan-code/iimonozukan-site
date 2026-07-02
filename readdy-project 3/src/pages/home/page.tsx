@@ -113,30 +113,25 @@ export default function Home() {
         )}
 
         {/* 絞り込みパネル */}
-        <section className="mb-7 pt-1">
-          <div className="bg-white border border-background-200 rounded-2xl px-3.5 py-4 md:px-5 md:py-5 space-y-4">
-            <div className="flex items-center justify-between">
-              <span className="flex items-center gap-1.5 text-[13px] font-bold text-foreground-900">
-                <i className="ri-equalizer-2-line text-foreground-400" />
-                絞り込み
-              </span>
-              {hasFilter && (
-                <button
-                  onClick={handleClearAll}
-                  className="text-[11px] font-bold text-foreground-400 hover:text-foreground-600 cursor-pointer flex items-center gap-1"
-                >
-                  <i className="ri-close-circle-line" />
-                  {t('home.clearAllFilters')}
-                </button>
-              )}
-            </div>
-
+        <section className="mb-5 pt-1">
+          <div className="bg-white border border-background-200 rounded-2xl px-3 py-3 md:px-5 md:py-4 space-y-2.5">
             <div>
-              <p className="flex items-center gap-1.5 text-[11px] font-bold text-foreground-400 tracking-wide mb-2">
-                <i className="ri-calendar-line" />
-                {t('home.searchByDate')}
-              </p>
-              <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1" style={{ scrollbarWidth: 'thin' }}>
+              <div className="flex items-center justify-between mb-1.5">
+                <p className="flex items-center gap-1.5 text-[10px] font-bold text-foreground-400 tracking-wide">
+                  <i className="ri-calendar-line" />
+                  {t('home.searchByDate')}
+                </p>
+                {hasFilter && (
+                  <button
+                    onClick={handleClearAll}
+                    className="text-[10px] font-bold text-foreground-400 hover:text-foreground-600 cursor-pointer flex items-center gap-0.5"
+                  >
+                    <i className="ri-close-circle-line" />
+                    {t('home.clearAllFilters')}
+                  </button>
+                )}
+              </div>
+              <div className="flex gap-1.5 overflow-x-auto pb-0.5 -mx-1 px-1" style={{ scrollbarWidth: 'thin' }}>
                 <button
                   onClick={() => setSelectedYM('')}
                   className={`filter-chip shrink-0 ${selectedYM === '' ? 'filter-chip-active-neutral' : 'filter-chip-inactive'}`}
@@ -161,11 +156,11 @@ export default function Home() {
             <div className="h-px bg-background-100" />
 
             <div>
-              <p className="flex items-center gap-1.5 text-[11px] font-bold text-foreground-400 tracking-wide mb-2">
+              <p className="flex items-center gap-1.5 text-[10px] font-bold text-foreground-400 tracking-wide mb-1.5">
                 <i className="ri-apps-2-line" />
                 {t('home.category')}
               </p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5">
                 {presentCategories.map((cat) => {
                   const isActive = selectedCategory === cat;
                   const displayCat = cat === 'すべて' ? t('home.filterAll') : CATEGORY_DISPLAY[cat];
@@ -185,11 +180,11 @@ export default function Home() {
             <div className="h-px bg-background-100" />
 
             <div>
-              <p className="flex items-center gap-1.5 text-[11px] font-bold text-foreground-400 tracking-wide mb-2">
+              <p className="flex items-center gap-1.5 text-[10px] font-bold text-foreground-400 tracking-wide mb-1.5">
                 <i className="ri-store-2-line" />
                 {t('home.mall')}
               </p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5">
                 {MALLS.map((mall) => {
                   const isActive = selectedMall === mall;
                   return (
