@@ -770,6 +770,13 @@ function fmtClock(iso: string): string {
   return new Date(iso).toLocaleString('ja-JP', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
 }
 
+/** チップ用の紹介日：今年は「M/D」、去年以前は「'YY M/D」 */
+function fmtItemDate(day: string): string {
+  const [y, m, d] = day.split('-');
+  const short = `${parseInt(m, 10)}/${parseInt(d, 10)}`;
+  return String(new Date().getFullYear()) === y ? short : `'${y.slice(2)} ${short}`;
+}
+
 function fmtSpan(startIso: string, endIso: string): string {
   const s = Math.max(0, Math.round((new Date(endIso).getTime() - new Date(startIso).getTime()) / 1000));
   if (s < 60) return `${s}秒間`;
@@ -832,7 +839,7 @@ function JourneyLog({ rows }: { rows: JourneyRow[] }) {
                     >
                       {s.itemDate && (
                         <span className="absolute -top-3.5 right-0 text-[8px] text-foreground-400 tabular-nums leading-none whitespace-nowrap">
-                          {fmtDay(s.itemDate)}
+                          {fmtItemDate(s.itemDate)}
                         </span>
                       )}
                       <span className="font-medium truncate max-w-[130px] md:max-w-[180px]">{s.name}</span>
