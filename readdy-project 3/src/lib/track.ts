@@ -138,6 +138,21 @@ export function logClick(itemId: number | undefined, store: Store): void {
     );
 }
 
+/** バナークリックを記録（item_idなし・store='banner1'/'banner2'） */
+export function logBannerClick(bannerId: number): void {
+  if (isBot()) return;
+  const { sid, src } = session();
+  beacon('clicks', {
+    item_id: null,
+    store: 'banner' + bannerId,
+    device: deviceType(),
+    referrer: src,
+    source: src,
+    session_id: sid,
+    user_agent: navigator.userAgent.slice(0, 300),
+  });
+}
+
 // ============================================================
 // ページビュー（アクセス）計測 ＋ 滞在時間トラッキング
 // ============================================================

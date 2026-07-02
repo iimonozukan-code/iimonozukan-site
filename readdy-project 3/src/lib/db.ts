@@ -5,6 +5,7 @@ export type Item = Product & {
   id?: number;
   isPublished?: boolean;
   sortOrder?: number;
+  pinnedAt?: string | null;
 };
 
 type ItemRow = {
@@ -20,6 +21,7 @@ type ItemRow = {
   asin: string | null;
   sort_order: number;
   is_published: boolean;
+  pinned_at?: string | null;
 };
 
 function rowToItem(r: ItemRow): Item {
@@ -32,6 +34,7 @@ function rowToItem(r: ItemRow): Item {
     asin: r.asin ?? undefined,
     isPublished: r.is_published,
     sortOrder: r.sort_order,
+    pinnedAt: r.pinned_at ?? null,
     links: {
       amazon: r.amazon_url,
       rakuten: r.rakuten_url,
@@ -110,6 +113,43 @@ export async function updateItem(id: number, input: ItemInput): Promise<void> {
     .from('items')
     .update({ ...inputToRow(input), updated_at: new Date().toISOString() })
     .eq('id', id);
+  if (error) throw error;
+}
+
+/** ピン留め（インスタ風・最大3件は呼び出し側でチェック） */
+export async function setPinned(id: number, pinned: boolean): Promise<void> {
+  if (!supabase) throw new Error('Supabase未設定');
+  const { error } = await supabase
+    .from('items')
+    .update({ pinned_at: pinned ? new Date().toISOString() : null })
+    .eq('id', id);
+  if (error) throw error;
+}
+
+// ============================================================
+// バナー（トップに2枠・管理画面から設定）
+// ============================================================
+
+export type Banner = {
+  id: number;
+  image_url: string | null;
+  link_url: string | null;
+  is_active: boolean;
+};
+
+export async function fetchBanners(): Promise<Banner[]> {
+  if (!supabase) return [];
+  const { data, error } = await supabase.from('banners').select('*').order('id');
+  if (error) return [];
+  return (data ?? []) as Banner[];
+}
+
+export async function saveBanner(b: Banner): Promise<void> {
+  if (!supabase) throw new Error('Supabase未設定');
+  const { error } = await supabase
+    .from('banners')
+    .update({ image_url: b.image_url, link_url: b.link_url, is_active: b.is_active, updated_at: new Date().toISOString() })
+    .eq('id', b.id);
   if (error) throw error;
 }
 
