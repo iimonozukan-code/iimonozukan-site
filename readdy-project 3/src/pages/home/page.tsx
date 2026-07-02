@@ -4,6 +4,7 @@ import Header from '@/components/feature/Header';
 import Footer from '@/components/feature/Footer';
 import ProductCard from '@/components/feature/ProductCard';
 import { fetchPublishedItems, type Item } from '@/lib/db';
+import { logPageView } from '@/lib/track';
 
 const CATEGORY_KEYS = ['すべて', '機械もの', '生活もの', '家電もの', '身装もの', '情報もの'] as const;
 type CategoryKey = (typeof CATEGORY_KEYS)[number];
@@ -35,6 +36,7 @@ export default function Home() {
   const [selectedYM, setSelectedYM] = useState('');
 
   useEffect(() => {
+    logPageView();
     fetchPublishedItems().then(setProducts);
   }, []);
 
