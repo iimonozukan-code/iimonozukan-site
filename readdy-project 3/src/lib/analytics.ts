@@ -11,6 +11,7 @@ export type ItemStatRow = { item_id: number; name: string; image_url: string | n
 export type HeatRow = { dow: number; hour: number; pv: number; clicks: number };
 export type StoreDailyRow = { day: string; store: string; clicks: number };
 export type DwellDistRow = { bucket: string; sessions: number };
+export type EngagementRow = { kind: 'click' | 'view'; n: number; sessions: number };
 
 export type AnalyticsData = {
   daily: DailyRow[];
@@ -20,6 +21,7 @@ export type AnalyticsData = {
   heatmap: HeatRow[];
   storesDaily: StoreDailyRow[];
   dwellDist: DwellDistRow[];
+  engagement: EngagementRow[];
 };
 
 async function rpc<T>(fn: string, days: number): Promise<T[]> {
@@ -40,7 +42,7 @@ function nums<T extends Record<string, unknown>>(rows: T[], keys: string[]): T[]
 
 /** 全分析データを並列取得 */
 export async function fetchAnalytics(days: number): Promise<AnalyticsData> {
-  const [daily, sourcesDaily, sourcesSummary, items, heatmap, storesDaily, dwellDist] = await Promise.all([
+  const [daily, sourcesDaily, sourcesSummary, items, heatmap, storesDaily, dwellDist, engagement] = await Promise.all([
     rpc<DailyRow>('analytics_daily', days),
     rpc<SourceDailyRow>('analytics_sources_daily', days),
     rpc<SourceSummaryRow>('analytics_sources_summary', days),
@@ -48,6 +50,7 @@ export async function fetchAnalytics(days: number): Promise<AnalyticsData> {
     rpc<HeatRow>('analytics_heatmap', days),
     rpc<StoreDailyRow>('analytics_stores_daily', days),
     rpc<DwellDistRow>('analytics_dwell_dist', days),
+    rpc<EngagementRow>('analytics_engagement', days),
   ]);
   return {
     daily: nums(daily, ['pv', 'sessions', 'clicks', 'avg_dwell']),
@@ -57,6 +60,7 @@ export async function fetchAnalytics(days: number): Promise<AnalyticsData> {
     heatmap: nums(heatmap, ['dow', 'hour', 'pv', 'clicks']),
     storesDaily: nums(storesDaily, ['clicks']),
     dwellDist: nums(dwellDist, ['sessions']),
+    engagement: nums(engagement, ['n', 'sessions']),
   };
 }
 
