@@ -12,6 +12,16 @@ export type HeatRow = { dow: number; hour: number; pv: number; clicks: number };
 export type StoreDailyRow = { day: string; store: string; clicks: number };
 export type DwellDistRow = { bucket: string; sessions: number };
 export type EngagementRow = { kind: 'click' | 'view'; n: number; sessions: number };
+export type JourneyRow = {
+  session_id: string;
+  seq: number;
+  item_name: string;
+  store: string;
+  source: string | null;
+  device: string | null;
+  clicked_at: string;
+  last_at: string;
+};
 
 export type AnalyticsData = {
   daily: DailyRow[];
@@ -22,6 +32,7 @@ export type AnalyticsData = {
   storesDaily: StoreDailyRow[];
   dwellDist: DwellDistRow[];
   engagement: EngagementRow[];
+  journeys: JourneyRow[];
 };
 
 async function rpc<T>(fn: string, days: number): Promise<T[]> {
@@ -29,6 +40,13 @@ async function rpc<T>(fn: string, days: number): Promise<T[]> {
   const { data, error } = await supabase.rpc(fn, { p_days: days });
   if (error) throw new Error(`${fn}: ${error.message}`);
   return (data ?? []) as T[];
+}
+
+async function rpcJourneys(days: number, limit: number): Promise<JourneyRow[]> {
+  if (!supabase) throw new Error('Supabase未設定');
+  const { data, error } = await supabase.rpc('analytics_journeys', { p_days: days, p_limit: limit });
+  if (error) throw new Error(`analytics_journeys: ${error.message}`);
+  return (data ?? []) as JourneyRow[];
 }
 
 /** 数値カラムを安全にnumber化（numeric型が文字列で返る環境への保険） */
@@ -42,7 +60,7 @@ function nums<T extends Record<string, unknown>>(rows: T[], keys: string[]): T[]
 
 /** 全分析データを並列取得 */
 export async function fetchAnalytics(days: number): Promise<AnalyticsData> {
-  const [daily, sourcesDaily, sourcesSummary, items, heatmap, storesDaily, dwellDist, engagement] = await Promise.all([
+  const [daily, sourcesDaily, sourcesSummary, items, heatmap, storesDaily, dwellDist, engagement, journeys] = await Promise.all([
     rpc<DailyRow>('analytics_daily', days),
     rpc<SourceDailyRow>('analytics_sources_daily', days),
     rpc<SourceSummaryRow>('analytics_sources_summary', days),
@@ -51,6 +69,7 @@ export async function fetchAnalytics(days: number): Promise<AnalyticsData> {
     rpc<StoreDailyRow>('analytics_stores_daily', days),
     rpc<DwellDistRow>('analytics_dwell_dist', days),
     rpc<EngagementRow>('analytics_engagement', days),
+    rpcJourneys(days, 80),
   ]);
   return {
     daily: nums(daily, ['pv', 'sessions', 'clicks', 'avg_dwell']),
@@ -61,6 +80,7 @@ export async function fetchAnalytics(days: number): Promise<AnalyticsData> {
     storesDaily: nums(storesDaily, ['clicks']),
     dwellDist: nums(dwellDist, ['sessions']),
     engagement: nums(engagement, ['n', 'sessions']),
+    journeys: nums(journeys, ['seq']),
   };
 }
 
