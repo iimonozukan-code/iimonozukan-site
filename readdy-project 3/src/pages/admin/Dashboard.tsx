@@ -719,7 +719,7 @@ function EngagementCard({ rows }: { rows: EngagementRow[] }) {
 // 回遊ログ（訪問ごとの実際のクリック推移）
 // ============================================================
 
-type JourneyStep = { name: string; store: string; times: number };
+type JourneyStep = { name: string; store: string; times: number; itemDate: string | null };
 type Journey = {
   sid: string;
   steps: JourneyStep[];
@@ -745,7 +745,7 @@ function buildJourneys(rows: JourneyRow[]): Journey[] {
     rs.forEach((r) => {
       const prev = steps[steps.length - 1];
       if (prev && prev.name === r.item_name && prev.store === r.store) prev.times += 1;
-      else steps.push({ name: r.item_name, store: r.store, times: 1 });
+      else steps.push({ name: r.item_name, store: r.store, times: 1, itemDate: r.item_date });
     });
     if (steps.length < 2) return; // 同一リンク連打のみは除外
     const names = [...new Set(steps.map((s) => s.name))];
@@ -815,7 +815,7 @@ function JourneyLog({ rows }: { rows: JourneyRow[] }) {
                 </span>
               )}
             </div>
-            <div className="flex flex-wrap items-center gap-1.5">
+            <div className="flex flex-wrap items-center gap-x-1.5 gap-y-4 pt-2">
               {j.steps.map((s, i) => {
                 const meta = STORE_META[s.store] ?? { label: s.store, color: '#888' };
                 const isExit = i === j.steps.length - 1;
@@ -823,13 +823,18 @@ function JourneyLog({ rows }: { rows: JourneyRow[] }) {
                   <span key={i} className="flex items-center gap-1.5">
                     {i > 0 && <i className="ri-arrow-right-line text-foreground-300 text-sm" />}
                     <span
-                      className="inline-flex items-center gap-1 rounded-md border bg-white pl-1.5 pr-1 py-1 text-[11px]"
+                      className="relative inline-flex items-center gap-1 rounded-md border bg-white pl-1.5 pr-1 py-1 text-[11px]"
                       style={{
                         borderColor: meta.color,
                         boxShadow: isExit ? `0 0 0 2px ${meta.color}40` : undefined,
                       }}
-                      title={isExit ? '出口（最後のクリック）' : undefined}
+                      title={`${isExit ? '出口（最後のクリック）／' : ''}紹介日 ${s.itemDate ?? '不明'}`}
                     >
+                      {s.itemDate && (
+                        <span className="absolute -top-3.5 right-0 text-[8px] text-foreground-400 tabular-nums leading-none whitespace-nowrap">
+                          {fmtDay(s.itemDate)}
+                        </span>
+                      )}
                       <span className="font-medium truncate max-w-[130px] md:max-w-[180px]">{s.name}</span>
                       <span className="text-white font-bold text-[9px] px-1 py-0.5 rounded" style={{ background: meta.color }}>
                         {meta.label}
@@ -853,7 +858,7 @@ function JourneyLog({ rows }: { rows: JourneyRow[] }) {
         </button>
       )}
       <p className="text-[10px] text-foreground-400 mt-2">
-        枠の色＝モール／同じリンクの連打は「×n」でまとめ表示／色付きリングの付いたチップ＝出口（その訪問で最後に押したリンク）
+        枠の色＝モール／チップ右上の小さな日付＝その商品の紹介日（どれだけ昔の商品まで遡って見られているかが分かる）／同じリンクの連打は「×n」でまとめ表示／色付きリング＝出口（最後に押したリンク）
       </p>
     </div>
   );
