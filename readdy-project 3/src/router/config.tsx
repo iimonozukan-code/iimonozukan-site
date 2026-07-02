@@ -5,6 +5,7 @@ import AdminLayout from "../pages/admin/AdminLayout";
 import Dashboard from "../pages/admin/Dashboard";
 import Items from "../pages/admin/Items";
 import ItemForm from "../pages/admin/ItemForm";
+import Banners from "../pages/admin/Banners";
 import Logs from "../pages/admin/Logs";
 
 const routes: RouteObject[] = [
@@ -20,6 +21,7 @@ const routes: RouteObject[] = [
       { path: "items", element: <Items /> },
       { path: "items/new", element: <ItemForm /> },
       { path: "items/:id", element: <ItemForm /> },
+      { path: "banners", element: <Banners /> },
       { path: "logs", element: <Logs /> },
     ],
   },
