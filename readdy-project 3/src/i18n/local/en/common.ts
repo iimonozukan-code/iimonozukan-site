@@ -1,5 +1,5 @@
 export default {
-  "header.tagline": "Browse products like a picture book.\nA shop-direct shopping SNS.",
+  "header.tagline": "A shop-direct product SNS media",
   "header.guideText": "Browse all products from the Iimono Zukan collection below 👇",
   "header.workInquiry": "・Business inquiries: ",
   "header.mediaNotice": "・This media contains in-house products/services, PR, and affiliate links",
