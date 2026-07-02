@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import type { Product } from '@/mocks/products';
-import { logClick, type Store } from '@/lib/track';
+import { logClick, observeImpression, type Store } from '@/lib/track';
 
 interface ProductCardProps {
   product: Product & { id?: number };
@@ -18,7 +18,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const firstLink = product.links[firstMall] ?? '#';
 
   return (
-    <article className="flex flex-col">
+    <article className="flex flex-col" ref={(el) => observeImpression(el, product.id)}>
       {/* 1080×1920 サムネイル全面表示（カテゴリ名・タイトル・日付は画像内にあるため重ねない） */}
       <a
         href={firstLink}
