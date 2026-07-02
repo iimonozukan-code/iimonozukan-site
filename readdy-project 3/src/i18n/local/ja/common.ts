@@ -1,5 +1,5 @@
 export default {
-  "header.tagline": "商品ページ直結型SNSメディア",
+  "header.tagline": "ショッピング型総合SNSメディア",
   "header.guideText": "全商品は下記いいもの図鑑まとめから👇",
   "header.workInquiry": "・お仕事依頼：",
   "header.mediaNotice": "・当メディアは自社製品または自社サービス・PR・アフィリエイトを含む",
