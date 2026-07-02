@@ -113,7 +113,7 @@ export default function Home() {
         )}
 
         {/* 絞り込みパネル */}
-        <section className="mb-5 pt-1">
+        <section className="mb-5">
           <div className="bg-white border border-background-200 rounded-2xl px-3 py-3 md:px-5 md:py-4 space-y-2.5">
             <div>
               <div className="flex items-center justify-between mb-1.5">
