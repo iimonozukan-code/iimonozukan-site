@@ -139,25 +139,29 @@ export async function updateSortOrders(updates: { id: number; sortOrder: number 
 }
 
 /**
- * 商品を「紹介日の新しい順」の正しい位置に自動配置する。
- * 「対象の日付以上の商品のうち最後のものの直後」に挿入するため、
- * 並びに多少の乱れがあっても正しいグループ位置に入る（同日グループの末尾）。
+ * 商品保存時の自動配置：リスト全体を「紹介日の新しい順」に安定ソートして正規化する。
+ * ・同じ日付の商品どうしは現在の並び（ドラッグでの微調整）を維持
+ * ・日付なしは末尾
+ * ・過去に並びが乱れていても、保存のたびに全体が正しい日付順に直る
  */
 export async function placeItemByDate(id: number, date: string): Promise<void> {
   if (!supabase || !date) return;
   const items = await fetchAllItems();
-  const target = items.find((i) => i.id === id);
-  if (!target) return;
+  if (items.length === 0) return;
 
-  const rest = items.filter((i) => i.id !== id);
-  let lastGE = -1;
-  rest.forEach((it, k) => {
-    if ((it.date || '0000-00-00') >= date) lastGE = k;
-  });
-  rest.splice(lastGE + 1, 0, { ...target, date });
+  const withNew = items.map((i) => (i.id === id ? { ...i, date } : i));
+  const sorted = withNew
+    .map((it, k) => ({ it, k }))
+    .sort((a, b) => {
+      const da = a.it.date || '0000-00-00';
+      const db = b.it.date || '0000-00-00';
+      if (da !== db) return db < da ? -1 : 1; // 新しい日付が上
+      return a.k - b.k; // 同日は現在の並びを維持（安定）
+    })
+    .map((x) => x.it);
 
   const updates: { id: number; sortOrder: number }[] = [];
-  rest.forEach((it, k) => {
+  sorted.forEach((it, k) => {
     if (it.id != null && it.sortOrder !== k) updates.push({ id: it.id, sortOrder: k });
   });
   if (updates.length > 0) await updateSortOrders(updates);
