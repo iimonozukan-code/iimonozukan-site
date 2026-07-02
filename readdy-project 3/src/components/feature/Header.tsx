@@ -15,7 +15,7 @@ export default function Header() {
   const logoUrl = '/logo.png';
 
   return (
-    <header className="w-full py-8 md:py-12 px-4 md:px-6">
+    <header className="w-full pt-6 pb-2 md:pt-10 md:pb-4 px-4 md:px-6">
       <div className="max-w-7xl mx-auto flex flex-col items-center">
         <div className="absolute top-4 right-4 md:top-6 md:right-6">
           <button
@@ -58,11 +58,11 @@ export default function Header() {
             }}
           />
         </div>
-        <p className="mt-4 text-xl md:text-2xl font-semibold text-foreground-950 tracking-tight text-center whitespace-pre-line leading-snug">
+        <p className="mt-3 text-lg md:text-2xl font-semibold text-foreground-950 tracking-tight text-center whitespace-pre-line leading-snug">
           {t('header.tagline')}
         </p>
 
-        <div className="mt-6 max-w-md flex flex-col items-center">
+        <div className="mt-4 max-w-md flex flex-col items-center">
           <div className="text-[11px] text-foreground-400 font-body text-center leading-relaxed space-y-0.5">
             <p>
               {t('header.workInquiry')}<a href="mailto:iimonozukan@gmail.com" className="hover:text-foreground-600 transition-colors cursor-pointer">iimonozukan@gmail.com</a>
@@ -71,7 +71,7 @@ export default function Header() {
             <p>{t('header.mainAccount')}</p>
           </div>
 
-          <div className="mt-3 flex items-center gap-5">
+          <div className="mt-2.5 flex items-center gap-5">
             <a href="https://www.instagram.com/iimono_zukan/" target="_blank" rel="nofollow noopener noreferrer" className="text-foreground-400 hover:text-foreground-700 transition-colors cursor-pointer" title="Instagram">
               <div className="w-5 h-5 flex items-center justify-center">
                 <i className="ri-instagram-line text-lg"></i>
