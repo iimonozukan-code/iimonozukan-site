@@ -9,7 +9,7 @@ import {
   arrayMove, sortableKeyboardCoordinates,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { fetchAllItems, fetchTodayClicksByItem, setPublished, deleteItem, duplicateItem, updateSortOrders, type Item } from '@/lib/db';
+import { fetchAllItems, fetchTodayClicksByItem, setPublished, setPinned, deleteItem, duplicateItem, updateSortOrders, type Item } from '@/lib/db';
 
 const CAT_EMOJI: Record<string, string> = { '機械もの': '🔌', '生活もの': '🪑', '家電もの': '📺', '身装もの': '💼', '情報もの': '📱' };
 const fmtDate = (d?: string) => (d ? d.replace(/-/g, '/') : '');
@@ -23,10 +23,10 @@ const MALL_META: { key: 'amazon' | 'rakuten' | 'yahoo' | 'aliexpress'; label: st
 
 type SortMode = 'manual' | 'newest' | 'oldest';
 
-function SortableRow({ it, disabled, flash, duplicating, todayClicks, onToggle, onDelete, onDuplicate }: {
+function SortableRow({ it, disabled, flash, duplicating, todayClicks, onToggle, onDelete, onDuplicate, onPin }: {
   it: Item; disabled: boolean; flash: boolean; duplicating: boolean;
   todayClicks?: Record<string, number>;
-  onToggle: (it: Item) => void; onDelete: (it: Item) => void; onDuplicate: (it: Item) => void;
+  onToggle: (it: Item) => void; onDelete: (it: Item) => void; onDuplicate: (it: Item) => void; onPin: (it: Item) => void;
 }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: it.id!, disabled });
   const style: React.CSSProperties = {
@@ -91,6 +91,17 @@ function SortableRow({ it, disabled, flash, duplicating, todayClicks, onToggle, 
       </div>
 
       <div className="flex items-center gap-1 shrink-0">
+        <button
+          onClick={() => onPin(it)}
+          title={it.pinnedAt ? 'ピン留めを外す' : 'ピン留め（サイト先頭に固定・最大3件）'}
+          className={`text-[13px] border rounded-md px-1.5 py-1 whitespace-nowrap ${
+            it.pinnedAt
+              ? 'bg-amber-400 border-amber-400 text-white hover:bg-amber-500'
+              : 'border-background-300 text-foreground-400 hover:bg-background-100'
+          }`}
+        >
+          <i className={it.pinnedAt ? 'ri-pushpin-fill' : 'ri-pushpin-line'} />
+        </button>
         <button onClick={() => onToggle(it)} className="text-[11px] font-semibold border border-background-300 rounded-md px-2 py-1 hover:bg-background-100 whitespace-nowrap">{it.isPublished ? '非公開' : '公開'}</button>
         <Link to={`/admin/items/${it.id}`} className="text-[11px] font-semibold border border-background-300 rounded-md px-2 py-1 hover:bg-background-100">編集</Link>
         <button
@@ -179,6 +190,25 @@ export default function Items() {
     if (!confirm(`「${it.name}」を削除しますか？`)) return;
     await deleteItem(it.id);
     load();
+  };
+
+  // ピン留め：サイト先頭に固定（インスタ風・最大3件）
+  const onPin = async (it: Item) => {
+    if (it.id == null) return;
+    const pinning = !it.pinnedAt;
+    if (pinning) {
+      const pinnedCount = items.filter((i) => i.pinnedAt).length;
+      if (pinnedCount >= 3) {
+        alert('ピン留めは3件までです。先にどれかのピンを外してください。\n（現在ピン留め中: ' + items.filter((i) => i.pinnedAt).map((i) => i.name.slice(0, 20)).join(' / ') + '）');
+        return;
+      }
+    }
+    try {
+      await setPinned(it.id, pinning);
+      load();
+    } catch (e) {
+      alert('ピン留めの更新に失敗しました: ' + (e as Error).message);
+    }
   };
 
   // 複製：その場でコピー（下書き）を作成し、コピーの編集画面を開く。元の商品には触れない。
@@ -287,6 +317,7 @@ export default function Items() {
                     onToggle={onToggle}
                     onDelete={onDelete}
                     onDuplicate={onDuplicate}
+                    onPin={onPin}
                   />
                 ))}
               </SortableContext>
