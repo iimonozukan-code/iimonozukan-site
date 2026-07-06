@@ -1,6 +1,22 @@
 import { supabase, isSupabaseConfigured } from './supabaseClient';
 import { products as mockProducts, type Product } from '@/mocks/products';
 
+// 画像配信をCloudflare(無料CDN)経由にするホスト。空文字にすればSupabase直に戻る。
+const IMAGE_CDN_HOST = 'iimono-img.iimonozukan.workers.dev';
+
+/** Supabaseの公開URLを、CDN(ホスト差し替え)経由のURLに変換する */
+function toCdnUrl(publicUrl: string): string {
+  if (!IMAGE_CDN_HOST) return publicUrl;
+  try {
+    const u = new URL(publicUrl);
+    u.host = IMAGE_CDN_HOST;
+    u.protocol = 'https:';
+    return u.toString();
+  } catch {
+    return publicUrl;
+  }
+}
+
 export type Item = Product & {
   id?: number;
   isPublished?: boolean;
@@ -298,5 +314,5 @@ export async function uploadImage(file: File): Promise<string> {
   });
   if (error) throw error;
   const { data } = supabase.storage.from('item-images').getPublicUrl(path);
-  return data.publicUrl;
+  return toCdnUrl(data.publicUrl);
 }
