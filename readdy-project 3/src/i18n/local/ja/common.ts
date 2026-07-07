@@ -1,5 +1,5 @@
 export default {
-  "header.tagline": "ショッピング型総合SNSメディア",
+  "header.tagline": "ショッピング型SNS×ECメディア",
   "header.guideText": "全商品は下記いいもの図鑑まとめから👇",
   "header.workInquiry": "・お仕事依頼：",
   "header.mediaNotice": "・当メディアは自社製品または自社サービス・PR・アフィリエイトを含む",
@@ -13,7 +13,7 @@ export default {
   "home.category": "カテゴリでフィルターをかける",
   "home.mall": "モールでフィルターをかける",
   "home.filterAll": "すべて",
-  "home.itemCount": "{{count}} 件の商品",
+  "home.itemCount": "{{count}} 件の登録済み図鑑",
   "home.noProductsDate": "この日の商品はまだありません",
   "home.noProducts": "条件に合う商品が見つかりませんでした",
   "home.clearAllFilters": "すべての条件をクリア",
