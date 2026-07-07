@@ -258,17 +258,27 @@ export async function duplicateItem(source: Item): Promise<number | null> {
 export async function fetchTodayClicksByItem(): Promise<Map<number, Record<string, number>>> {
   const map = new Map<number, Record<string, number>>();
   if (!supabase) return map;
-  const { data, error } = await supabase
-    .from('clicks')
-    .select('item_id,store')
-    .limit(100000);
-  if (error || !data) return map;
-  (data as { item_id: number | null; store: string }[]).forEach((r) => {
-    if (r.item_id == null) return;
-    const rec = map.get(r.item_id) ?? {};
-    rec[r.store] = (rec[r.store] ?? 0) + 1;
-    map.set(r.item_id, rec);
-  });
+  // clicksは件数が増えるとPostgRESTの1回あたり取得上限(max-rows)で打ち切られ、
+  // 「古いクリックだけ集計され、最近登録した商品が0件に見える」現象が起きる。
+  // そこで範囲指定(range)で分割取得し、空ページが返るまで回して全件を集計する。
+  const PAGE = 1000;
+  let from = 0;
+  for (;;) {
+    const { data, error } = await supabase
+      .from('clicks')
+      .select('item_id,store')
+      .order('created_at', { ascending: true })
+      .range(from, from + PAGE - 1);
+    if (error || !data || data.length === 0) break;
+    (data as { item_id: number | null; store: string }[]).forEach((r) => {
+      if (r.item_id == null) return;
+      const rec = map.get(r.item_id) ?? {};
+      rec[r.store] = (rec[r.store] ?? 0) + 1;
+      map.set(r.item_id, rec);
+    });
+    from += data.length;
+    if (from > 1_000_000) break; // 安全弁（無限ループ防止）
+  }
   return map;
 }
 
