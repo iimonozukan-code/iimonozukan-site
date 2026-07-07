@@ -69,7 +69,7 @@ function SortableRow({ it, disabled, flash, duplicating, todayClicks, onToggle, 
                 return (
                   <span
                     key={m.key}
-                    title={`${m.label}：本日 ${n} クリック`}
+                    title={`${m.label}：累計 ${n} クリック`}
                     className="inline-flex items-center gap-1 text-[10px] font-bold text-white pl-1.5 pr-1 py-[1px] rounded"
                     style={{ background: m.color }}
                   >
@@ -261,7 +261,7 @@ export default function Items() {
       <header className="bg-white border-b border-background-200 px-4 md:px-7 py-4 flex items-center justify-between gap-3">
         <div className="min-w-0">
           <h2 className="text-base font-semibold text-foreground-950">商品入稿・管理</h2>
-          <p className="text-xs text-foreground-500 hidden sm:block">画像・リンクの入稿とアイテム管理（モール横の数字＝本日のクリック）</p>
+          <p className="text-xs text-foreground-500 hidden sm:block">画像・リンクの入稿とアイテム管理（モール横の数字＝累計のクリック）</p>
         </div>
         <Link to="/admin/items/new" className="bg-primary-500 text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-primary-600 whitespace-nowrap shrink-0">＋ 新規入稿</Link>
       </header>
