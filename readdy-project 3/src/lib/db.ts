@@ -254,17 +254,14 @@ export async function duplicateItem(source: Item): Promise<number | null> {
   return newId;
 }
 
-/** 商品ごとの本日クリック数（モール別）。管理画面のリスト表示用 */
+/** 商品ごとの累計クリック数（モール別・計測開始から全期間の合計）。管理画面のリスト表示用 */
 export async function fetchTodayClicksByItem(): Promise<Map<number, Record<string, number>>> {
   const map = new Map<number, Record<string, number>>();
   if (!supabase) return map;
-  const start = new Date();
-  start.setHours(0, 0, 0, 0);
   const { data, error } = await supabase
     .from('clicks')
     .select('item_id,store')
-    .gte('created_at', start.toISOString())
-    .limit(20000);
+    .limit(100000);
   if (error || !data) return map;
   (data as { item_id: number | null; store: string }[]).forEach((r) => {
     if (r.item_id == null) return;
