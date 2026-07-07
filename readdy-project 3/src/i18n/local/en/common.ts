@@ -1,5 +1,5 @@
 export default {
-  "header.tagline": "A shopping-style all-in-one SNS media",
+  "header.tagline": "A shopping-style SNS × EC media",
   "header.guideText": "Browse all products from the Iimono Zukan collection below 👇",
   "header.workInquiry": "・Business inquiries: ",
   "header.mediaNotice": "・This media contains in-house products/services, PR, and affiliate links",
@@ -13,7 +13,7 @@ export default {
   "home.category": "Filter by Category",
   "home.mall": "Filter by Store",
   "home.filterAll": "All",
-  "home.itemCount": "{{count}} products",
+  "home.itemCount": "{{count}} registered entries",
   "home.noProductsDate": "No products found for this date",
   "home.noProducts": "No products matched your filters",
   "home.clearAllFilters": "Clear All Filters",
