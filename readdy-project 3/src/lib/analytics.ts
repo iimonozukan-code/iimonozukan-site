@@ -5,6 +5,7 @@ import { supabase } from './supabaseClient';
 // ============================================================
 
 export type DailyRow = { day: string; pv: number; sessions: number; clicks: number; avg_dwell: number };
+export type DailyExtraRow = { day: string; imps: number; click_sess: number };
 export type SourceDailyRow = { day: string; source: string; pv: number };
 export type SourceSummaryRow = { source: string; pv: number; sessions: number; clicks: number };
 export type ItemStatRow = { item_id: number; name: string; image_url: string | null; impressions: number; clicks: number };
@@ -26,6 +27,7 @@ export type JourneyRow = {
 
 export type AnalyticsData = {
   daily: DailyRow[];
+  dailyExtra: DailyExtraRow[];
   sourcesDaily: SourceDailyRow[];
   sourcesSummary: SourceSummaryRow[];
   items: ItemStatRow[];
@@ -61,8 +63,9 @@ function nums<T extends Record<string, unknown>>(rows: T[], keys: string[]): T[]
 
 /** 全分析データを並列取得 */
 export async function fetchAnalytics(days: number): Promise<AnalyticsData> {
-  const [daily, sourcesDaily, sourcesSummary, items, heatmap, storesDaily, dwellDist, engagement, journeys] = await Promise.all([
+  const [daily, dailyExtra, sourcesDaily, sourcesSummary, items, heatmap, storesDaily, dwellDist, engagement, journeys] = await Promise.all([
     rpc<DailyRow>('analytics_daily', days),
+    rpc<DailyExtraRow>('analytics_daily_extra', days),
     rpc<SourceDailyRow>('analytics_sources_daily', days),
     rpc<SourceSummaryRow>('analytics_sources_summary', days),
     rpc<ItemStatRow>('analytics_items', days),
@@ -74,6 +77,7 @@ export async function fetchAnalytics(days: number): Promise<AnalyticsData> {
   ]);
   return {
     daily: nums(daily, ['pv', 'sessions', 'clicks', 'avg_dwell']),
+    dailyExtra: nums(dailyExtra, ['imps', 'click_sess']),
     sourcesDaily: nums(sourcesDaily, ['pv']),
     sourcesSummary: nums(sourcesSummary, ['pv', 'sessions', 'clicks']),
     items: nums(items, ['impressions', 'clicks']),
