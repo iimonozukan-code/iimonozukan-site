@@ -105,6 +105,21 @@ export default function Dashboard() {
     };
   }, [daily, data]);
 
+  // ---- スパークライン用の日次系列 ----
+  const spark = useMemo(() => {
+    const extra = new Map((data?.dailyExtra ?? []).map((r) => [r.day, r]));
+    const imp = daily.map((dd) => extra.get(dd.day)?.imps ?? 0);
+    const clickSess = daily.map((dd) => extra.get(dd.day)?.click_sess ?? 0);
+    return {
+      imp,
+      clicks: daily.map((dd) => dd.clicks),
+      ctr: daily.map((dd, i) => (imp[i] > 0 ? (dd.clicks / imp[i]) * 100 : 0)),
+      mall: daily.map((dd, i) => (dd.sessions > 0 ? (clickSess[i] / dd.sessions) * 100 : 0)),
+      pv: daily.map((dd) => dd.pv),
+      cpv: daily.map((dd) => (dd.pv > 0 ? (dd.clicks / dd.pv) * 100 : 0)),
+    };
+  }, [daily, data]);
+
   // ---- 媒体別（日次を系列にピボット） ----
   const sourceSeries = useMemo(() => {
     if (!data) return [] as { name: string; label: string; color: string; values: number[]; total: number }[];
@@ -185,12 +200,12 @@ export default function Dashboard() {
 
             {/* KPI */}
             <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 mb-6">
-              <Kpi label={`表示回数（${days}日）`} value={fmtNum(kpi.totalImp)} hint="商品カードの表示回数（IMP）" />
-              <Kpi label={`クリック（${days}日）`} value={fmtNum(kpi.totalClicks)} hint="モールボタンのタップ" />
-              <Kpi label="CTR" value={fmtPct(kpi.trueCtr)} hint="クリック÷表示回数" />
-              <Kpi label="モール遷移率" value={fmtPct(kpi.mallRate)} hint="クリックした訪問÷全訪問" />
-              <Kpi label={`アクセス（${days}日）`} value={fmtNum(kpi.totalPv)} hint="訪問数（PV）" />
-              <Kpi label="クリック/訪問" value={fmtPct(kpi.clicksPerVisit)} hint="1訪問あたりクリック（旧CTR）" />
+              <Kpi label={`表示回数（${days}日）`} value={fmtNum(kpi.totalImp)} hint="商品カードの表示回数（IMP）" spark={spark.imp} sparkColor="#8B5CF6" />
+              <Kpi label={`クリック（${days}日）`} value={fmtNum(kpi.totalClicks)} hint="モールボタンのタップ" spark={spark.clicks} sparkColor="#F59E0B" />
+              <Kpi label="CTR" value={fmtPct(kpi.trueCtr)} hint="クリック÷表示回数" spark={spark.ctr} sparkColor="#10B981" />
+              <Kpi label="モール遷移率" value={fmtPct(kpi.mallRate)} hint="クリックした訪問÷全訪問" spark={spark.mall} sparkColor="#EC4899" />
+              <Kpi label={`アクセス（${days}日）`} value={fmtNum(kpi.totalPv)} hint="訪問数（PV）" spark={spark.pv} sparkColor="#6366F1" />
+              <Kpi label="クリック/訪問" value={fmtPct(kpi.clicksPerVisit)} hint="1訪問あたりクリック（旧CTR）" spark={spark.cpv} sparkColor="#0EA5E9" />
             </div>
 
             {/* アクセス＆クリック推移 */}
@@ -296,11 +311,29 @@ function delta(now: number, prev: number | null): number | null {
 // 小物コンポーネント
 // ============================================================
 
-function Kpi({ label, value, delta: d, hint }: { label: string; value: string; delta?: number | null; hint?: string }) {
+function Sparkline({ values, color = '#6366F1' }: { values: number[]; color?: string }) {
+  if (!values || values.length < 2) return null;
+  const w = 100, h = 22;
+  const max = Math.max(...values), min = Math.min(...values);
+  const range = max - min || 1;
+  const pts = values.map((v, i) => {
+    const x = (i / (values.length - 1)) * w;
+    const y = h - ((v - min) / range) * h;
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  });
+  return (
+    <svg viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none" className="w-full h-5 mt-1 block">
+      <polyline points={pts.join(' ')} fill="none" stroke={color} strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+    </svg>
+  );
+}
+
+function Kpi({ label, value, delta: d, hint, spark, sparkColor }: { label: string; value: string; delta?: number | null; hint?: string; spark?: number[]; sparkColor?: string }) {
   return (
     <div className="bg-white rounded-xl border border-background-200 p-3.5">
       <div className="text-[11px] text-foreground-500 font-semibold mb-1 leading-tight">{label}</div>
       <div className="text-xl md:text-2xl font-bold tabular-nums leading-none">{value}</div>
+      {spark && spark.length > 1 ? <Sparkline values={spark} color={sparkColor} /> : null}
       <div className="mt-1.5 h-4 text-[11px]">
         {d != null ? (
           <span className={`font-bold ${d >= 0 ? 'text-emerald-600' : 'text-rose-500'}`}>
