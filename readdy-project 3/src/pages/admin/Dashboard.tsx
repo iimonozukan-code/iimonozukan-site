@@ -81,25 +81,29 @@ export default function Dashboard() {
   // ---- KPI ----
   const kpi = useMemo(() => {
     if (daily.length === 0) return null;
-    const today = daily[daily.length - 1];
-    const yest = daily.length > 1 ? daily[daily.length - 2] : null;
     const totalPv = daily.reduce((a, b) => a + b.pv, 0);
     const totalClicks = daily.reduce((a, b) => a + b.clicks, 0);
+    const totalSessions = daily.reduce((a, b) => a + b.sessions, 0);
     const dwellNum = daily.reduce((a, b) => a + b.avg_dwell * b.sessions, 0);
-    const dwellDen = daily.reduce((a, b) => a + b.sessions, 0);
+    // 表示回数(IMP)と本当のCTR＝クリック÷表示回数（商品別集計の合計から算出）
+    const items = data?.items ?? [];
+    const totalImp = items.reduce((a, b) => a + b.impressions, 0);
+    const itemClicks = items.reduce((a, b) => a + b.clicks, 0);
+    // モール遷移率＝1回以上クリックした訪問 ÷ 全訪問
+    const clickSessions = (data?.engagement ?? [])
+      .filter((r) => r.kind === 'click')
+      .reduce((a, b) => a + b.sessions, 0);
     return {
-      todayPv: today.pv,
-      todayClicks: today.clicks,
-      todayCtr: ctr(today.clicks, today.pv),
-      yestPv: yest?.pv ?? null,
-      yestClicks: yest?.clicks ?? null,
-      avgPv: totalPv / daily.length,
-      periodCtr: ctr(totalClicks, totalPv),
-      avgDwell: dwellDen > 0 ? dwellNum / dwellDen : 0,
+      totalImp,
+      trueCtr: ctr(itemClicks, totalImp),
+      mallRate: totalSessions > 0 ? (clickSessions / totalSessions) * 100 : 0,
+      clicksPerVisit: ctr(totalClicks, totalPv),
+      avgDwell: totalSessions > 0 ? dwellNum / totalSessions : 0,
       totalPv,
       totalClicks,
+      totalSessions,
     };
-  }, [daily]);
+  }, [daily, data]);
 
   // ---- 媒体別（日次を系列にピボット） ----
   const sourceSeries = useMemo(() => {
@@ -181,12 +185,12 @@ export default function Dashboard() {
 
             {/* KPI */}
             <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 mb-6">
-              <Kpi label="今日のアクセス" value={fmtNum(kpi.todayPv)} delta={delta(kpi.todayPv, kpi.yestPv)} />
-              <Kpi label="今日のクリック" value={fmtNum(kpi.todayClicks)} delta={delta(kpi.todayClicks, kpi.yestClicks)} />
-              <Kpi label="今日のCTR" value={fmtPct(kpi.todayCtr)} hint="クリック÷アクセス" />
-              <Kpi label={`日平均アクセス（${days}日）`} value={fmtNum(kpi.avgPv)} />
-              <Kpi label={`期間CTR（${days}日）`} value={fmtPct(kpi.periodCtr)} />
-              <Kpi label="平均滞在時間" value={fmtDwell(kpi.avgDwell)} hint="画面表示中のみ計測" />
+              <Kpi label={`表示回数（${days}日）`} value={fmtNum(kpi.totalImp)} hint="商品カードの表示回数（IMP）" />
+              <Kpi label={`クリック（${days}日）`} value={fmtNum(kpi.totalClicks)} hint="モールボタンのタップ" />
+              <Kpi label="CTR" value={fmtPct(kpi.trueCtr)} hint="クリック÷表示回数" />
+              <Kpi label="モール遷移率" value={fmtPct(kpi.mallRate)} hint="クリックした訪問÷全訪問" />
+              <Kpi label={`アクセス（${days}日）`} value={fmtNum(kpi.totalPv)} hint="訪問数（PV）" />
+              <Kpi label="クリック/訪問" value={fmtPct(kpi.clicksPerVisit)} hint="1訪問あたりクリック（旧CTR）" />
             </div>
 
             {/* アクセス＆クリック推移 */}
@@ -203,10 +207,10 @@ export default function Dashboard() {
             </Section>
 
             <div className="grid md:grid-cols-2 gap-5">
-              <Section title="CTR推移" sub="1日ごとの クリック数÷アクセス数">
+              <Section title="クリック/訪問 推移" sub="1日ごとの クリック数÷アクセス数（旧CTR）">
                 <TrendChart
                   labels={labels}
-                  series={[{ label: 'CTR', color: '#10B981', values: daily.map((d) => ctr(d.clicks, d.pv)), area: true }]}
+                  series={[{ label: 'クリック/訪問', color: '#10B981', values: daily.map((d) => ctr(d.clicks, d.pv)), area: true }]}
                   height={180}
                   fmt={(v) => `${v.toFixed(1)}%`}
                 />
@@ -248,7 +252,7 @@ export default function Dashboard() {
                   <TrendChart labels={labels} series={storeSeries} height={190} />
                 )}
               </Section>
-              <Section title="媒体別サマリー" sub="流入元ごとのアクセス・クリック・CTR">
+              <Section title="媒体別サマリー" sub="流入元ごとのアクセス・クリック・クリック/訪問">
                 <SourcesTable rows={data.sourcesSummary} />
               </Section>
             </div>
@@ -897,7 +901,7 @@ function SourcesTable({ rows }: { rows: { source: string; pv: number; sessions: 
           <th className="text-left font-bold pb-2">媒体</th>
           <th className="text-right font-bold pb-2">アクセス</th>
           <th className="text-right font-bold pb-2">クリック</th>
-          <th className="text-right font-bold pb-2">CTR</th>
+          <th className="text-right font-bold pb-2">クリック/訪問</th>
         </tr>
       </thead>
       <tbody>
