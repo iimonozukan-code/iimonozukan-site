@@ -28,6 +28,7 @@ export default function ItemForm() {
   const [isPublished, setIsPublished] = useState(true);
   const [isOwn, setIsOwn] = useState(false);
   const [gallery, setGallery] = useState<string[]>([]);
+  const [gallerySetAt, setGallerySetAt] = useState<string | null>(null);
   const [galUploading, setGalUploading] = useState(false);
   const [links, setLinks] = useState<Product['links']>({ amazon: null, rakuten: null, yahoo: null, aliexpress: null });
   const [busy, setBusy] = useState(false);
@@ -44,6 +45,7 @@ export default function ItemForm() {
         setDate(it.date || ''); setOriginalDate(it.date || '');
         setAsin(it.asin ?? ''); setIsPublished(it.isPublished ?? true); setIsOwn(it.isOwn ?? false);
         setGallery(it.gallery ?? []);
+        setGallerySetAt(it.gallerySetAt ?? null);
         setLinks(it.links);
       }
     })();
@@ -81,7 +83,7 @@ export default function ItemForm() {
     e.preventDefault();
     if (!name.trim()) { setErr('商品名を入力してください'); return; }
     setBusy(true); setErr(null);
-    const input: ItemInput = { name: name.trim(), category, image, date, asin: asin || null, isPublished, isOwn, gallery, links };
+    const input: ItemInput = { name: name.trim(), category, image, date, asin: asin || null, isPublished, isOwn, gallery, gallerySetAt: gallery.length > 0 ? (gallerySetAt ?? new Date().toISOString()) : null, links };
     try {
       let focusId: number | null = null;
       if (isEdit && id) {
@@ -187,9 +189,9 @@ export default function ItemForm() {
           <span>🏷️ 自社商品（saunas等）として登録<span className="text-foreground-400 font-normal"> — 一覧・ログで強調表示＆自社商品タブに集計</span></span>
         </label>
 
-        {isOwn && (
+        {(
           <div className="rounded-xl border-2 border-amber-200 bg-amber-50/50 p-3">
-            <label className="block text-xs font-bold mb-1">🖼️ ギャラリー画像（自社商品LP・最大6枚）</label>
+            <label className="block text-xs font-bold mb-1">🖼️ ギャラリー画像（最大6枚・タップで詳細ポップアップ表示）</label>
             <p className="text-[10px] text-foreground-500 mb-2 leading-relaxed">
               公開ページで商品カードをタップすると、ここの画像が<b>アマゾン風にスワイプ表示</b>されます。縦長・横長どちらでもOK。◀▶で並べ替え、×で削除。
             </p>
