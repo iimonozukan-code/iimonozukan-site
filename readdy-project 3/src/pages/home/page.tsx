@@ -28,9 +28,10 @@ const MALL_LABELS: Record<string, string> = {
 };
 
 export default function Home() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const [products, setProducts] = useState<Item[]>([]);
+  const [loading, setLoading] = useState(true);
   const [banners, setBanners] = useState<Banner[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<CategoryKey>('すべて');
   const [selectedMall, setSelectedMall] = useState<string>('すべて');
@@ -38,7 +39,10 @@ export default function Home() {
 
   useEffect(() => {
     logPageView();
-    fetchPublishedItems().then(setProducts);
+    fetchPublishedItems()
+      .then(setProducts)
+      .catch(() => {})
+      .finally(() => setLoading(false));
     fetchBanners().then((bs) => setBanners(bs.filter((b) => b.is_active && b.image_url)));
   }, []);
 
@@ -77,6 +81,7 @@ export default function Home() {
   }, [products, selectedCategory, selectedMall, selectedYM]);
 
   const hasFilter = selectedCategory !== 'すべて' || selectedMall !== 'すべて' || selectedYM !== '';
+  const loadingText = i18n.language?.startsWith('en') ? 'Loading…' : '読み込み中…';
 
   const handleClearAll = () => {
     setSelectedCategory('すべて');
@@ -205,11 +210,20 @@ export default function Home() {
         <section className="mb-12 md:mb-16">
           <div className="flex items-center justify-between mb-4 md:mb-5">
             <p className="text-xs md:text-sm text-foreground-500 font-body font-bold">
-              {t('home.itemCount', { count: filteredProducts.length })}
+              {loading ? loadingText : t('home.itemCount', { count: filteredProducts.length })}
             </p>
           </div>
 
-          {filteredProducts.length > 0 ? (
+          {loading ? (
+            <div className="flex flex-col items-center justify-center py-16 md:py-24 text-center">
+              <div className="w-16 h-16 flex items-center justify-center rounded-full bg-background-100 mb-4">
+                <i className="ri-loader-4-line text-2xl text-foreground-300 animate-spin"></i>
+              </div>
+              <p className="text-sm text-foreground-500 font-body font-bold">
+                {loadingText}
+              </p>
+            </div>
+          ) : filteredProducts.length > 0 ? (
             <div className="grid grid-cols-3 gap-x-1 gap-y-3 sm:gap-x-3 sm:gap-y-3 md:grid-cols-4 md:gap-x-4 md:gap-y-4 lg:grid-cols-5" data-product-shop>
               {filteredProducts.map((product, idx) => (
                 <ProductCard key={product.id ?? `${product.date}-${product.name}-${idx}`} product={product} />
