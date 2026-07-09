@@ -27,6 +27,7 @@ export default function ItemForm() {
   const [originalDate, setOriginalDate] = useState<string | null>(null);
   const [asin, setAsin] = useState('');
   const [isPublished, setIsPublished] = useState(true);
+  const [isOwn, setIsOwn] = useState(false);
   const [links, setLinks] = useState<Product['links']>({ amazon: null, rakuten: null, yahoo: null, aliexpress: null });
   const [busy, setBusy] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -40,7 +41,7 @@ export default function ItemForm() {
       if (it) {
         setName(it.name); setCategory(it.category); setImage(it.image);
         setDate(it.date || ''); setOriginalDate(it.date || '');
-        setAsin(it.asin ?? ''); setIsPublished(it.isPublished ?? true);
+        setAsin(it.asin ?? ''); setIsPublished(it.isPublished ?? true); setIsOwn(it.isOwn ?? false);
         setLinks(it.links);
       }
     })();
@@ -59,7 +60,7 @@ export default function ItemForm() {
     e.preventDefault();
     if (!name.trim()) { setErr('商品名を入力してください'); return; }
     setBusy(true); setErr(null);
-    const input: ItemInput = { name: name.trim(), category, image, date, asin: asin || null, isPublished, links };
+    const input: ItemInput = { name: name.trim(), category, image, date, asin: asin || null, isPublished, isOwn, links };
     try {
       let focusId: number | null = null;
       if (isEdit && id) {
@@ -161,6 +162,11 @@ export default function ItemForm() {
         <label className="flex items-center gap-2 text-sm">
           <input type="checkbox" checked={isPublished} onChange={(e) => setIsPublished(e.target.checked)} />
           保存後すぐ公開する
+        </label>
+
+        <label className="flex items-center gap-2 text-sm">
+          <input type="checkbox" checked={isOwn} onChange={(e) => setIsOwn(e.target.checked)} />
+          <span>🏷️ 自社商品（saunas等）として登録<span className="text-foreground-400 font-normal"> — 一覧・ログで強調表示＆自社商品タブに集計</span></span>
         </label>
 
         {err && <p className="text-xs text-primary-600">{err}</p>}

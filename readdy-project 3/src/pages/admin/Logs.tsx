@@ -9,6 +9,7 @@ const STORE_COLOR: Record<string, string> = { amazon: '#ff9900', rakuten: '#bf00
 export default function Logs() {
   const [rows, setRows] = useState<Row[]>([]);
   const [names, setNames] = useState<Map<number, string>>(new Map());
+  const [ownIds, setOwnIds] = useState<Set<number>>(new Set());
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,6 +19,7 @@ export default function Logs() {
       const m = new Map<number, string>();
       items.forEach((i) => { if (i.id != null) m.set(i.id, i.name); });
       setNames(m);
+      setOwnIds(new Set(items.filter((i) => i.isOwn && i.id != null).map((i) => i.id as number)));
       const { data } = await supabase
         .from('clicks').select('id,item_id,store,referrer,device,created_at')
         .order('created_at', { ascending: false }).limit(200);
@@ -52,9 +54,9 @@ export default function Logs() {
               ) : rows.length === 0 ? (
                 <tr><td colSpan={5} className="px-4 py-6 text-foreground-400">まだクリックがありません。</td></tr>
               ) : rows.map((r) => (
-                <tr key={r.id} className="border-b border-background-100 last:border-0">
+                <tr key={r.id} className={`border-b border-background-100 last:border-0 ${r.item_id != null && ownIds.has(r.item_id) ? 'bg-amber-50' : ''}`}>
                   <td className="px-4 py-2.5 text-foreground-500 tabular-nums whitespace-nowrap">{fmt(r.created_at)}</td>
-                  <td className="px-4 py-2.5">{r.item_id != null ? (names.get(r.item_id) ?? `#${r.item_id}`) : '—'}</td>
+                  <td className="px-4 py-2.5">{r.item_id != null ? (names.get(r.item_id) ?? `#${r.item_id}`) : '—'}{r.item_id != null && ownIds.has(r.item_id) && <span className="ml-1.5 text-[9px] font-black text-white bg-amber-500 px-1.5 py-[1px] rounded align-middle">自社</span>}</td>
                   <td className="px-4 py-2.5">
                     <span className="text-[11px] font-bold text-white px-2 py-0.5 rounded" style={{ background: STORE_COLOR[r.store] ?? '#888' }}>{r.store}</span>
                   </td>

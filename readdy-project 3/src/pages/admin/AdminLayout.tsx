@@ -4,6 +4,7 @@ import Login from './Login';
 
 const NAV = [
   { to: '/admin', end: true, icon: 'ri-bar-chart-box-line', label: 'ダッシュボード', short: '分析' },
+  { to: '/admin/own', end: false, icon: 'ri-vip-crown-2-line', label: '自社商品', short: '自社' },
   { to: '/admin/items', end: false, icon: 'ri-archive-line', label: '商品入稿・管理', short: '商品' },
   { to: '/admin/banners', end: false, icon: 'ri-image-2-line', label: 'バナー設定', short: 'バナー' },
   { to: '/admin/logs', end: false, icon: 'ri-cursor-line', label: 'クリックログ', short: 'ログ' },
