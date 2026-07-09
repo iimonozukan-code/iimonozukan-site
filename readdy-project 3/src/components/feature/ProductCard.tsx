@@ -16,11 +16,9 @@ if (typeof document !== 'undefined' && !document.getElementById('izk-own-anim'))
   const st = document.createElement('style');
   st.id = 'izk-own-anim';
   st.textContent = `
-@keyframes izkShine{0%{transform:translateX(-130%)}55%,100%{transform:translateX(240%)}}
 @keyframes izkNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
 @keyframes izkFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
 @keyframes izkPop{from{transform:scale(.94);opacity:.3}to{transform:scale(1);opacity:1}}
-.izk-shine::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 34%,rgba(255,255,255,.55) 50%,transparent 66%);transform:translateX(-130%);animation:izkShine 3s ease-in-out infinite;pointer-events:none;z-index:1}
 .izk-nudge{animation:izkNudge 1.1s ease-in-out infinite}
 .izk-float{animation:izkFloat 1.6s ease-in-out infinite}
 .izk-pop{animation:izkPop .18s ease-out}
@@ -164,7 +162,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     <article className="flex flex-col" ref={(el) => observeImpression(el, product.id)}>
       {hasGallery ? (
         <button type="button" onClick={() => setOpen(true)} className="block text-left cursor-pointer" aria-label={`${product.name}の詳細を見る`}>
-          <div className="relative aspect-[9/16] overflow-hidden rounded-lg bg-background-100 izk-shine ring-2 ring-amber-300">
+          <div className="relative aspect-[9/16] overflow-hidden rounded-lg bg-background-100 ring-2 ring-amber-300">
             <img src={product.image} alt={product.name} title={`${product.name} - いいもの図鑑`} className="w-full h-full object-contain" loading="lazy" />
             <span className="absolute left-1.5 bottom-1.5 z-[2] flex items-center gap-1 text-[10px] font-black text-white bg-amber-500 rounded-full pl-1.5 pr-2 py-0.5 shadow-md">
               <i className="ri-gallery-line text-[12px] izk-float" />
