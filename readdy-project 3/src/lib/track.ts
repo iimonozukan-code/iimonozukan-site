@@ -139,6 +139,20 @@ export function logClick(itemId: number | undefined, store: Store): void {
 }
 
 /** バナークリックを記録（item_idなし・store='banner1'/'banner2'） */
+/** ギャラリー: 到達スライドを記録（fire-and-forget） */
+export function logGalleryReach(itemId: number | undefined, slide: number): void {
+  if (!supabase || itemId == null || isBot()) return;
+  const { sid } = session();
+  void supabase.from('gallery_events').insert({ item_id: itemId, kind: 'reach', slide, session_id: sid }).then(() => {}, () => {});
+}
+
+/** ギャラリー: ポップアップ内からのモール遷移クリックを記録（スライド位置付き） */
+export function logGalleryClick(itemId: number | undefined, slide: number, store: Store): void {
+  if (!supabase || itemId == null || isBot()) return;
+  const { sid } = session();
+  void supabase.from('gallery_events').insert({ item_id: itemId, kind: 'click', slide, store, session_id: sid }).then(() => {}, () => {});
+}
+
 export function logBannerClick(bannerId: number): void {
   if (isBot()) return;
   const { sid, src } = session();

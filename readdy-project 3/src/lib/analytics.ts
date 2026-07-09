@@ -61,6 +61,16 @@ function nums<T extends Record<string, unknown>>(rows: T[], keys: string[]): T[]
   });
 }
 
+export type GalleryFunnelRow = { slide: number; reached: number; clicked: number };
+
+/** 商品のサブ画像ファネル（各スライド到達セッション数＆クリック） */
+export async function fetchGalleryFunnel(itemId: number): Promise<GalleryFunnelRow[]> {
+  if (!supabase) throw new Error('Supabase未設定');
+  const { data, error } = await supabase.rpc('gallery_funnel', { p_item_id: itemId });
+  if (error) throw new Error(`gallery_funnel: ${error.message}`);
+  return (data ?? []).map((r: any) => ({ slide: Number(r.slide), reached: Number(r.reached ?? 0), clicked: Number(r.clicked ?? 0) }));
+}
+
 export type ItemDailyRow = { day: string; imp: number; clicks: number };
 
 /** 商品ごとの日次IMP・クリック（計測開始日〜今日、JST・0埋め） */
