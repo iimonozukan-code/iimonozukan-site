@@ -16,7 +16,6 @@ export default function ItemForm() {
   const isEdit = id != null;
   const navigate = useNavigate();
   const location = useLocation();
-  // 「複製」ボタンから来た場合（コピーは既に下書きとして作成済み・この画面はそのコピーの編集）
   const nav = (location.state as { duplicated?: boolean; fromName?: string } | null) ?? null;
   const isDuplicated = isEdit && nav?.duplicated === true;
 
@@ -28,6 +27,8 @@ export default function ItemForm() {
   const [asin, setAsin] = useState('');
   const [isPublished, setIsPublished] = useState(true);
   const [isOwn, setIsOwn] = useState(false);
+  const [gallery, setGallery] = useState<string[]>([]);
+  const [galUploading, setGalUploading] = useState(false);
   const [links, setLinks] = useState<Product['links']>({ amazon: null, rakuten: null, yahoo: null, aliexpress: null });
   const [busy, setBusy] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -42,6 +43,7 @@ export default function ItemForm() {
         setName(it.name); setCategory(it.category); setImage(it.image);
         setDate(it.date || ''); setOriginalDate(it.date || '');
         setAsin(it.asin ?? ''); setIsPublished(it.isPublished ?? true); setIsOwn(it.isOwn ?? false);
+        setGallery(it.gallery ?? []);
         setLinks(it.links);
       }
     })();
@@ -56,28 +58,44 @@ export default function ItemForm() {
     setUploading(false);
   };
 
+  const onUploadGallery = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files ?? []);
+    if (!files.length) return;
+    setGalUploading(true); setErr(null);
+    try {
+      const room = Math.max(0, 6 - gallery.length);
+      const picked = files.slice(0, room);
+      const urls: string[] = [];
+      for (const f of picked) urls.push(await uploadImage(f));
+      setGallery((g) => [...g, ...urls].slice(0, 6));
+    } catch (e2) { setErr('ギャラリー画像アップロードに失敗: ' + (e2 as Error).message); }
+    setGalUploading(false); e.target.value = '';
+  };
+  const moveGal = (i: number, dir: number) => setGallery((g) => {
+    const a = [...g]; const j = i + dir; if (j < 0 || j >= a.length) return g;
+    [a[i], a[j]] = [a[j], a[i]]; return a;
+  });
+  const removeGal = (i: number) => setGallery((g) => g.filter((_, k) => k !== i));
+
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim()) { setErr('商品名を入力してください'); return; }
     setBusy(true); setErr(null);
-    const input: ItemInput = { name: name.trim(), category, image, date, asin: asin || null, isPublished, isOwn, links };
+    const input: ItemInput = { name: name.trim(), category, image, date, asin: asin || null, isPublished, isOwn, gallery, links };
     try {
       let focusId: number | null = null;
       if (isEdit && id) {
         focusId = Number(id);
         await updateItem(focusId, input);
-        // 日付が変わったときだけ、紹介日順の正しい位置へ自動移動
         if (date && date !== originalDate) {
           await placeItemByDate(focusId, date).catch(() => {});
         }
       } else {
         focusId = await createItem(input);
-        // 新規は必ず紹介日順の位置へ自動配置（古い日付でも正しい場所に入る）
         if (focusId != null && date) {
           await placeItemByDate(focusId, date).catch(() => {});
         }
       }
-      // 一覧に戻ったとき、この商品の位置までスクロールして戻る
       navigate('/admin/items', focusId != null ? { state: { focusId } } : undefined);
     } catch (e2) {
       setErr('保存に失敗しました: ' + (e2 as Error).message);
@@ -168,6 +186,39 @@ export default function ItemForm() {
           <input type="checkbox" checked={isOwn} onChange={(e) => setIsOwn(e.target.checked)} />
           <span>🏷️ 自社商品（saunas等）として登録<span className="text-foreground-400 font-normal"> — 一覧・ログで強調表示＆自社商品タブに集計</span></span>
         </label>
+
+        {isOwn && (
+          <div className="rounded-xl border-2 border-amber-200 bg-amber-50/50 p-3">
+            <label className="block text-xs font-bold mb-1">🖼️ ギャラリー画像（自社商品LP・最大6枚）</label>
+            <p className="text-[10px] text-foreground-500 mb-2 leading-relaxed">
+              公開ページで商品カードをタップすると、ここの画像が<b>アマゾン風にスワイプ表示</b>されます。縦長・横長どちらでもOK。◀▶で並べ替え、×で削除。
+            </p>
+            {gallery.length > 0 && (
+              <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 mb-2">
+                {gallery.map((url, i) => (
+                  <div key={i} className="relative">
+                    <div className="aspect-square rounded-lg overflow-hidden border border-amber-200 bg-white">
+                      <img src={url} alt="" className="w-full h-full object-contain" />
+                    </div>
+                    <span className="absolute top-0.5 left-0.5 text-[9px] font-black text-white bg-foreground-950/70 rounded px-1">{i + 1}</span>
+                    <button type="button" onClick={() => removeGal(i)} className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-primary-500 text-white text-xs flex items-center justify-center shadow" aria-label="削除">×</button>
+                    <div className="flex justify-center gap-1 mt-0.5">
+                      <button type="button" onClick={() => moveGal(i, -1)} disabled={i === 0} className="px-1.5 rounded bg-white border border-background-300 text-[10px] disabled:opacity-30">◀</button>
+                      <button type="button" onClick={() => moveGal(i, 1)} disabled={i === gallery.length - 1} className="px-1.5 rounded bg-white border border-background-300 text-[10px] disabled:opacity-30">▶</button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+            {gallery.length < 6 && (
+              <div>
+                <input type="file" accept="image/*" multiple onChange={onUploadGallery} className="block text-xs" />
+                {galUploading && <p className="text-xs text-foreground-500 mt-1">アップロード中…</p>}
+                <p className="text-[10px] text-foreground-400 mt-1">あと{6 - gallery.length}枚追加できます（自動でWebP・幅720pxに最適化）</p>
+              </div>
+            )}
+          </div>
+        )}
 
         {err && <p className="text-xs text-primary-600">{err}</p>}
 
