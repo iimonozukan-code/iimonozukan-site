@@ -2,7 +2,7 @@ export default {
   "header.tagline": "ショッピング型SNS×ECメディア",
   "header.guideText": "全商品は下記いいもの図鑑まとめから👇",
   "header.workInquiry": "・お仕事依頼：",
-  "header.mediaNotice": "・当メディアは自社製品・自社サービス・PR・アフィリエイトを含むSNSメディアサイトです",
+  "header.mediaNotice": "・当メディアは自社製品・自社サービス・他社PR・\nアフィリエイトを含むSNSメディアサイトです",
   "header.mainAccount": "・メインアカウントはInstagram",
 
   "home.searchByDate": "紹介日でさがす",
