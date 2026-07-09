@@ -85,7 +85,7 @@ export default function Dashboard() {
     const totalClicks = daily.reduce((a, b) => a + b.clicks, 0);
     const totalSessions = daily.reduce((a, b) => a + b.sessions, 0);
     const dwellNum = daily.reduce((a, b) => a + b.avg_dwell * b.sessions, 0);
-    // 表示回数(IMP)と本当のCTR＝クリック÷表示回数（商品別集計の合計から算出）
+    // IMP(IMP)と本当のCTR＝クリック÷IMP（商品別集計の合計から算出）
     const items = data?.items ?? [];
     const totalImp = items.reduce((a, b) => a + b.impressions, 0);
     const itemClicks = items.reduce((a, b) => a + b.clicks, 0);
@@ -200,9 +200,9 @@ export default function Dashboard() {
 
             {/* KPI */}
             <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 mb-6">
-              <Kpi label={`表示回数（${days}日）`} value={fmtNum(kpi.totalImp)} hint="商品カードの表示回数（IMP）" spark={spark.imp} sparkColor="#8B5CF6" />
+              <Kpi label={`IMP（${days}日）`} value={fmtNum(kpi.totalImp)} hint="商品カードが画面に映った延べ回数" spark={spark.imp} sparkColor="#8B5CF6" />
               <Kpi label={`クリック（${days}日）`} value={fmtNum(kpi.totalClicks)} hint="モールボタンのタップ" spark={spark.clicks} sparkColor="#F59E0B" />
-              <Kpi label="CTR" value={fmtPct(kpi.trueCtr)} hint="クリック÷表示回数" spark={spark.ctr} sparkColor="#10B981" />
+              <Kpi label="CTR" value={fmtPct(kpi.trueCtr)} hint="クリック÷IMP" spark={spark.ctr} sparkColor="#10B981" />
               <Kpi label="モール遷移率" value={fmtPct(kpi.mallRate)} hint="クリックした訪問÷全訪問" spark={spark.mall} sparkColor="#EC4899" />
               <Kpi label={`アクセス（${days}日）`} value={fmtNum(kpi.totalPv)} hint="訪問数（PV）" spark={spark.pv} sparkColor="#6366F1" />
               <Kpi label="クリック/訪問" value={fmtPct(kpi.clicksPerVisit)} hint="1訪問あたりクリック（旧CTR）" spark={spark.cpv} sparkColor="#0EA5E9" />
@@ -291,7 +291,7 @@ export default function Dashboard() {
             {/* 商品ランキング */}
             <Section
               title="商品パフォーマンス ランキング"
-              sub="表示回数＝カードが画面に映った回数／CTR＝クリック÷表示回数。列見出しをタップで並び替え"
+              sub="IMP＝カードが画面に映った回数／CTR＝クリック÷IMP。列見出しをタップで並び替え"
             >
               <ItemsTable rows={data.items} />
             </Section>
@@ -1000,7 +1000,7 @@ function ItemsTable({ rows }: { rows: ItemStatRow[] }) {
     <div>
       <label className="flex items-center gap-1.5 text-[11px] text-foreground-500 mb-2 cursor-pointer w-fit">
         <input type="checkbox" checked={minImp} onChange={(e) => setMinImp(e.target.checked)} className="cursor-pointer" />
-        表示回数20回以上のみ（CTRの信頼度アップ）
+        IMP20回以上のみ（CTRの信頼度アップ）
       </label>
       <div className="overflow-x-auto">
         <table className="w-full min-w-[520px] text-sm">
@@ -1008,7 +1008,7 @@ function ItemsTable({ rows }: { rows: ItemStatRow[] }) {
             <tr className="text-[10px] uppercase border-b border-background-200">
               <th className="text-left font-bold px-2 py-2 text-foreground-400 w-8">#</th>
               <th className="text-left font-bold px-2 py-2 text-foreground-400">商品</th>
-              <Th k="impressions" label="表示回数" />
+              <Th k="impressions" label="IMP" />
               <Th k="clicks" label="クリック" />
               <Th k="ctr" label="CTR" />
             </tr>
@@ -1043,7 +1043,7 @@ function ItemsTable({ rows }: { rows: ItemStatRow[] }) {
                               ? 'bg-amber-50 text-amber-600'
                               : 'bg-background-100 text-foreground-500'
                       }`}
-                      title={reliable ? undefined : '表示回数が少ないため参考値'}
+                      title={reliable ? undefined : 'IMPが少ないため参考値'}
                     >
                       {r.impressions === 0 ? '—' : `${c.toFixed(1)}%${reliable ? '' : '*'}`}
                     </span>
@@ -1062,7 +1062,7 @@ function ItemsTable({ rows }: { rows: ItemStatRow[] }) {
           {showAll ? '閉じる' : `すべて表示（${sorted.length}件）`}
         </button>
       )}
-      <p className="text-[10px] text-foreground-400 mt-2">* は表示回数20回未満の参考値</p>
+      <p className="text-[10px] text-foreground-400 mt-2">* はIMP20回未満の参考値</p>
     </div>
   );
 }
