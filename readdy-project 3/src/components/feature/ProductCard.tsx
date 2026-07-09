@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { Product } from '@/mocks/products';
-import { logClick, observeImpression, type Store } from '@/lib/track';
+import { logClick, observeImpression, logGalleryReach, logGalleryClick, type Store } from '@/lib/track';
 
 type CardProduct = Product & { id?: number; pinnedAt?: string | null; isOwn?: boolean; gallery?: string[] };
 
@@ -9,10 +9,9 @@ interface ProductCardProps {
   product: CardProduct;
 }
 
-// ボタンの並び順（アマゾン → 楽天 → アリエク → ヤフー）
 const MALL_ORDER: Store[] = ['amazon', 'rakuten', 'aliexpress', 'yahoo'];
 
-// 「スワイプで続きが見れる」誘導アニメ用のkeyframesを一度だけ注入
+// スワイプ誘導アニメ用のkeyframesを一度だけ注入
 if (typeof document !== 'undefined' && !document.getElementById('izk-own-anim')) {
   const st = document.createElement('style');
   st.id = 'izk-own-anim';
@@ -33,19 +32,24 @@ if (typeof document !== 'undefined' && !document.getElementById('izk-own-anim'))
 function GalleryModal({ product, slides, onClose }: { product: CardProduct; slides: string[]; onClose: () => void }) {
   const { t } = useTranslation();
   const scroller = useRef<HTMLDivElement>(null);
+  const maxReached = useRef(0);
   const [idx, setIdx] = useState(0);
   const [hint, setHint] = useState(true);
   const activeMalls = MALL_ORDER.filter((m) => product.links[m]);
 
+  const reach = (i: number) => {
+    if (i > maxReached.current) { maxReached.current = i; logGalleryReach(product.id, i); }
+  };
+
   useEffect(() => {
+    logGalleryReach(product.id, 0); // ギャラリーを開いた（=0枚目到達）
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
     document.addEventListener('keydown', onKey);
     const prev = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = prev; };
-  }, [onClose]);
+  }, [onClose, product.id]);
 
-  // 開いた直後に少しだけ右へナッジ→戻す（右にまだ続きがある事を伝える）
   useEffect(() => {
     const el = scroller.current;
     if (!el || slides.length < 2) return;
@@ -60,12 +64,12 @@ function GalleryModal({ product, slides, onClose }: { product: CardProduct; slid
     const el = scroller.current; if (!el) return;
     const w = el.clientWidth || 1;
     const i = Math.round(el.scrollLeft / w);
-    if (i !== idx) { setIdx(i); setHint(false); }
+    if (i !== idx) { setIdx(i); setHint(false); reach(i); }
   };
   const go = (i: number) => {
     const el = scroller.current; if (!el) return;
     el.scrollTo({ left: i * el.clientWidth, behavior: 'smooth' });
-    setHint(false);
+    setHint(false); reach(i);
   };
 
   return (
@@ -128,7 +132,7 @@ function GalleryModal({ product, slides, onClose }: { product: CardProduct; slid
                 href={product.links[mall]!}
                 target="_blank"
                 rel="nofollow noopener noreferrer"
-                onClick={() => logClick(product.id, mall)}
+                onClick={() => { logClick(product.id, mall); logGalleryClick(product.id, idx, mall); }}
                 className="flex items-center justify-center gap-1 px-2 py-2.5 rounded-lg text-xs font-semibold text-accent-600 bg-accent-50 border border-accent-200 hover:bg-accent-100 active:bg-accent-100 cursor-pointer"
               >
                 <span>{t(`product.${mall}`)}</span>
@@ -147,11 +151,14 @@ export default function ProductCard({ product }: ProductCardProps) {
   const [open, setOpen] = useState(false);
 
   const activeMalls = MALL_ORDER.filter((m) => product.links[m]);
-  const firstMall: Store = activeMalls[0] ?? 'amazon';
-  const firstLink = product.links[firstMall] ?? '#';
-
   const gallery = (product.gallery ?? []).filter(Boolean);
-  const hasGallery = !!product.isOwn && gallery.length > 0;
+  const hasGallery = gallery.length > 0;
+
+  const pinBadge = product.pinnedAt ? (
+    <span className="absolute top-1.5 right-1.5 z-[2] w-6 h-6 rounded-full bg-foreground-950/70 backdrop-blur-sm flex items-center justify-center" title="ピン留め">
+      <i className="ri-pushpin-fill text-white text-[13px]" />
+    </span>
+  ) : null;
 
   return (
     <article className="flex flex-col" ref={(el) => observeImpression(el, product.id)}>
@@ -164,24 +171,14 @@ export default function ProductCard({ product }: ProductCardProps) {
               <span>{gallery.length}枚</span>
               <i className="ri-arrow-right-line text-[11px] izk-nudge" />
             </span>
-            {product.pinnedAt && (
-              <span className="absolute top-1.5 right-1.5 z-[2] w-6 h-6 rounded-full bg-foreground-950/70 backdrop-blur-sm flex items-center justify-center" title="ピン留め">
-                <i className="ri-pushpin-fill text-white text-[13px]" />
-              </span>
-            )}
+            {pinBadge}
           </div>
         </button>
       ) : (
-        <a href={firstLink} target="_blank" rel="nofollow noopener noreferrer" className="block" onClick={() => logClick(product.id, firstMall)}>
-          <div className="relative aspect-[9/16] overflow-hidden rounded-lg bg-background-100">
-            <img src={product.image} alt={product.name} title={`${product.name} - いいもの図鑑`} className="w-full h-full object-contain" loading="lazy" />
-            {product.pinnedAt && (
-              <span className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-foreground-950/70 backdrop-blur-sm flex items-center justify-center" title="ピン留め">
-                <i className="ri-pushpin-fill text-white text-[13px]" />
-              </span>
-            )}
-          </div>
-        </a>
+        <div className="relative aspect-[9/16] overflow-hidden rounded-lg bg-background-100">
+          <img src={product.image} alt={product.name} title={`${product.name} - いいもの図鑑`} className="w-full h-full object-contain" loading="lazy" />
+          {pinBadge}
+        </div>
       )}
 
       <div className="mt-1 flex flex-col gap-1">
