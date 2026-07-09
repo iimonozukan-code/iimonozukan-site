@@ -22,6 +22,7 @@ export type Item = Product & {
   isPublished?: boolean;
   sortOrder?: number;
   pinnedAt?: string | null;
+  isOwn?: boolean;
 };
 
 type ItemRow = {
@@ -38,6 +39,7 @@ type ItemRow = {
   sort_order: number;
   is_published: boolean;
   pinned_at?: string | null;
+  is_own?: boolean;
 };
 
 function rowToItem(r: ItemRow): Item {
@@ -51,6 +53,7 @@ function rowToItem(r: ItemRow): Item {
     isPublished: r.is_published,
     sortOrder: r.sort_order,
     pinnedAt: r.pinned_at ?? null,
+    isOwn: r.is_own ?? false,
     links: {
       amazon: r.amazon_url,
       rakuten: r.rakuten_url,
@@ -67,6 +70,7 @@ export type ItemInput = {
   date: string;
   asin?: string | null;
   isPublished: boolean;
+  isOwn: boolean;
   links: Product['links'];
 };
 
@@ -78,6 +82,7 @@ function inputToRow(input: ItemInput) {
     date: input.date || null,
     asin: input.asin || null,
     is_published: input.isPublished,
+    is_own: input.isOwn,
     amazon_url: input.links.amazon,
     rakuten_url: input.links.rakuten,
     yahoo_url: input.links.yahoo,
@@ -238,6 +243,7 @@ export async function duplicateItem(source: Item): Promise<number | null> {
       date: source.date || null,
       asin: source.asin || null,
       is_published: false, // 下書きで作成（公開は編集画面で）
+      is_own: source.isOwn ?? false,
       amazon_url: source.links.amazon,
       rakuten_url: source.links.rakuten,
       yahoo_url: source.links.yahoo,
