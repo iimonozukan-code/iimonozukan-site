@@ -7,6 +7,7 @@ import Items from "../pages/admin/Items";
 import ItemForm from "../pages/admin/ItemForm";
 import Banners from "../pages/admin/Banners";
 import Logs from "../pages/admin/Logs";
+import OwnProducts from "../pages/admin/OwnProducts";
 
 const routes: RouteObject[] = [
   {
@@ -23,6 +24,7 @@ const routes: RouteObject[] = [
       { path: "items/:id", element: <ItemForm /> },
       { path: "banners", element: <Banners /> },
       { path: "logs", element: <Logs /> },
+      { path: "own", element: <OwnProducts /> },
     ],
   },
   {
