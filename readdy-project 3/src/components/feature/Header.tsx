@@ -67,7 +67,7 @@ export default function Header() {
             <p>
               {t('header.workInquiry')}<a href="mailto:iimonozukan@gmail.com" className="hover:text-foreground-600 transition-colors cursor-pointer">iimonozukan@gmail.com</a>
             </p>
-            <p>{t('header.mediaNotice')}</p>
+            <p className="whitespace-pre-line">{t('header.mediaNotice')}</p>
             <p>{t('header.mainAccount')}</p>
           </div>
 
