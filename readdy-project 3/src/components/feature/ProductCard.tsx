@@ -73,7 +73,6 @@ function GalleryModal({ product, slides, onClose }: { product: CardProduct; slid
       <div className="absolute inset-0 bg-foreground-950/70 backdrop-blur-sm" onClick={onClose} />
       <div className="izk-pop relative w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
         <div className="flex items-center gap-2 px-3 py-2 border-b border-background-100 shrink-0">
-          <span className="text-[9px] font-black text-white bg-amber-500 px-1.5 py-[1px] rounded shrink-0">自社</span>
           <span className="text-sm font-bold truncate">{product.name}</span>
           <button onClick={onClose} className="ml-auto w-8 h-8 rounded-full hover:bg-background-100 flex items-center justify-center text-foreground-500 shrink-0" aria-label="閉じる">
             <i className="ri-close-line text-xl" />
