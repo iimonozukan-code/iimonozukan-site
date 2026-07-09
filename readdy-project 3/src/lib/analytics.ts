@@ -61,6 +61,16 @@ function nums<T extends Record<string, unknown>>(rows: T[], keys: string[]): T[]
   });
 }
 
+export type ItemDailyRow = { day: string; imp: number; clicks: number };
+
+/** 商品ごとの日次IMP・クリック（計測開始日〜今日、JST・0埋め） */
+export async function fetchItemDaily(itemId: number): Promise<ItemDailyRow[]> {
+  if (!supabase) throw new Error('Supabase未設定');
+  const { data, error } = await supabase.rpc('item_daily', { p_item_id: itemId });
+  if (error) throw new Error(`item_daily: ${error.message}`);
+  return (data ?? []).map((r: any) => ({ day: String(r.day), imp: Number(r.imp ?? 0), clicks: Number(r.clicks ?? 0) }));
+}
+
 /** 全分析データを並列取得 */
 export async function fetchAnalytics(days: number): Promise<AnalyticsData> {
   const [daily, dailyExtra, sourcesDaily, sourcesSummary, items, heatmap, storesDaily, dwellDist, engagement, journeys] = await Promise.all([
