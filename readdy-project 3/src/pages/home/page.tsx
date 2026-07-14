@@ -208,11 +208,10 @@ export default function Home() {
         </section>
 
         <section className="mb-12 md:mb-16">
-          <div className="flex items-center flex-wrap gap-x-2 gap-y-1 mb-4 md:mb-5">
+          <div className="flex items-center justify-between mb-4 md:mb-5">
             <p className="text-xs md:text-sm text-foreground-500 font-body font-bold">
               {loading ? loadingText : t('home.itemCount', { count: filteredProducts.length })}
             </p>
-            <span className="text-xs md:text-sm text-foreground-500 font-body font-bold whitespace-nowrap">🔧 {t('home.experimentNote')}</span>
           </div>
 
           {loading ? (
