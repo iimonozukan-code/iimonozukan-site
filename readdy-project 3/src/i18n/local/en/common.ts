@@ -14,7 +14,6 @@ export default {
   "home.mall": "Filter by Store",
   "home.filterAll": "All",
   "home.itemCount": "{{count}} registered entries",
-  "home.experimentNote": "This site is renovated daily — experimenting & improving!",
   "home.noProductsDate": "No products found for this date",
   "home.noProducts": "No products matched your filters",
   "home.clearAllFilters": "Clear All Filters",
