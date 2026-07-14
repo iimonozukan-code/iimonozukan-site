@@ -14,7 +14,6 @@ export default {
   "home.mall": "モールでフィルターをかける",
   "home.filterAll": "すべて",
   "home.itemCount": "{{count}} 件の登録済み図鑑",
-  "home.experimentNote": "サイトは現在毎日改装し実験・改善中です！",
   "home.noProductsDate": "この日の商品はまだありません",
   "home.noProducts": "条件に合う商品が見つかりませんでした",
   "home.clearAllFilters": "すべての条件をクリア",
