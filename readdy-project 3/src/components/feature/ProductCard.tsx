@@ -122,21 +122,37 @@ function GalleryModal({ product, slides, onClose }: { product: CardProduct; slid
           ))}
         </div>
 
-        {activeMalls.length > 0 && (
-          <div className="px-3 pb-3 pt-0.5 grid grid-cols-2 gap-2 shrink-0 border-t border-background-100">
-            {activeMalls.map((mall) => (
+        {(product.officialUrl || activeMalls.length > 0) && (
+          <div className="px-3 pb-3 pt-0.5 shrink-0 border-t border-background-100 space-y-2">
+            {product.officialUrl && (
               <a
-                key={mall}
-                href={product.links[mall]!}
+                href={product.officialUrl}
                 target="_blank"
                 rel="nofollow noopener noreferrer"
-                onClick={() => { logClick(product.id, mall); logGalleryClick(product.id, idx, mall); }}
-                className="flex items-center justify-center gap-1 px-2 py-2.5 rounded-lg text-xs font-semibold text-accent-600 bg-accent-50 border border-accent-200 hover:bg-accent-100 active:bg-accent-100 cursor-pointer"
+                onClick={() => logClick(product.id, 'official')}
+                className="flex items-center justify-center gap-1.5 px-2 py-2.5 rounded-lg text-sm font-bold text-white bg-foreground-950 hover:bg-foreground-900 active:bg-foreground-900 cursor-pointer"
               >
-                <span>{t(`product.${mall}`)}</span>
-                <i className="ri-external-link-line text-[12px]" />
+                <i className="ri-global-line text-[14px]" />
+                <span>公式サイト</span>
               </a>
-            ))}
+            )}
+            {activeMalls.length > 0 && (
+              <div className="grid grid-cols-2 gap-2">
+                {activeMalls.map((mall) => (
+                  <a
+                    key={mall}
+                    href={product.links[mall]!}
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                    onClick={() => { logClick(product.id, mall); logGalleryClick(product.id, idx, mall); }}
+                    className="flex items-center justify-center gap-1 px-2 py-2.5 rounded-lg text-xs font-semibold text-accent-600 bg-accent-50 border border-accent-200 hover:bg-accent-100 active:bg-accent-100 cursor-pointer"
+                  >
+                    <span>{t(`product.${mall}`)}</span>
+                    <i className="ri-external-link-line text-[12px]" />
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -180,6 +196,18 @@ export default function ProductCard({ product }: ProductCardProps) {
       )}
 
       <div className="mt-1 flex flex-col gap-1">
+        {product.officialUrl && (
+          <a
+            href={product.officialUrl}
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+            onClick={() => logClick(product.id, 'official')}
+            className="flex items-center justify-center gap-1 px-1 py-2 rounded-md text-[11px] md:text-xs font-bold text-white bg-foreground-950 transition-colors duration-200 hover:bg-foreground-900 active:bg-foreground-900 cursor-pointer whitespace-nowrap"
+          >
+            <i className="ri-global-line text-[12px]"></i>
+            <span>公式サイト</span>
+          </a>
+        )}
         {activeMalls.map((mall) => (
           <a
             key={mall}
