@@ -130,7 +130,7 @@ function GalleryModal({ product, slides, onClose }: { product: CardProduct; slid
                 target="_blank"
                 rel="nofollow noopener noreferrer"
                 onClick={() => logClick(product.id, 'official')}
-                className="flex items-center justify-center gap-1.5 px-2 py-2.5 rounded-lg text-sm font-bold text-white bg-foreground-950 hover:bg-foreground-900 active:bg-foreground-900 cursor-pointer"
+                className="flex items-center justify-center gap-1.5 px-2 py-2.5 rounded-lg text-xs font-semibold text-accent-600 bg-accent-50 border border-accent-200 hover:bg-accent-100 active:bg-accent-100 cursor-pointer"
               >
                 <i className="ri-global-line text-[14px]" />
                 <span>公式サイト</span>
@@ -202,7 +202,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             target="_blank"
             rel="nofollow noopener noreferrer"
             onClick={() => logClick(product.id, 'official')}
-            className="flex items-center justify-center gap-1 px-1 py-2 rounded-md text-[11px] md:text-xs font-bold text-white bg-foreground-950 transition-colors duration-200 hover:bg-foreground-900 active:bg-foreground-900 cursor-pointer whitespace-nowrap"
+            className="flex items-center justify-center gap-1 px-1 py-2 rounded-md text-[11px] md:text-xs font-semibold text-accent-600 bg-accent-50 border border-accent-200 transition-colors duration-200 hover:bg-accent-100 active:bg-accent-100 cursor-pointer whitespace-nowrap"
           >
             <i className="ri-global-line text-[12px]"></i>
             <span>公式サイト</span>
