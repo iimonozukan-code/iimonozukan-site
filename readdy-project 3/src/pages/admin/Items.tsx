@@ -63,7 +63,7 @@ function SortableRow({ it, disabled, flash, duplicating, todayClicks, onToggle, 
         <div className="flex items-center gap-x-2 gap-y-1 flex-wrap min-w-0">
           <span className="font-medium text-sm truncate">{it.name}</span>
           {it.isOwn && <span className="shrink-0 text-[9px] font-black text-white bg-amber-500 px-1.5 py-[1px] rounded">自社</span>}
-          {activeMalls.length > 0 && (
+          {(activeMalls.length > 0 || it.officialUrl) && (
             <span className="flex items-center gap-1 shrink-0">
               {activeMalls.map((m) => {
                 const n = todayClicks?.[m.key] ?? 0;
@@ -79,6 +79,19 @@ function SortableRow({ it, disabled, flash, duplicating, todayClicks, onToggle, 
                   </span>
                 );
               })}
+              {it.officialUrl && (() => {
+                const n = todayClicks?.['official'] ?? 0;
+                return (
+                  <span
+                    title={`公式サイト：累計 ${n} クリック`}
+                    className="inline-flex items-center gap-1 text-[10px] font-bold text-white pl-1.5 pr-1 py-[1px] rounded"
+                    style={{ background: '#0f172a' }}
+                  >
+                    公式
+                    <span className={`tabular-nums rounded px-1 ${n > 0 ? 'bg-white/25' : 'opacity-50'}`}>{n}</span>
+                  </span>
+                );
+              })()}
             </span>
           )}
         </div>
