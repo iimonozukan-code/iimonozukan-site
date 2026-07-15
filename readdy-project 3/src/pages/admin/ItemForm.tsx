@@ -31,6 +31,7 @@ export default function ItemForm() {
   const [gallerySetAt, setGallerySetAt] = useState<string | null>(null);
   const [galUploading, setGalUploading] = useState(false);
   const [links, setLinks] = useState<Product['links']>({ amazon: null, rakuten: null, yahoo: null, aliexpress: null });
+  const [officialUrl, setOfficialUrl] = useState('');
   const [busy, setBusy] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [err, setErr] = useState<string | null>(null);
@@ -47,6 +48,7 @@ export default function ItemForm() {
         setGallery(it.gallery ?? []);
         setGallerySetAt(it.gallerySetAt ?? null);
         setLinks(it.links);
+        setOfficialUrl(it.officialUrl ?? '');
       }
     })();
   }, [id, isEdit]);
@@ -83,7 +85,7 @@ export default function ItemForm() {
     e.preventDefault();
     if (!name.trim()) { setErr('商品名を入力してください'); return; }
     setBusy(true); setErr(null);
-    const input: ItemInput = { name: name.trim(), category, image, date, asin: asin || null, isPublished, isOwn, gallery, gallerySetAt: gallery.length > 0 ? (gallerySetAt ?? new Date().toISOString()) : null, links };
+    const input: ItemInput = { name: name.trim(), category, image, date, asin: asin || null, isPublished, isOwn, gallery, gallerySetAt: gallery.length > 0 ? (gallerySetAt ?? new Date().toISOString()) : null, officialUrl: officialUrl.trim() || null, links };
     try {
       let focusId: number | null = null;
       if (isEdit && id) {
@@ -172,6 +174,12 @@ export default function ItemForm() {
               </div>
             ))}
           </div>
+        </div>
+
+        <div>
+          <label className="block text-xs font-bold mb-2">🌐 公式サイト（有料掲載枠・任意）</label>
+          <input value={officialUrl} onChange={(e) => setOfficialUrl(e.target.value)} placeholder="https://brand.example.com/" className="w-full px-3 py-2.5 rounded-lg border border-background-300 text-sm focus:outline-none focus:border-primary-500" />
+          <p className="text-[10px] text-foreground-400 mt-1">入力すると公開カードに「公式サイト」ボタンが表示され、クリック数も計測されます（通常は企業への有料掲載枠）。</p>
         </div>
 
         <div>

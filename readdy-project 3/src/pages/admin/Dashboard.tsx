@@ -32,6 +32,7 @@ const STORE_META: Record<string, { label: string; color: string }> = {
   rakuten: { label: '楽天', color: '#BF0000' },
   yahoo: { label: 'Yahoo', color: '#FF0033' },
   aliexpress: { label: 'AliExpress', color: '#FF4747' },
+  official: { label: '公式サイト', color: '#0F172A' },
 };
 
 const DOW = ['日', '月', '火', '水', '木', '金', '土'];

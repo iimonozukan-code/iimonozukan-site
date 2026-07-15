@@ -4,7 +4,7 @@ import { fetchAllItems } from '@/lib/db';
 
 type Row = { id: number; item_id: number | null; store: string; referrer: string | null; device: string | null; created_at: string };
 
-const STORE_COLOR: Record<string, string> = { amazon: '#ff9900', rakuten: '#bf0000', yahoo: '#ff0033', aliexpress: '#ff4747' };
+const STORE_COLOR: Record<string, string> = { amazon: '#ff9900', rakuten: '#bf0000', yahoo: '#ff0033', aliexpress: '#ff4747', official: '#0f172a' };
 
 export default function Logs() {
   const [rows, setRows] = useState<Row[]>([]);
