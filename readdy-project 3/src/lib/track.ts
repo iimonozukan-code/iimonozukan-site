@@ -1,6 +1,6 @@
 import { supabase } from './supabaseClient';
 
-export type Store = 'amazon' | 'rakuten' | 'yahoo' | 'aliexpress';
+export type Store = 'amazon' | 'rakuten' | 'yahoo' | 'aliexpress' | 'official';
 
 // ============================================================
 // 基本情報の取得

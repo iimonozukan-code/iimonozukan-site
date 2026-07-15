@@ -44,6 +44,7 @@ type ItemRow = {
   is_own?: boolean;
   gallery?: string[] | null;
   gallery_set_at?: string | null;
+  official_url?: string | null;
 };
 
 function rowToItem(r: ItemRow): Item {
@@ -60,6 +61,7 @@ function rowToItem(r: ItemRow): Item {
     isOwn: r.is_own ?? false,
     gallery: Array.isArray(r.gallery) ? (r.gallery as string[]) : [],
     gallerySetAt: r.gallery_set_at ?? null,
+    officialUrl: r.official_url ?? null,
     links: {
       amazon: r.amazon_url,
       rakuten: r.rakuten_url,
@@ -79,6 +81,7 @@ export type ItemInput = {
   isOwn: boolean;
   gallery: string[];
   gallerySetAt?: string | null;
+  officialUrl?: string | null;
   links: Product['links'];
 };
 
@@ -93,6 +96,7 @@ function inputToRow(input: ItemInput) {
     is_own: input.isOwn,
     gallery: input.gallery,
     gallery_set_at: input.gallerySetAt ?? null,
+    official_url: input.officialUrl ?? null,
     amazon_url: input.links.amazon,
     rakuten_url: input.links.rakuten,
     yahoo_url: input.links.yahoo,
@@ -256,6 +260,7 @@ export async function duplicateItem(source: Item): Promise<number | null> {
       is_own: source.isOwn ?? false,
       gallery: source.gallery ?? [],
       gallery_set_at: source.gallerySetAt ?? null,
+      official_url: source.officialUrl ?? null,
       amazon_url: source.links.amazon,
       rakuten_url: source.links.rakuten,
       yahoo_url: source.links.yahoo,
