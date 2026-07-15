@@ -12,6 +12,7 @@ export interface Product {
   image: string;
   links: ProductLink;
   asin?: string; // Amazon商品ID（新商品の自動エンリッチ用・任意）
+  officialUrl?: string | null; // 公式サイト（有料掲載枠・任意）
 }
 
 export const products: Product[] = [
