@@ -19,6 +19,10 @@ export default {
   "home.clearAllFilters": "すべての条件をクリア",
 
   "footer.copyright": "© {{year}} いいもの図鑑",
+  "footer.companyName": "運営会社：株式会社bukatsu",
+  "footer.companyRep": "代表者：長谷川健太",
+  "footer.companyAddress": "所在地：〒150-0043 東京都渋谷区道玄坂一丁目16番6号 二葉ビル8b",
+  "footer.companyContact": "連絡先：iimonozukan@gmail.com",
 
   "product.amazon": "Amazon",
   "product.rakuten": "楽天",
