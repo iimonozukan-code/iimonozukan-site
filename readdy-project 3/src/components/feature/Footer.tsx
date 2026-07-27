@@ -58,6 +58,11 @@ export default function Footer() {
             {t('footer.copyright', { year: new Date().getFullYear() })}
           </p>
         </div>
+        <div className="mt-4 pt-4 border-t border-background-200 text-center">
+          <p className="text-[11px] leading-relaxed text-foreground-300 font-body">
+            {t('footer.companyName')}　{t('footer.companyRep')}　{t('footer.companyAddress')}　{t('footer.companyContact')}
+          </p>
+        </div>
       </div>
     </footer>
   );
