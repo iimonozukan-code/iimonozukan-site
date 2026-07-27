@@ -19,6 +19,10 @@ export default {
   "home.clearAllFilters": "Clear All Filters",
 
   "footer.copyright": "© {{year}} Iimono Zukan",
+  "footer.companyName": "Operator: BUKATSU INC.",
+  "footer.companyRep": "Representative: Kenta Hasegawa",
+  "footer.companyAddress": "Address: Futaba Bldg. 8F, 1-16-6 Dogenzaka, Shibuya-ku, Tokyo 150-0043, Japan",
+  "footer.companyContact": "Contact: iimonozukan@gmail.com",
 
   "product.amazon": "Amazon",
   "product.rakuten": "Rakuten",
