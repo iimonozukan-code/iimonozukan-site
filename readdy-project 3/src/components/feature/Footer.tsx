@@ -59,7 +59,7 @@ export default function Footer() {
           </p>
         </div>
         <div className="mt-4 pt-4 border-t border-background-200 text-center">
-          <p className="text-[11px] leading-relaxed text-foreground-300 font-body">
+          <p className="text-[11px] leading-relaxed text-foreground-400 font-body">
             {t('footer.companyName')}　{t('footer.companyRep')}　{t('footer.companyAddress')}　{t('footer.companyContact')}
           </p>
         </div>
