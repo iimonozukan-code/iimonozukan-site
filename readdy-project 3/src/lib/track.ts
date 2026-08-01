@@ -2,6 +2,8 @@ import { supabase } from './supabaseClient';
 
 export type Store = 'amazon' | 'rakuten' | 'yahoo' | 'aliexpress' | 'official';
 
+const trackingEnabled = import.meta.env.VITE_ENABLE_TRACKING !== 'false';
+
 // ============================================================
 // 基本情報の取得
 // ============================================================
@@ -95,6 +97,7 @@ function session(): { sid: string; src: string } {
 // ============================================================
 
 function beacon(table: string, rows: unknown): void {
+  if (!trackingEnabled) return;
   const url = import.meta.env.VITE_SUPABASE_URL as string | undefined;
   const key = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
   if (!url || !key) return;
@@ -119,7 +122,7 @@ function beacon(table: string, rows: unknown): void {
 
 /** クリックを記録（fire-and-forget。失敗してもユーザー体験は止めない） */
 export function logClick(itemId: number | undefined, store: Store): void {
-  if (!supabase || itemId == null || isBot()) return;
+  if (!trackingEnabled || !supabase || itemId == null || isBot()) return;
   const { sid, src } = session();
   void supabase
     .from('clicks')
@@ -141,20 +144,20 @@ export function logClick(itemId: number | undefined, store: Store): void {
 /** バナークリックを記録（item_idなし・store='banner1'/'banner2'） */
 /** ギャラリー: 到達スライドを記録（fire-and-forget） */
 export function logGalleryReach(itemId: number | undefined, slide: number): void {
-  if (!supabase || itemId == null || isBot()) return;
+  if (!trackingEnabled || !supabase || itemId == null || isBot()) return;
   const { sid } = session();
   void supabase.from('gallery_events').insert({ item_id: itemId, kind: 'reach', slide, session_id: sid }).then(() => {}, () => {});
 }
 
 /** ギャラリー: ポップアップ内からのモール遷移クリックを記録（スライド位置付き） */
 export function logGalleryClick(itemId: number | undefined, slide: number, store: Store): void {
-  if (!supabase || itemId == null || isBot()) return;
+  if (!trackingEnabled || !supabase || itemId == null || isBot()) return;
   const { sid } = session();
   void supabase.from('gallery_events').insert({ item_id: itemId, kind: 'click', slide, store, session_id: sid }).then(() => {}, () => {});
 }
 
 export function logBannerClick(bannerId: number): void {
-  if (isBot()) return;
+  if (!trackingEnabled || isBot()) return;
   const { sid, src } = session();
   beacon('clicks', {
     item_id: null,
@@ -171,19 +174,20 @@ export function logBannerClick(bannerId: number): void {
 // ページビュー（アクセス）計測 ＋ 滞在時間トラッキング
 // ============================================================
 
-let pvSent = false;
+let lastPvPath: string | null = null;
 
-/** ページビューを記録し、滞在時間の計測を開始（1回だけ実行される） */
+/** ページビューをパスごとに記録し、滞在時間の計測を開始する */
 export function logPageView(): void {
-  if (pvSent || isBot()) return;
-  if (window.location.pathname.startsWith('/admin')) return;
-  pvSent = true;
+  if (!trackingEnabled || isBot()) return;
+  const path = window.location.pathname;
+  if (path.startsWith('/admin') || lastPvPath === path) return;
+  lastPvPath = path;
   const { sid, src } = session();
   beacon('page_views', {
     session_id: sid,
     source: src,
     device: deviceType(),
-    path: window.location.pathname,
+    path,
     user_agent: navigator.userAgent.slice(0, 300),
   });
   startDwell();
@@ -278,7 +282,7 @@ const ioIds = new WeakMap<Element, number>();
 
 /** 商品カードのrefに渡すと、画面に表示された時点でインプレッションを記録 */
 export function observeImpression(el: Element | null, itemId: number | undefined): void {
-  if (!el || itemId == null) return;
+  if (!trackingEnabled || !el || itemId == null) return;
   if (typeof IntersectionObserver === 'undefined') return;
   if (!io) {
     io = new IntersectionObserver(
@@ -296,4 +300,74 @@ export function observeImpression(el: Element | null, itemId: number | undefined
   }
   ioIds.set(el, itemId);
   io.observe(el);
+}
+
+// ============================================================
+// AIツール図鑑の計測（商品の集計に混ざらないよう専用テーブル）
+// ============================================================
+
+/** referral=アフィリリンク / detail=カードタップで詳細を開いた / copy=URLコピー */
+export type AiClickKind = 'referral' | 'detail' | 'copy';
+
+/** AIツールのクリックを ai_clicks に記録（fire-and-forget） */
+export function logAiClick(aiToolId: number | undefined, kind: AiClickKind): void {
+  if (!trackingEnabled || aiToolId == null || aiToolId < 0 || isBot()) return;
+  const { sid, src } = session();
+  beacon('ai_clicks', {
+    ai_tool_id: aiToolId,
+    kind,
+    device: deviceType(),
+    source: src,
+    session_id: sid,
+    user_agent: navigator.userAgent.slice(0, 300),
+  });
+}
+
+const aiSeenIds = new Set<number>();
+let aiImpQueue: number[] = [];
+let aiImpTimer: number | null = null;
+
+function flushAiImpressions(): void {
+  if (aiImpQueue.length === 0) return;
+  const { sid } = session();
+  const rows = aiImpQueue.map((id) => ({ session_id: sid, ai_tool_id: id }));
+  aiImpQueue = [];
+  beacon('ai_impressions', rows);
+}
+
+function markAiImpression(aiToolId: number): void {
+  if (isBot() || aiSeenIds.has(aiToolId)) return;
+  aiSeenIds.add(aiToolId);
+  aiImpQueue.push(aiToolId);
+  if (aiImpTimer == null) {
+    aiImpTimer = window.setTimeout(() => {
+      aiImpTimer = null;
+      flushAiImpressions();
+    }, 4000);
+  }
+}
+
+let aiIo: IntersectionObserver | null = null;
+const aiIoIds = new WeakMap<Element, number>();
+
+/** AIツールカードのrefに渡すと、画面に表示された時点でインプレッションを記録 */
+export function observeAiImpression(el: Element | null, aiToolId: number | undefined): void {
+  if (!trackingEnabled || !el || aiToolId == null || aiToolId < 0) return;
+  if (typeof IntersectionObserver === 'undefined') return;
+  if (!aiIo) {
+    aiIo = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            const id = aiIoIds.get(e.target);
+            if (id != null) markAiImpression(id);
+            aiIo?.unobserve(e.target);
+          }
+        }
+      },
+      { threshold: 0.35 },
+    );
+  }
+  aiIoIds.set(el, aiToolId);
+  aiIo.observe(el);
 }
