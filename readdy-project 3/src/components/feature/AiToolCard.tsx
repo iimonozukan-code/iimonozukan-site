@@ -25,11 +25,11 @@ function LogoMark({ tool, size }: { tool: AiTool; size: 'sm' | 'lg' }) {
   return (
     <span className={`flex ${box} shrink-0 items-center justify-center bg-white/95 shadow-sm`}>
       {tool.logoUrl && !failed ? (
+        // ロゴは小さく件数も少ないので遅延読み込みしない（lazyだと初回に出ないことがある）
         <img
           src={tool.logoUrl}
           alt={tool.name}
           className={`${img} object-contain`}
-          loading="lazy"
           onError={() => setFailed(true)}
         />
       ) : (
