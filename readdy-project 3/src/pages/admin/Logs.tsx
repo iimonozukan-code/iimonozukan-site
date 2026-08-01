@@ -4,7 +4,8 @@ import { fetchAllItems } from '@/lib/db';
 
 type Row = { id: number; item_id: number | null; store: string; referrer: string | null; device: string | null; created_at: string };
 
-const STORE_COLOR: Record<string, string> = { amazon: '#ff9900', rakuten: '#bf0000', yahoo: '#ff0033', aliexpress: '#ff4747', official: '#0f172a' };
+const STORE_COLOR: Record<string, string> = { amazon: '#ff9900', rakuten: '#bf0000', yahoo: '#ff0033', aliexpress: '#ff4747', official: '#0f172a', banner1: '#7c3aed', banner2: '#0ea5e9' };
+const STORE_LABEL: Record<string, string> = { official: '公式サイト', banner1: 'バナー1', banner2: 'バナー2' };
 
 export default function Logs() {
   const [rows, setRows] = useState<Row[]>([]);
@@ -58,7 +59,7 @@ export default function Logs() {
                   <td className="px-4 py-2.5 text-foreground-500 tabular-nums whitespace-nowrap">{fmt(r.created_at)}</td>
                   <td className="px-4 py-2.5">{r.item_id != null ? (names.get(r.item_id) ?? `#${r.item_id}`) : '—'}{r.item_id != null && ownIds.has(r.item_id) && <span className="ml-1.5 text-[9px] font-black text-white bg-amber-500 px-1.5 py-[1px] rounded align-middle">自社</span>}</td>
                   <td className="px-4 py-2.5">
-                    <span className="text-[11px] font-bold text-white px-2 py-0.5 rounded" style={{ background: STORE_COLOR[r.store] ?? '#888' }}>{r.store}</span>
+                    <span className="text-[11px] font-bold text-white px-2 py-0.5 rounded" style={{ background: STORE_COLOR[r.store] ?? '#888' }}>{STORE_LABEL[r.store] ?? r.store}</span>
                   </td>
                   <td className="px-4 py-2.5">{r.device ?? '—'}</td>
                   <td className="px-4 py-2.5 text-foreground-500">{r.referrer ?? '—'}</td>
