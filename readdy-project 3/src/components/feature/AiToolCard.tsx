@@ -12,6 +12,33 @@ if (typeof document !== 'undefined' && !document.getElementById('izk-ai-anim')) 
   document.head.appendChild(st);
 }
 
+/**
+ * ロゴ表示。公式のロゴ画像があればそれを、無い／読み込み失敗時はアイコンにフォールバックする。
+ * （外部ホストのロゴが将来消えても、カードが壊れて見えないようにする）
+ */
+function LogoMark({ tool, size }: { tool: AiTool; size: 'sm' | 'lg' }) {
+  const [failed, setFailed] = useState(false);
+  const box = size === 'sm' ? 'h-11 w-11 rounded-2xl' : 'h-14 w-14 rounded-2xl';
+  const img = size === 'sm' ? 'h-7 w-7' : 'h-9 w-9';
+  const icon = size === 'sm' ? 'text-2xl' : 'text-3xl';
+
+  return (
+    <span className={`flex ${box} shrink-0 items-center justify-center bg-white/95 shadow-sm`}>
+      {tool.logoUrl && !failed ? (
+        <img
+          src={tool.logoUrl}
+          alt={tool.name}
+          className={`${img} object-contain`}
+          loading="lazy"
+          onError={() => setFailed(true)}
+        />
+      ) : (
+        <i className={`${tool.icon} ${icon}`} style={{ color: tool.accentColor }} aria-hidden="true" />
+      )}
+    </span>
+  );
+}
+
 function shortUrl(url: string): string {
   return url.replace(/^https?:\/\//, '').replace(/\/$/, '');
 }
@@ -113,9 +140,6 @@ export default function AiToolCard({ tool }: { tool: AiTool }) {
           />
         )}
 
-        <span className="absolute left-1.5 top-1.5 z-[2] rounded-full bg-foreground-950/60 px-1.5 py-0.5 text-[9px] font-black leading-none text-white">
-          PR
-        </span>
         <span className="absolute right-1.5 top-1.5 z-[2] inline-flex items-center gap-0.5 rounded-full bg-white/90 px-1.5 py-0.5 text-[9px] font-black leading-none text-foreground-700 shadow-sm">
           {t('aiTools.detail')}
           <i className="ri-arrow-right-s-line text-[11px]" aria-hidden="true" />
@@ -123,9 +147,7 @@ export default function AiToolCard({ tool }: { tool: AiTool }) {
 
         {!tool.imageUrl && (
           <span className="absolute inset-0 flex flex-col items-center justify-center px-2.5 text-center">
-            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/90 shadow-sm">
-              <i className={`${tool.icon} text-2xl`} style={{ color: tool.accentColor }} aria-hidden="true" />
-            </span>
+            <LogoMark tool={tool} size="sm" />
             <span
               className="mt-2.5 text-[15px] font-black leading-tight tracking-tight"
               style={{ color: tool.accentColor }}
@@ -174,9 +196,7 @@ export default function AiToolCard({ tool }: { tool: AiTool }) {
                 className="flex items-center gap-3.5 px-5 py-4"
                 style={{ backgroundImage: `linear-gradient(160deg, ${tool.bgFrom} 0%, ${tool.bgTo} 100%)` }}
               >
-                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/90 shadow-sm">
-                  <i className={`${tool.icon} text-3xl`} style={{ color: tool.accentColor }} aria-hidden="true" />
-                </span>
+                <LogoMark tool={tool} size="lg" />
                 <div className="min-w-0">
                   <p className="text-[10px] font-bold tracking-[0.12em] text-foreground-500">{tool.company}</p>
                   <h3 className="mt-0.5 text-[22px] font-black leading-tight tracking-tight" style={{ color: tool.accentColor }}>
