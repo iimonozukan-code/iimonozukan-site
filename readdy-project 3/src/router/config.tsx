@@ -8,11 +8,18 @@ import ItemForm from "../pages/admin/ItemForm";
 import Banners from "../pages/admin/Banners";
 import Logs from "../pages/admin/Logs";
 import OwnProducts from "../pages/admin/OwnProducts";
+import AiToolsPage from "../pages/ai-tools/page";
+import AdminAiTools from "../pages/admin/AiTools";
+import AdminAiToolForm from "../pages/admin/AiToolForm";
 
 const routes: RouteObject[] = [
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/ai-tools",
+    element: <AiToolsPage />,
   },
   {
     path: "/admin",
@@ -25,6 +32,9 @@ const routes: RouteObject[] = [
       { path: "banners", element: <Banners /> },
       { path: "logs", element: <Logs /> },
       { path: "own", element: <OwnProducts /> },
+      { path: "ai-tools", element: <AdminAiTools /> },
+      { path: "ai-tools/new", element: <AdminAiToolForm /> },
+      { path: "ai-tools/:id", element: <AdminAiToolForm /> },
     ],
   },
   {
