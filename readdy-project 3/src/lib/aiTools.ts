@@ -15,6 +15,7 @@ type AiToolRow = {
   accent_color: string | null;
   bg_from: string | null;
   bg_to: string | null;
+  logo_url: string | null;
   image_url: string | null;
   tagline_ja: string | null;
   tagline_en: string | null;
@@ -60,6 +61,7 @@ function rowToTool(r: AiToolRow): AiTool {
     accentColor: r.accent_color || '#1578d3',
     bgFrom: r.bg_from || '#f4f6f8',
     bgTo: r.bg_to || '#e6ebf0',
+    logoUrl: r.logo_url,
     imageUrl: r.image_url,
     tagline: loc(r.tagline_ja, r.tagline_en),
     description: loc(r.description_ja, r.description_en),
@@ -88,6 +90,7 @@ export type AiToolInput = {
   accentColor: string;
   bgFrom: string;
   bgTo: string;
+  logoUrl: string | null;
   imageUrl: string | null;
   taglineJa: string;
   taglineEn: string;
@@ -122,6 +125,7 @@ function inputToRow(input: AiToolInput) {
     accent_color: input.accentColor || null,
     bg_from: input.bgFrom || null,
     bg_to: input.bgTo || null,
+    logo_url: input.logoUrl || null,
     image_url: input.imageUrl || null,
     tagline_ja: input.taglineJa || null,
     tagline_en: input.taglineEn || null,
@@ -157,6 +161,7 @@ export function toolToInput(tool: AiTool): AiToolInput {
     accentColor: tool.accentColor,
     bgFrom: tool.bgFrom,
     bgTo: tool.bgTo,
+    logoUrl: tool.logoUrl,
     imageUrl: tool.imageUrl,
     taglineJa: tool.tagline.ja,
     taglineEn: tool.tagline.en === tool.tagline.ja ? '' : tool.tagline.en,
