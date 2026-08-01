@@ -16,6 +16,8 @@ export type AiTool = {
   /** タイル背景グラデーション（上→下） */
   bgFrom: string;
   bgTo: string;
+  /** 公式ロゴ画像のURL。読み込めないときは icon にフォールバック */
+  logoUrl: string | null;
   /** 9:16のサムネ画像。設定されていればタイル全面に表示 */
   imageUrl: string | null;
   tagline: LocalizedText;
@@ -55,6 +57,7 @@ export const AI_TOOL_SEED: AiTool[] = [
     accentColor: '#b95837',
     bgFrom: '#f8f1ea',
     bgTo: '#eddccc',
+    logoUrl: '/ai/claude.svg',
     imageUrl: null,
     tagline: {
       ja: '考える、書く、作るを、一緒に進めるAI',
@@ -97,6 +100,7 @@ export const AI_TOOL_SEED: AiTool[] = [
     accentColor: '#1578d3',
     bgFrom: '#eef7ff',
     bgTo: '#d8e9fa',
+    logoUrl: 'https://fish.audio/apple-touch-icon.png',
     imageUrl: null,
     tagline: {
       ja: '文字を、感情のある自然な声に変えるAI',
@@ -139,6 +143,7 @@ export const AI_TOOL_SEED: AiTool[] = [
     accentColor: '#6d28d9',
     bgFrom: '#f4efff',
     bgTo: '#e2d6fa',
+    logoUrl: 'https://cdn-o.suno.com/favicon-512x512.png',
     imageUrl: null,
     tagline: {
       ja: '歌詞もボーカルも、まるごと作れる音楽AI',
