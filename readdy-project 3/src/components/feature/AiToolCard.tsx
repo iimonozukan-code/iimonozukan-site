@@ -272,12 +272,6 @@ export default function AiToolCard({ tool }: { tool: AiTool }) {
                       </p>
                     </>
                   )}
-
-                  {tool.referral.disclosure[language] && (
-                    <p className="mt-1 text-[11px] leading-relaxed text-foreground-600">
-                      {tool.referral.disclosure[language]}
-                    </p>
-                  )}
                 </div>
               </div>
             </div>
