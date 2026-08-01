@@ -27,11 +27,11 @@ export type AiTool = {
   referral: {
     url: string;
     code: string | null;
-    /** 例：PR｜アフィリエイト */
+    /** 読者のメリットを前に出したラベル。例：無料プラン付き招待リンク */
     label: LocalizedText;
     /** 読者にとっての条件・メリット */
     benefit: LocalizedText;
-    /** 広告・報酬の開示文 */
+    /** 使っていない（サイト全体の開示文でカバー） */
     disclosure: LocalizedText;
     /** ポップアップ内の大きいボタン */
     ctaLabel: LocalizedText;
@@ -75,15 +75,12 @@ export const AI_TOOL_SEED: AiTool[] = [
     referral: {
       url: 'https://claude.ai/referral/7DwqyHZ7lQ',
       code: null,
-      label: { ja: 'PR｜紹介リンク', en: 'Ad · Referral link' },
+      label: { ja: '無料ではじめる招待リンク', en: 'Invite link · start free' },
       benefit: {
-        ja: '紹介リンク経由で登録できます。特典の有無・条件は登録先の最新情報をご確認ください。',
-        en: 'You can sign up through this referral link. Check the provider for current benefits and terms.',
+        ja: '無料プランのまま使いはじめられます。クレジットカードの登録は不要です。',
+        en: 'Start on the free plan — no credit card required to sign up.',
       },
-      disclosure: {
-        ja: '当メディアが提供を受けた紹介リンクです。条件は予告なく変わる場合があります。',
-        en: 'This is a referral link provided to our media. Terms may change without notice.',
-      },
+      disclosure: { ja: '', en: '' },
       ctaLabel: { ja: 'Claudeの登録ページを見る', en: 'View Claude registration' },
       shortCtaLabel: { ja: '登録ページを見る', en: 'Sign up' },
       checkedAt: '2026-07-25',
@@ -118,15 +115,12 @@ export const AI_TOOL_SEED: AiTool[] = [
     referral: {
       url: 'https://fish.audio/?aff=YDKPDVGUJMPGS',
       code: null,
-      label: { ja: 'PR｜アフィリエイト', en: 'Ad · Affiliate link' },
+      label: { ja: '無料プラン付き招待リンク', en: 'Invite link · free plan included' },
       benefit: {
-        ja: '無料プランはクレジットカード不要・個人の非商用利用向けです。',
-        en: 'The free plan requires no credit card and is for personal, non-commercial use.',
+        ja: '無料プランはクレジットカード不要。個人の非商用利用ならそのまま使えます。収益化動画などの商用利用は有料プランが必要です。',
+        en: 'The free plan needs no credit card and covers personal, non-commercial use. Monetized or commercial use requires a paid plan.',
       },
-      disclosure: {
-        ja: '収益化動画などの商用利用には、有料プランの商用利用権が必要です。このリンク経由の有料プラン購入により、当メディアに報酬が発生します。',
-        en: 'Monetized or other commercial use requires a paid plan with commercial rights. We may earn a commission from paid plans purchased through this link.',
-      },
+      disclosure: { ja: '', en: '' },
       ctaLabel: { ja: 'Fish Audioを無料で試す', en: 'Try Fish Audio for free' },
       shortCtaLabel: { ja: '無料で試す', en: 'Try free' },
       checkedAt: '2026-07-25',
@@ -161,15 +155,12 @@ export const AI_TOOL_SEED: AiTool[] = [
     referral: {
       url: 'https://suno.com/invite/@iimonozukan',
       code: null,
-      label: { ja: 'PR｜紹介リンク', en: 'Ad · Referral link' },
+      label: { ja: '特典クレジット付き招待リンク', en: 'Invite link · bonus credits' },
       benefit: {
-        ja: '紹介リンクから登録すると、招待特典（クレジット）を受け取れます。条件は登録先でご確認ください。',
-        en: 'Sign up via this invite link to receive referral credits. Check the provider for current terms.',
+        ja: 'この招待リンクから登録すると、特典クレジットがもらえます。無料プランのまま試せます。',
+        en: 'Sign up through this invite link to receive bonus credits. You can try it on the free plan.',
       },
-      disclosure: {
-        ja: '当メディアの紹介リンクです。条件は予告なく変わる場合があります。',
-        en: 'This is our referral link. Terms may change without notice.',
-      },
+      disclosure: { ja: '', en: '' },
       ctaLabel: { ja: 'Sunoに登録する', en: 'Sign up for Suno' },
       shortCtaLabel: { ja: '登録する', en: 'Sign up' },
       checkedAt: '2026-08-01',
