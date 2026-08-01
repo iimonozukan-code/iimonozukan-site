@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import Header from '@/components/feature/Header';
 import Footer from '@/components/feature/Footer';
 import ProductCard from '@/components/feature/ProductCard';
+import CatalogModeToggle from '@/components/feature/CatalogModeToggle';
+import { fetchPublishedAiTools } from '@/lib/aiTools';
 import { fetchPublishedItems, fetchBanners, type Item, type Banner } from '@/lib/db';
 import { logPageView, logBannerClick } from '@/lib/track';
 
@@ -30,6 +32,7 @@ const MALL_LABELS: Record<string, string> = {
 export default function Home() {
   const { t, i18n } = useTranslation();
 
+  const [aiToolCount, setAiToolCount] = useState<number | null>(null);
   const [products, setProducts] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
   const [banners, setBanners] = useState<Banner[]>([]);
@@ -44,6 +47,9 @@ export default function Home() {
       .catch(() => {})
       .finally(() => setLoading(false));
     fetchBanners().then((bs) => setBanners(bs.filter((b) => b.is_active && b.image_url)));
+    fetchPublishedAiTools()
+      .then((list) => setAiToolCount(list.length))
+      .catch(() => {});
   }, []);
 
   const presentCategories = useMemo(
@@ -99,6 +105,11 @@ export default function Home() {
       <Header />
 
       <main className="flex-1 w-full max-w-5xl mx-auto px-2 md:px-6">
+        <CatalogModeToggle
+          productCount={loading ? null : products.length}
+          aiToolCount={aiToolCount}
+        />
+
         {/* バナー（管理画面から設定・設定中のみ表示） */}
         {banners.length > 0 && (
           <section className={`pt-2 mb-4 grid gap-2 ${banners.length === 2 ? 'grid-cols-2' : 'grid-cols-1'}`}>
