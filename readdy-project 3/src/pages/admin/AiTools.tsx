@@ -64,16 +64,16 @@ export default function AiTools() {
     <div className="p-4 md:p-6">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-lg font-bold">AIツール図鑑</h1>
+          <h1 className="text-lg font-bold">AI図鑑</h1>
           <p className="mt-0.5 text-[11px] text-foreground-500">
-            公開ページ <code>/ai-tools</code> に並ぶAIツール。上から順に表示されます。
+            公開ページ <code>/ai-tools</code> に並ぶAI。上から順に表示されます。
           </p>
         </div>
         <Link
           to="/admin/ai-tools/new"
           className="rounded-lg bg-primary-500 px-3.5 py-2 text-sm font-bold text-white hover:bg-primary-600"
         >
-          ＋ 新しいAIツール
+          ＋ 新しいAI
         </Link>
       </div>
 

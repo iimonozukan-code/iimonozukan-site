@@ -42,7 +42,7 @@ const EMPTY: AiToolInput = {
   pricingEn: '',
   referralUrl: '',
   referralCode: '',
-  referralLabelJa: 'PR｜アフィリエイト',
+  referralLabelJa: '無料ではじめる招待リンク',
   referralLabelEn: '',
   benefitJa: '',
   benefitEn: '',
@@ -128,7 +128,7 @@ export default function AiToolForm() {
         >
           ← 戻る
         </button>
-        <h1 className="text-lg font-bold">{isEdit ? 'AIツールを編集' : '新しいAIツール'}</h1>
+        <h1 className="text-lg font-bold">{isEdit ? 'AIを編集' : '新しいAI'}</h1>
       </div>
 
       <div className="grid gap-4 lg:grid-cols-[1fr_260px]">
@@ -137,7 +137,7 @@ export default function AiToolForm() {
             <h2 className="text-sm font-bold">基本</h2>
             <div className="grid gap-3 sm:grid-cols-2">
               <div>
-                <label className={LABEL}>ツール名（必須）</label>
+                <label className={LABEL}>名前（必須）</label>
                 <input className={INPUT} value={form.name} onChange={(e) => set('name', e.target.value)} placeholder="Claude" />
               </div>
               <div>
@@ -203,12 +203,13 @@ export default function AiToolForm() {
           <section className={SECTION}>
             <h2 className="text-sm font-bold">表記・開示</h2>
             <p className="text-[11px] leading-relaxed text-foreground-500">
-              ステマ規制対応のため、広告・報酬が発生することがわかる表記を必ず入れてください。
+              ラベルは「無料ではじめる招待リンク」のように、<b>読者が受け取れるメリット</b>を前に出す。
+              広告である旨はトップの開示文（ヘッダー）でカバーしています。
             </p>
             <div className="grid gap-3 sm:grid-cols-2">
               <div>
-                <label className={LABEL}>ラベル</label>
-                <input className={INPUT} value={form.referralLabelJa} onChange={(e) => set('referralLabelJa', e.target.value)} placeholder="PR｜アフィリエイト" />
+                <label className={LABEL}>ラベル（読者メリット）</label>
+                <input className={INPUT} value={form.referralLabelJa} onChange={(e) => set('referralLabelJa', e.target.value)} placeholder="無料プラン付き招待リンク" />
               </div>
               <div>
                 <label className={LABEL}>条件を確認した日</label>
@@ -216,21 +217,12 @@ export default function AiToolForm() {
               </div>
             </div>
             <div>
-              <label className={LABEL}>読者にとっての条件・メリット</label>
+              <label className={LABEL}>メリット・条件の説明</label>
               <textarea
                 className={`${INPUT} min-h-[64px]`}
                 value={form.benefitJa}
                 onChange={(e) => set('benefitJa', e.target.value)}
                 placeholder="無料プランはクレジットカード不要・個人の非商用利用向けです。"
-              />
-            </div>
-            <div>
-              <label className={LABEL}>開示文</label>
-              <textarea
-                className={`${INPUT} min-h-[64px]`}
-                value={form.disclosureJa}
-                onChange={(e) => set('disclosureJa', e.target.value)}
-                placeholder="このリンク経由の有料プラン購入により、当メディアに報酬が発生します。"
               />
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
@@ -304,10 +296,6 @@ export default function AiToolForm() {
                   <label className={LABEL}>Benefit</label>
                   <input className={INPUT} value={form.benefitEn} onChange={(e) => set('benefitEn', e.target.value)} />
                 </div>
-              </div>
-              <div>
-                <label className={LABEL}>Disclosure</label>
-                <textarea className={`${INPUT} min-h-[64px]`} value={form.disclosureEn} onChange={(e) => set('disclosureEn', e.target.value)} />
               </div>
             </div>
           </details>
