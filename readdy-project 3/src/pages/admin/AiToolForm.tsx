@@ -30,6 +30,7 @@ const EMPTY: AiToolInput = {
   accentColor: '#1578d3',
   bgFrom: '#eef7ff',
   bgTo: '#d8e9fa',
+  logoUrl: null,
   imageUrl: null,
   taglineJa: '',
   taglineEn: '',
@@ -329,7 +330,19 @@ export default function AiToolForm() {
               )}
             </div>
             <div>
-              <label className={LABEL}>アイコン（画像なしのとき）</label>
+              <label className={LABEL}>公式ロゴのURL（任意）</label>
+              <input
+                className={INPUT}
+                value={form.logoUrl ?? ''}
+                onChange={(e) => set('logoUrl', e.target.value || null)}
+                placeholder="https://... （公式サイトのロゴ画像）"
+              />
+              <p className="mt-1 text-[10px] leading-relaxed text-foreground-400">
+                読み込めないときは下のアイコンが代わりに出ます。
+              </p>
+            </div>
+            <div>
+              <label className={LABEL}>アイコン（ロゴが無いとき）</label>
               <select className={INPUT} value={form.icon} onChange={(e) => set('icon', e.target.value)}>
                 {ICONS.map((i) => (
                   <option key={i.value} value={i.value}>
@@ -365,7 +378,11 @@ export default function AiToolForm() {
                   ) : (
                     <>
                       <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/90 shadow-sm">
-                        <i className={`${form.icon} text-2xl`} style={{ color: form.accentColor }} />
+                        {form.logoUrl ? (
+                          <img src={form.logoUrl} alt="" className="h-7 w-7 object-contain" />
+                        ) : (
+                          <i className={`${form.icon} text-2xl`} style={{ color: form.accentColor }} />
+                        )}
                       </span>
                       <span className="mt-2.5 text-[15px] font-black leading-tight" style={{ color: form.accentColor }}>
                         {form.name || 'ツール名'}
